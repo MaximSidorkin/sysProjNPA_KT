@@ -243,5 +243,79 @@ class GSeleniumCreateNPA(unittest.TestCase):
         NPACr = driver.find_element_by_xpath('//button[text()="Создать НПА"]')
         NPACr.click()
 
+    def test_3NPAFillingForm(self):
+        time.sleep(4)
+        assert "ЭОР" in driver.title
+        # сокращение списка, выбираем правовые акты ДЭПР
+        depr = driver.find_element_by_xpath('//div/div[2]/div[1]/div[2]/div[1]/div/span/span/span[2]')
+        depr.click()
+        time.sleep(3)
+        deprText = driver.find_element_by_xpath('//div[1]/div/span/ul/li[3]/a')
+        deprText.click()
+        time.sleep(3)
+        # приверим все обязательные поля
+        createButton = driver.find_element_by_id('create-cp')
+        createButton.send_keys(Keys.PAGE_DOWN)
+        time.sleep(2)
+        finishButton = driver.find_element_by_xpath('//form/div/div[2]/div[2]/div/input[2]')
+        finishButton.click()
+        time.sleep(4)
+        # ответственный Согласование отраслевого управления
+        responsibleName1 = driver.find_element_by_xpath('//div[4]/div[1]/div[1]/div/span/span[1]/span/span[2]')  # ответственный Согласование у руководителя департамента
+        responsibleName1.click()
+        responsibleName1 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
+        responsibleName1.send_keys('DIT')
+        responsibleName1.send_keys(Keys.ARROW_DOWN)
+        responsibleName1.send_keys(Keys.ENTER)
+        # проверим все обязательные элементы ещё раз
+        createButton.send_keys(Keys.PAGE_DOWN)
+        time.sleep(2)
+        driver.implicitly_wait(10)
+        finishButton2 = driver.find_element_by_xpath('//form/div/div[2]/div[2]/div/input[2]')
+        #finishButton2 = driver.implicitly_wait(10)
+        finishButton2.click()
+        time.sleep(4)
+        planDate1 = driver.find_element_by_id('date_106_74')# срок исполнения Согласование отраслевого управления
+        planDate1.click()
+        planDate1.send_keys('12345')
+        planDate1.send_keys(Keys.ENTER)
+
+        # Получение согласований, определенных регламентами
+        time.sleep(3)
+        responsibleName2 = driver.find_element_by_xpath('//div[4]/div[2]/div[1]/div/span/span[1]/span/span[2]') # ответственный Получение согласований, определенных регламентами
+        responsibleName2.click()
+        responsibleName2 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
+        responsibleName2.click()
+        responsibleName2.send_keys('DIT')
+        responsibleName2.send_keys(Keys.ENTER)
+        planDate2 = driver.find_element_by_id('date_106_76')# срок исполнения Получение согласований, определенных регламентами
+        planDate2.click()
+        planDate2.send_keys('12345')
+        planDate2.send_keys(Keys.ENTER)
+
+        # Утверждение руководителя департамента
+        time.sleep(3)
+        responsibleName3 = driver.find_element_by_xpath('//div[4]/div[3]/div[1]/div/span/span[1]/span/span[2]')# ответственный Утверждение руководителя департамента
+        responsibleName3.click()
+        responsibleName3 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
+        responsibleName3.click()
+        responsibleName3.send_keys('DIT')
+        responsibleName3.send_keys(Keys.ENTER)
+        planDate3 = driver.find_element_by_id('date_106_83')# срок исполнения Передача в правовое управление
+        planDate3.click()
+        planDate3.send_keys('12345')
+        planDate3.send_keys(Keys.ENTER)
+
+        print(' finish!')
+'''
+        responsibleName4 = # ответственный Передача в организационно-аналитическое управление
+        planDate4 = # срок исполнения Передача в организационно-аналитическое управление
+
+        responsibleName5 = # ответственный Тезисы / доклад
+        planDate5 = # срок исполнения Тезисы / доклад
+
+        responsibleName6 = # ответственный Вынесение на Правительство
+        planDate6 = # срок исполнения Вынесение на Правительство
+'''
 if __name__ == '__main__':
     unittest.main()
