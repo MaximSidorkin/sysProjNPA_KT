@@ -306,6 +306,145 @@ class GSeleniumCreateNPA(unittest.TestCase):
         planDate3.send_keys('12345')
         planDate3.send_keys(Keys.ENTER)
 
+    def test_4EditNPA(self):
+        time.sleep(4)
+        assert "ЭОР" in driver.title
+        editBtn = driver.find_element_by_name('yt0')
+        editBtn.click()
+        time.sleep(3)
+        editBtn = driver.find_element_by_name('yt0')
+        editBtn.click()
+        # отчищаем обязательные поля в форме НПА
+        responsibleName1 = driver.find_element_by_xpath('//div[4]/div[1]/div[1]/div/span/span[1]/span/span[2]')
+        responsibleName1.click()
+        responsibleName1 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
+        responsibleName1.send_keys('Не выбрано')
+        responsibleName1.send_keys(Keys.ENTER)
+        planDate1 = driver.find_element_by_id('date_106_74')
+        planDate1.clear()
+        planDate1.send_keys(Keys.ENTER)
+
+        responsibleName2 = driver.find_element_by_xpath('//div[4]/div[2]/div[1]/div/span/span[1]/span/span[2]')
+        responsibleName2.click()
+        responsibleName2 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
+        responsibleName2.click()
+        responsibleName2.send_keys('Не выбрано')
+        responsibleName2.send_keys(Keys.ENTER)
+        planDate2 = driver.find_element_by_id('date_106_76')
+        planDate2.clear()
+        planDate2.send_keys(Keys.ENTER)
+
+        responsibleName3 = driver.find_element_by_xpath('//div[4]/div[3]/div[1]/div/span/span[1]/span/span[2]')# ответственный Утверждение руководителя департамента
+        responsibleName3.click()
+        responsibleName3 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
+        responsibleName3.click()
+        responsibleName3.send_keys('Не выбрано')
+        responsibleName3.send_keys(Keys.ENTER)
+        planDate3 = driver.find_element_by_id('date_106_83')
+        planDate3.clear()
+        planDate3.send_keys(Keys.ENTER)
+
+        CheckPiontID = driver.find_element_by_id('Checkpoint_TITLE')
+        CheckPiontID.clear()
+
+        editBtn = driver.find_element_by_name('yt0')
+        editBtn.click()
+
+        #подтверждаем невозможность создания
+
+    def test_5NPANotCreate(self):
+        time.sleep(3)
+        driver.find_element_by_id('cp_title')
+        assert "ЭОР" in driver.title
+        assert "500" not in driver.title  # проверка на 500/404 ошибку
+        assert "404" not in driver.title
+
+    def test_6FillingFormAgain(self):
+        time.sleep(2)
+        assert "ЭОР" in driver.title
+        # сокращение списка, выбираем правовые акты ДЭПР
+        depr = driver.find_element_by_xpath('//div/div[2]/div[1]/div[2]/div[1]/div/span/span/span[2]')
+        depr.click()
+        time.sleep(1)
+        deprText = driver.find_element_by_xpath('//div[1]/div/span/ul/li[3]/a')
+        deprText.click()
+        time.sleep(1)
+        # приверим все обязательные поля
+        createButton = driver.find_element_by_id('create-cp')
+        createButton.send_keys(Keys.PAGE_DOWN)
+        time.sleep(1)
+        finishButton = driver.find_element_by_xpath('//form/div/div[2]/div[2]/div/input[2]')
+        finishButton.click()
+        time.sleep(1)
+        # ответственный Согласование отраслевого управления
+        responsibleName1 = driver.find_element_by_xpath('//div[4]/div[1]/div[1]/div/span/span[1]/span/span[2]')  # ответственный Согласование у руководителя департамента
+        responsibleName1.click()
+        responsibleName1 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
+        responsibleName1.send_keys('DIT')
+        responsibleName1.send_keys(Keys.ARROW_DOWN)
+        responsibleName1.send_keys(Keys.ENTER)
+        # проверим все обязательные элементы ещё раз
+        createButton.send_keys(Keys.PAGE_DOWN)
+        time.sleep(1)
+        driver.implicitly_wait(10)
+        finishButton2 = driver.find_element_by_xpath('//form/div/div[2]/div[2]/div/input[2]')
+        # finishButton2 = driver.implicitly_wait(10)
+        finishButton2.click()
+        time.sleep(1)
+        planDate1 = driver.find_element_by_id('date_106_74')  # срок исполнения Согласование отраслевого управления
+        planDate1.click()
+        planDate1.send_keys('12345')
+        planDate1.send_keys(Keys.ENTER)
+
+        # Получение согласований, определенных регламентами
+        time.sleep(1)
+        responsibleName2 = driver.find_element_by_xpath('//div[4]/div[2]/div[1]/div/span/span[1]/span/span[2]')  # ответственный Получение согласований, определенных регламентами
+        responsibleName2.click()
+        responsibleName2 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
+        responsibleName2.click()
+        responsibleName2.send_keys('DIT')
+        responsibleName2.send_keys(Keys.ENTER)
+        planDate2 = driver.find_element_by_id('date_106_76')  # срок исполнения Получение согласований, определенных регламентами
+        planDate2.click()
+        planDate2.send_keys('12345')
+        planDate2.send_keys(Keys.ENTER)
+
+        # Утверждение руководителя департамента
+        time.sleep(1)
+        responsibleName3 = driver.find_element_by_xpath('//div[4]/div[3]/div[1]/div/span/span[1]/span/span[2]')  # ответственный Утверждение руководителя департамента
+        responsibleName3.click()
+        responsibleName3 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
+        responsibleName3.click()
+        responsibleName3.send_keys('ipad')
+        responsibleName3.send_keys(Keys.ENTER)
+        planDate3 = driver.find_element_by_id('date_106_83')  # срок исполнения Передача в правовое управление
+        planDate3.click()
+        planDate3.send_keys('12345')
+        planDate3.send_keys(Keys.ENTER)
+        planDate3.send_keys(Keys.PAGE_UP)
+
+        CheckPiontID = driver.find_element_by_id('Checkpoint_TITLE')
+        CheckPiontID.click()
+        CheckPiontID.send_keys('Контрольная точка для НПА')
+
+    def test_7StatusCheck(self):
+        # 1 - исполнено
+        status1 = driver.find_element_by_xpath('//div[1]/div[2]/div[4]/div[1]/div[3]/div/div/div/label')
+        status1.click()
+        # 2 - просрочено
+        status2 = driver.find_element_by_id('date_106_76')
+        status2.clear()
+        status2.send_keys('15.05.2016')
+        # 3 - в процессе
+        editBtn = driver.find_element_by_name('yt0')
+        editBtn.click()
+        time.sleep(4)
+        driver.find_element_by_css_selector("img[alt='Просрочено']")                # просрочен
+        driver.find_element_by_css_selector("img[src='/assets/dc0815d/check.png']") # исполнен
+        driver.find_element_by_css_selector("img[alt='В процессе исполнения']")     # в процессе
+
+
+
         print(' finish!')
 '''
         responsibleName4 = # ответственный Передача в организационно-аналитическое управление
