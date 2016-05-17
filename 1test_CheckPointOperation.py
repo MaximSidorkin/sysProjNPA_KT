@@ -91,6 +91,12 @@ class DSeleniumTestCPForm(unittest.TestCase):
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'create-cp')))
         _ = driver.find_element_by_class_name('warn-cp').text == 'контрольную точку'  # test
         time.sleep(1)
+        # проверка обязательных полей
+        finishButton = driver.find_element_by_xpath('//div[2]/div[2]/div[4]/form/div/div[2]/div[23]/input[2]')
+        finishButton.send_keys(Keys.PAGE_DOWN)
+        finishButton.click()
+        #
+        time.sleep(3)
         #имя контрольной точки
         nameCP = driver.find_element_by_xpath('//div[2]/div[2]/div[4]/form/div/div[2]/div[4]/div/textarea')
         nameCP.click()
