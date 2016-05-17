@@ -6,6 +6,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import Select
 
 driver = webdriver.Firefox()
 driver.get("http://dev.eor.gosapi.ru/")
@@ -438,23 +440,48 @@ class GSeleniumCreateNPA(unittest.TestCase):
         # 3 - в процессе
         editBtn = driver.find_element_by_name('yt0')
         editBtn.click()
-        time.sleep(4)
+        time.sleep(2)
         driver.find_element_by_css_selector("img[alt='Просрочено']")                # просрочен
         driver.find_element_by_css_selector("img[src='/assets/dc0815d/check.png']") # исполнен
         driver.find_element_by_css_selector("img[alt='В процессе исполнения']")     # в процессе
 
+    def test_8AddCurrentState(self):
+        addCS = driver.find_element_by_css_selector("div a[ data-original-title='Создать поручение']")
+        addCS.click()
+        wait.until(EC.element_to_be_clickable((By.ID, 'mission_form_save')))
+        createAddCS = driver.find_element_by_id('mission_form_save')
+        createAddCS.click()
 
+        nameAddCS = driver.find_element_by_xpath('html/body/div[4]/div/div/div[2]/form/div[1]/div/textarea')
+        nameAddCS.click()
+        nameAddCS.send_keys('Проверка поля Название')
+        time.sleep(2)
+        autorName = driver.find_element_by_xpath('//div[2]/form/div[2]/div/span/span')
+        autorName.click()
+        autorName.send_keys('Багреева')
+        autorName.send_keys(Keys.ENTER)
+        time.sleep(2)
+        responsibleName = driver.find_element_by_xpath('//div[2]/form/div[3]/div/span/span[1]/span/span[2]')
+        responsibleName.click()
+        responsibleName = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
+        responsibleName.click()
+        responsibleName.send_keys('А')
+        responsibleName.send_keys(Keys.ENTER)
+        time.sleep(2)
+        date = driver.find_element_by_xpath('/html/body/div[4]/div/div/div[2]/form/div[5]/div/input')
+        date.click()
+        date.send_keys('12345')
+        date.send_keys(Keys.ENTER)
+        createAddCS.click()
+
+    def test_9delNPA(self):
+        time.sleep(2)
+        delButton = driver.find_element_by_name('yt1')
+        delButton.click()
+        time.sleep(1)
+        yesButton = driver.find_element_by_xpath('html/body/div[4]/div[3]/div/button[1]').click()
 
         print(' finish!')
-'''
-        responsibleName4 = # ответственный Передача в организационно-аналитическое управление
-        planDate4 = # срок исполнения Передача в организационно-аналитическое управление
 
-        responsibleName5 = # ответственный Тезисы / доклад
-        planDate5 = # срок исполнения Тезисы / доклад
-
-        responsibleName6 = # ответственный Вынесение на Правительство
-        planDate6 = # срок исполнения Вынесение на Правительство
-'''
 if __name__ == '__main__':
     unittest.main()
