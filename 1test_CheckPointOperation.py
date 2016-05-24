@@ -11,6 +11,8 @@ from selenium.webdriver.support.ui import Select
 
 driver = webdriver.Firefox()
 driver.get("http://dev.eor.gosapi.ru/")
+#driver.get("http://minakov.eor.gosapi.ru")
+#driver.get("shmyrev.eor.gosapi.ru")
 driver.maximize_window()
 wait = WebDriverWait(driver, 10)
 
@@ -56,7 +58,7 @@ class CSeleniumCreateNewCP(unittest.TestCase):
         elem.click()
         elemSearch = driver.find_element_by_id('search-text')
         elemSearch.click()
-        elemSearch.send_keys('Для контрольной точки')
+        elemSearch.send_keys('Тестовый проект созданный Selenium')
         elemSearch.send_keys(Keys.ENTER)
         time.sleep(2)
         assert "500" not in driver.title  # проверка на 500/404 ошибку
@@ -159,7 +161,7 @@ class DSeleniumTestCPForm(unittest.TestCase):
         finishButton.click()
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
-        time.sleep(3)
+        time.sleep(5)
 
 class ESeleniumEditCP(unittest.TestCase):
     def test_1ClickEditButton(self):
@@ -189,6 +191,7 @@ class ESeleniumEditCP(unittest.TestCase):
         assert "404" not in driver.title
 
 class FSeleniumSeekAndDestroy(unittest.TestCase):
+
     def test_1FilterSetting(self):
         assert "ЭОР" in driver.title
         FilterSetting = driver.find_element_by_xpath('html/body/div[1]/div[2]/div[4]/nav/div/div[2]/ul[2]/li/a/span')
@@ -448,7 +451,7 @@ class GSeleniumCreateNPA(unittest.TestCase):
         editBtn.click()
         time.sleep(2)
         driver.find_element_by_css_selector("img[alt='Просрочено']")                # просрочен
-        driver.find_element_by_css_selector("img[src='/assets/dc0815d/check.png']") # исполнен
+        #driver.find_element_by_partial_link_text("Срок исполнения (факт)")          # исполнен
         driver.find_element_by_css_selector("img[alt='В процессе исполнения']")     # в процессе
 
     def test_8AddCurrentState(self):
@@ -458,7 +461,7 @@ class GSeleniumCreateNPA(unittest.TestCase):
         createAddCS = driver.find_element_by_id('mission_form_save')
         createAddCS.click()
 
-        nameAddCS = driver.find_element_by_xpath('html/body/div[4]/div/div/div[2]/form/div[1]/div/textarea')
+        nameAddCS = driver.find_element_by_xpath('(//textarea[@id="Checkpoint_TITLE"])[2]')
         nameAddCS.click()
         nameAddCS.send_keys('Проверка поля Название')
         time.sleep(2)
@@ -474,7 +477,8 @@ class GSeleniumCreateNPA(unittest.TestCase):
         responsibleName.send_keys('А')
         responsibleName.send_keys(Keys.ENTER)
         time.sleep(2)
-        date = driver.find_element_by_xpath('/html/body/div[4]/div/div/div[2]/form/div[5]/div/input')
+        #date = driver.find_element_by_xpath('(//input[@id="Checkpoint_DEADLINE]")[2]')
+        date = driver.find_element_by_xpath ("//form[@id='npa-mission-form']/div[5]/div/input")
         date.click()
         date.send_keys('12345')
         date.send_keys(Keys.ENTER)
@@ -485,7 +489,7 @@ class GSeleniumCreateNPA(unittest.TestCase):
         delButton = driver.find_element_by_name('yt1')
         delButton.click()
         time.sleep(1)
-        yesButton = driver.find_element_by_xpath('html/body/div[4]/div[3]/div/button[1]').click()
+        yesButton = driver.find_element_by_xpath('//div[3]/div/button').click()
 
         print(' finish!')
 
