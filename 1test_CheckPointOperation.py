@@ -1,25 +1,22 @@
-import unittest
 import time
+import unittest
+global str
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.common.action_chains import ActionChains
-from selenium.webdriver.support.ui import Select
 
 driver = webdriver.Firefox()
-driver.get("http://dev.eor.gosapi.ru/")
-#driver.get("http://minakov.eor.gosapi.ru")
-#driver.get("shmyrev.eor.gosapi.ru")
+driver.get("http://dev.eor.gosapi.ru/site/login")
 driver.maximize_window()
 wait = WebDriverWait(driver, 10)
-
 
 class ASeleniumLogin_1(unittest.TestCase):
     def test_1LoginInEORDev(self):
         assert "Login" in driver.title
+        #wait = WebDriverWait(driver, 10)
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
         elem = driver.find_element_by_id("LoginForm_username")
         elem.send_keys("Ipad")
@@ -30,6 +27,9 @@ class ASeleniumLogin_1(unittest.TestCase):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
         _ = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
+
+        if __name__ == '__main__':
+            unittest.main()
 
 class BSeleniumOpenAllPjct_2(unittest.TestCase):
     def test_1OpenAllPjct(self):
@@ -42,9 +42,15 @@ class BSeleniumOpenAllPjct_2(unittest.TestCase):
         allpj = driver.find_element_by_link_text("Все проекты")
         allpj.click()
 
+    if __name__ == '__main__':
+        unittest.main()
+
     def test_2Not500or404(self):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
+
+        if __name__ == '__main__':
+            unittest.main()
 
 class CSeleniumCreateNewCP(unittest.TestCase):
     def test_1OpenForm(self):
@@ -58,15 +64,14 @@ class CSeleniumCreateNewCP(unittest.TestCase):
         elem.click()
         elemSearch = driver.find_element_by_id('search-text')
         elemSearch.click()
-        elemSearch.send_keys('Тестовый проект созданный Selenium')
+        elemSearch.send_keys('Selenium')
         elemSearch.send_keys(Keys.ENTER)
         time.sleep(2)
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
-
     def test_2FindBlock(self):
         #находим блок
-        findBlock = driver.find_element_by_xpath('//div[2]/div[2]/div/table/tbody/tr/td[1]/h4/strong/a')
+        findBlock = driver.find_element_by_link_text('Создал Selenium _для редактирования')
         findBlock.click()
         time.sleep(1)
         assert "500" not in driver.title  # проверка на 500/404 ошибку
@@ -82,49 +87,37 @@ class CSeleniumCreateNewCP(unittest.TestCase):
 
     def test_4CreateCP(self):
         #создаем контрольную точку
-        CreateCP = driver.find_element_by_xpath('html/body/div[1]/div[2]/div[4]/nav/div/div[2]/ul[7]/li/button')
+        CreateCP = driver.find_element_by_id('create-cp')
         CreateCP.click()
         time.sleep(1)
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
+
+    if __name__ == '__main__':
+        unittest.main()
 
 class DSeleniumTestCPForm(unittest.TestCase):
     def test_1FillingCPForm(self):
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'create-cp')))
         _ = driver.find_element_by_class_name('warn-cp').text == 'контрольную точку'  # test
         time.sleep(1)
-        # проверка обязательных полей
-        finishButton = driver.find_element_by_xpath('//div[2]/div[2]/div[4]/form/div/div[2]/div[23]/input[2]')
-        finishButton.send_keys(Keys.PAGE_DOWN)
-        finishButton.click()
-        #
-        time.sleep(3)
         #имя контрольной точки
-        nameCP = driver.find_element_by_xpath('//div[2]/div[2]/div[4]/form/div/div[2]/div[4]/div/textarea')
-        nameCP.click()
-        nameCP.send_keys("контрольная точка созданная Selenium")
+        nameCP = driver.find_element_by_id('Checkpoint_TITLE').send_keys("контрольная точка созданная Selenium")
         time.sleep(1)
         #автор
-        autorName = driver.find_element_by_xpath('//form/div/div[2]/div[8]/div/span/span[1]/span/span[2]')
+        autorName = driver.find_element_by_xpath('//div[9]/div/span/span/span/span[2]')
         autorName.click()
         autorNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
-        autorNameText.send_keys('Багреева')
-        #time.sleep(1)
-        autorNameText.send_keys(Keys.ENTER)
-        #time.sleep(1)
+        autorNameText.send_keys('Б' + Keys.ENTER)
+        time.sleep(2)
         #ответственный
-        responsibleName = driver.find_element_by_xpath('//form/div/div[2]/div[9]/div/span/span[1]/span/span[2]')
+        responsibleName = driver.find_element_by_xpath('//div[10]/div/span/span/span/span[2]')
         responsibleName.click()
         responsibleNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
-        responsibleNameText.send_keys('DIT')
-        time.sleep(1)
-        responsibleNameText.send_keys(Keys.ENTER)
-        time.sleep(1)
+        responsibleNameText.send_keys('DIT' + Keys.ENTER)
+        time.sleep(2)
         #сроки
-        terms = driver.find_element_by_xpath('//div[2]/div[2]/div[4]/form/div/div[2]/div[11]/div/input')
-        terms.click()
-        terms.send_keys("12345")
-        terms.send_keys(Keys.ENTER)
+        terms = driver.find_element_by_id('Checkpoint_DEADLINE').send_keys('12345' + Keys.ENTER)
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 
@@ -136,16 +129,17 @@ class DSeleniumTestCPForm(unittest.TestCase):
         EditProject.send_keys(Keys.PAGE_DOWN)
         time.sleep(1)
         #туда
-        triggerKPI = driver.find_element_by_xpath('//div[2]/div[4]/form/div/div[2]/div[17]/div/div/div/label')
+        triggerKPI = driver.find_element_by_css_selector('span.switch-right')
         triggerKPI.click()
         time.sleep(1)
-        triggerPriority = driver.find_element_by_xpath('//div[2]/div[4]/form/div/div[2]/div[18]/div/div/div/label')
+        triggerPriority = driver.find_element_by_xpath('//div[19]/div/div/div/span[2]')
         triggerPriority.click()
         time.sleep(1)
-        triggerDone = driver.find_element_by_xpath('//div[2]/div[4]/form/div/div[2]/div[19]/div/div[1]/div/label')
+        triggerDone = driver.find_element_by_xpath('//div[20]/div/div/div/span[2]')
         triggerDone.click()
         time.sleep(1)
         #и обратно
+        triggerKPI = driver.find_element_by_xpath('//div[18]/div/div/div/label')
         triggerKPI.click()
         time.sleep(1)
         triggerPriority.click()
@@ -157,104 +151,41 @@ class DSeleniumTestCPForm(unittest.TestCase):
         assert "404" not in driver.title
 
     def test_3ConfirmCPCreating(self):
-        finishButton = driver.find_element_by_xpath('//div[2]/div[2]/div[4]/form/div/div[2]/div[23]/input[2]')
-        finishButton.click()
+        finishButton = driver.find_element_by_name('yt0').click()
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
         time.sleep(5)
 
 class ESeleniumEditCP(unittest.TestCase):
     def test_1ClickEditButton(self):
-        editButton = driver.find_element_by_xpath('//div[2]/div[4]/div/div[2]/div/div[2]/div[11]/input[1]')
-        editButton.click()
-        time.sleep(2)
+        editButton = driver.find_element_by_name('yt0').click()
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
         time.sleep(3)
 
     def test_2editCP(self):
-        _ = driver.find_element_by_class_name('warn-cp').text == 'контрольную точку'
-        nameCP = driver.find_element_by_xpath('//form/div/div[2]/div[4]/div/textarea')
-        nameCP.click()
-        nameCP.send_keys(' редактировано ')
         EditProject = driver.find_element_by_name('yt0')
         EditProject.send_keys(Keys.PAGE_DOWN)
-        saveButton = driver.find_element_by_xpath('//div[2]/div[2]/div[4]/div/div/form/div/div[2]/div[23]/input[2]')
-        saveButton.click()
+        triggerPrior = driver.find_element_by_xpath("//div[19]/div/div/div/label").click()
+        triggerDone = driver.find_element_by_xpath("//div[20]/div/div/div/label").click()
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 
-    def test_3AllRight(self):
+    def test_3NPACreate(self):
         time.sleep(3)
-        _ = driver.find_element_by_id('C_TITLE').text == ' редактировано '
-        assert "500" not in driver.title  # проверка на 500/404 ошибку
-        assert "404" not in driver.title
-
-class FSeleniumSeekAndDestroy(unittest.TestCase):
-
-    def test_1FilterSetting(self):
-        assert "ЭОР" in driver.title
-        FilterSetting = driver.find_element_by_xpath('html/body/div[1]/div[2]/div[4]/nav/div/div[2]/ul[2]/li/a/span')
-        FilterSetting.click()
-        SnipClick = driver.find_element_by_xpath('//nav/div/div[2]/ul[2]/li/ul/li[3]/div/ul/li[1]/div/label[1]/div')
-        SnipClick.click()
-        ConfirmFilter = driver.find_element_by_xpath('//div[1]/div[2]/div[4]/nav/div/div[2]/ul[2]/li/ul/li[4]/button[2]')
-        ConfirmFilter.click()
-        time.sleep(3)
-
-    def test_2TextFilterSetting(self):
-        ClearText = driver.find_element_by_xpath('html/body/div[1]/div[2]/div[4]/nav/div/div[2]/ul[8]/li[1]/span')
-        ClearText.click()
-        FindNew = driver.find_element_by_xpath('html/body/div[1]/div[2]/div[4]/nav/div/div[2]/ul[8]/li[1]/input')
-        FindNew.send_keys('контрольная точка созданная Selenium редактировано ')
-        FindNew.send_keys(Keys.ENTER)
-        time.sleep(2)
-
-    def test_3BlockAndProjectListing(self):
-        findBlock = driver.find_element_by_xpath('//div[2]/div[4]/div[2]/div[2]/div/table/tbody/tr/td[1]/h4/strong/a')
-        findBlock.click()
+        nap = driver.find_element_by_xpath("//div[16]/div/span/span/span/span[2]").click()
         time.sleep(1)
-        findProject = driver.find_element_by_xpath('//div[2]/div[4]/div[2]/div[2]/div[2]/table/tbody/tr/td[1]/h4/strong/a')
-        findProject.click()
-        time.sleep(2)
-
-class GSeleniumCreateNPA(unittest.TestCase):
-    def test_1NPAButtonClick(self):
-        assert "ЭОР" in driver.title
-        findCheckPoint = driver.find_element_by_css_selector('span.find-text')
-        findCheckPoint.click()
+        nap = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("Норматив" + Keys.ENTER)
         time.sleep(1)
-        editButton = driver.find_element_by_xpath('//div[2]/div[4]/div/div[2]/div/div[2]/div[11]/input[1]')
-        editButton.click()
+        EditProject = driver.find_element_by_name('yt0').click()
+        time.sleep(3)
+        EditProject = driver.find_element_by_name('yt0').click()
         time.sleep(2)
-        nameNPA = driver.find_element_by_xpath('//form/div/div[2]/div[4]/div/textarea')
-        nameNPA.click()
-        nameNPA.send_keys(' НПА ')
-        assert "500" not in driver.title  # проверка на 500/404 ошибку
-        assert "404" not in driver.title
-        time.sleep(3)
-        selectNPA = driver.find_element_by_xpath('//form/div/div[2]/div[15]/div/span/span[1]/span/span[2]')
-        selectNPA.click()
-        writeField = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
-        writeField.click()
-        writeField.send_keys('Норм')
-        writeField.send_keys(Keys.ENTER)
-        EditProject = driver.find_element_by_name('yt0')
-        EditProject.send_keys(Keys.PAGE_DOWN)
-        EditProject.click()
-
-    def test_2NPAedit(self):
-        time.sleep(4)
         assert "ЭОР" in driver.title
-        EditProject = driver.find_element_by_name('yt0')
-        EditProject.click()
-        time.sleep(3)
-        wait.until(EC.element_to_be_clickable((By.XPATH, '//button[text()="Создать НПА"]')))
-        #wait.until(EC.element_to_be_clickable)
-        NPACr = driver.find_element_by_xpath('//button[text()="Создать НПА"]')
-        NPACr.click()
+        NPACr = driver.find_element_by_xpath('//button[text()="Создать НПА"]').click()
+        time.sleep(2)
 
-    def test_3NPAFillingForm(self):
+    def test_4NPAFillingForm(self):
         time.sleep(4)
         assert "ЭОР" in driver.title
         # сокращение списка, выбираем правовые акты ДЭПР
@@ -317,7 +248,7 @@ class GSeleniumCreateNPA(unittest.TestCase):
         planDate3.send_keys('12345')
         planDate3.send_keys(Keys.ENTER)
 
-    def test_4EditNPA(self):
+    def test_5EditNPA(self):
         time.sleep(4)
         assert "ЭОР" in driver.title
         editBtn = driver.find_element_by_name('yt0')
@@ -363,14 +294,14 @@ class GSeleniumCreateNPA(unittest.TestCase):
 
         #подтверждаем невозможность создания
 
-    def test_5NPANotCreate(self):
+    def test_6NPANotCreate(self):
         time.sleep(3)
         driver.find_element_by_id('cp_title')
         assert "ЭОР" in driver.title
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 
-    def test_6FillingFormAgain(self):
+    def test_7FillingFormAgain(self):
         time.sleep(2)
         assert "ЭОР" in driver.title
         # сокращение списка, выбираем правовые акты ДЭПР
@@ -438,7 +369,7 @@ class GSeleniumCreateNPA(unittest.TestCase):
         CheckPiontID.click()
         CheckPiontID.send_keys('Контрольная точка для НПА')
 
-    def test_7StatusCheck(self):
+    def test_8StatusCheck(self):
         # 1 - исполнено
         status1 = driver.find_element_by_xpath('//div[1]/div[2]/div[4]/div[1]/div[3]/div/div/div/label')
         status1.click()
@@ -454,7 +385,7 @@ class GSeleniumCreateNPA(unittest.TestCase):
         #driver.find_element_by_partial_link_text("Срок исполнения (факт)")          # исполнен
         driver.find_element_by_css_selector("img[alt='В процессе исполнения']")     # в процессе
 
-    def test_8AddCurrentState(self):
+    def test_9AddCurrentState(self):
         addCS = driver.find_element_by_css_selector("div a[ data-original-title='Создать поручение']")
         addCS.click()
         wait.until(EC.element_to_be_clickable((By.ID, 'mission_form_save')))
@@ -484,10 +415,8 @@ class GSeleniumCreateNPA(unittest.TestCase):
         date.send_keys(Keys.ENTER)
         createAddCS.click()
 
-    def test_9delNPA(self):
         time.sleep(2)
-        delButton = driver.find_element_by_name('yt1')
-        delButton.click()
+        delButton = driver.find_element_by_name('yt1').click()
         time.sleep(1)
         yesButton = driver.find_element_by_xpath('//div[3]/div/button').click()
 
