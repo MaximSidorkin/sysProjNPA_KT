@@ -105,14 +105,16 @@ class DSeleniumTestCPForm(unittest.TestCase):
         nameCP = driver.find_element_by_id('Checkpoint_TITLE').send_keys("контрольная точка созданная Selenium")
         time.sleep(1)
         #автор
-        autorName = driver.find_element_by_xpath('//div[9]/div/span/span/span/span[2]')
-        autorName.click()
+        autorName = driver.find_element_by_id('DIV_AUTHOR_MISSION').click()
+        #autorName = driver.find_element_by_xpath('//div[9]/div/span/span/span/span[2]')
+        #autorName.click()
         autorNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
         autorNameText.send_keys('Б' + Keys.ENTER)
         time.sleep(2)
         #ответственный
-        responsibleName = driver.find_element_by_xpath('//div[10]/div/span/span/span/span[2]')
-        responsibleName.click()
+        responsibleName = driver.find_element_by_id('DIV_ID_RESPONSIBLE').click()
+        #responsibleName = driver.find_element_by_xpath('//div[10]/div/span/span/span/span[2]')
+        #responsibleName.click()
         responsibleNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
         responsibleNameText.send_keys('DIT' + Keys.ENTER)
         time.sleep(2)
@@ -139,7 +141,7 @@ class DSeleniumTestCPForm(unittest.TestCase):
         triggerDone.click()
         time.sleep(1)
         #и обратно
-        triggerKPI = driver.find_element_by_xpath('//div[18]/div/div/div/label')
+        triggerKPI = driver.find_element_by_xpath('//div[19]/div/div/div/label')
         triggerKPI.click()
         time.sleep(1)
         triggerPriority.click()
@@ -173,7 +175,7 @@ class ESeleniumEditCP(unittest.TestCase):
 
     def test_3NPACreate(self):
         time.sleep(3)
-        nap = driver.find_element_by_xpath("//div[16]/div/span/span/span/span[2]").click()
+        nap = driver.find_element_by_id("DIV_N_REALIZATION_TYPE").click()
         time.sleep(1)
         nap = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("Норматив" + Keys.ENTER)
         time.sleep(1)
