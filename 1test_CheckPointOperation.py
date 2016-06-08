@@ -1,3 +1,4 @@
+# СОЗДАНИЕ КОНТРОЛЬНОЙТОЧКИ + СОЗДАНИЕ, РЕДАКТИРОВАНИЕ, УДАЛЕНИЕ НПА
 import time
 import unittest
 global str
@@ -56,9 +57,9 @@ class CSeleniumCreateNewCP(unittest.TestCase):
     def test_1OpenForm(self):
         wait = WebDriverWait(driver, 10)
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'create-cp')))
-        btn1 = driver.find_element_by_id("create-cp")
-        btn1.click()
-        time.sleep(1)
+        #btn1 = driver.find_element_by_id("create-cp")
+        #btn1.click()
+        time.sleep(3)
         assert "ЭОР" in driver.title
         elem = driver.find_element_by_link_text('Поиск')
         elem.click()
@@ -71,7 +72,7 @@ class CSeleniumCreateNewCP(unittest.TestCase):
         assert "404" not in driver.title
     def test_2FindBlock(self):
         #находим блок
-        findBlock = driver.find_element_by_link_text('Создал Selenium _для редактирования')
+        findBlock = driver.find_element_by_link_text('Создал Selenium _для редактирования edit')
         findBlock.click()
         time.sleep(1)
         assert "500" not in driver.title  # проверка на 500/404 ошибку
@@ -119,7 +120,7 @@ class DSeleniumTestCPForm(unittest.TestCase):
         responsibleNameText.send_keys('DIT' + Keys.ENTER)
         time.sleep(2)
         #сроки
-        terms = driver.find_element_by_id('Checkpoint_DEADLINE').send_keys('12345' + Keys.ENTER)
+        terms = driver.find_element_by_id('Checkpoint_DEADLINE').send_keys('123' + Keys.ENTER)
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 
@@ -131,22 +132,17 @@ class DSeleniumTestCPForm(unittest.TestCase):
         EditProject.send_keys(Keys.PAGE_DOWN)
         time.sleep(1)
         #туда
-        triggerKPI = driver.find_element_by_css_selector('span.switch-right')
+        triggerKPI = driver.find_element_by_xpath("//div[@id='DIV_IS_PRIORITY']/div/div/div/label")
         triggerKPI.click()
         time.sleep(1)
-        triggerPriority = driver.find_element_by_xpath('//div[19]/div/div/div/span[2]')
-        triggerPriority.click()
-        time.sleep(1)
-        triggerDone = driver.find_element_by_xpath('//div[20]/div/div/div/span[2]')
+        triggerDone = driver.find_element_by_xpath("//div[@id='DIV_IS_DONE']/div/div/div/span[2]")
         triggerDone.click()
         time.sleep(1)
         #и обратно
-        triggerKPI = driver.find_element_by_xpath('//div[19]/div/div/div/label')
         triggerKPI.click()
         time.sleep(1)
-        triggerPriority.click()
-        time.sleep(1)
         triggerDone.click()
+        time.sleep(1)
         time.sleep(1)
 
         assert "500" not in driver.title  # проверка на 500/404 ошибку
@@ -168,8 +164,10 @@ class ESeleniumEditCP(unittest.TestCase):
     def test_2editCP(self):
         EditProject = driver.find_element_by_name('yt0')
         EditProject.send_keys(Keys.PAGE_DOWN)
-        triggerPrior = driver.find_element_by_xpath("//div[19]/div/div/div/label").click()
-        triggerDone = driver.find_element_by_xpath("//div[20]/div/div/div/label").click()
+        time.sleep(3)
+        triggerKPI = driver.find_element_by_xpath("//div[@id='DIV_IS_PRIORITY']/div/div/div/label").click()
+        time.sleep(1)
+        triggerDone = driver.find_element_by_xpath("//div[@id='DIV_IS_DONE']/div/div/div/span[2]").click()
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 
