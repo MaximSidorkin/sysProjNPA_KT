@@ -99,6 +99,7 @@ class CSeleniumCreateNewCP(unittest.TestCase):
 
 class DSeleniumTestCPForm(unittest.TestCase):
     def test_1FillingCPForm(self):
+        time.sleep(4)
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'create-cp')))
         _ = driver.find_element_by_class_name('warn-cp').text == 'контрольную точку'  # test
         time.sleep(2)
