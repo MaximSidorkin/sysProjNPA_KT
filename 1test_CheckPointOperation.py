@@ -67,12 +67,12 @@ class CSeleniumCreateNewCP(unittest.TestCase):
         elemSearch.click()
         elemSearch.send_keys('Selenium')
         elemSearch.send_keys(Keys.ENTER)
-        time.sleep(2)
+        time.sleep(4)
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
     def test_2FindBlock(self):
         #находим блок
-        findBlock = driver.find_element_by_link_text('Создал Selenium _для редактирования edit')
+        findBlock = driver.find_element_by_link_text('Создал Selenium _для редактирования')
         findBlock.click()
         time.sleep(2)
         assert "500" not in driver.title  # проверка на 500/404 ошибку
