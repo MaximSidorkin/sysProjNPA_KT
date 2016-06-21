@@ -177,14 +177,14 @@ class ESeleniumEditCP(unittest.TestCase):
         nap = driver.find_element_by_id("DIV_N_REALIZATION_TYPE").click()
         time.sleep(2)
         nap = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("Норматив" + Keys.ENTER)
-        time.sleep(2)
+        time.sleep(5)
         EditProject = driver.find_element_by_name('yt0').click()
-        time.sleep(3)
+        time.sleep(5)
         EditProject = driver.find_element_by_name('yt0').click()
-        time.sleep(2)
+        time.sleep(5)
         assert "ЭОР" in driver.title
         NPACr = driver.find_element_by_xpath('//button[text()="Создать НПА"]').click()
-        time.sleep(2)
+        time.sleep(3)
 
     def test_4NPAFillingForm(self):
         time.sleep(4)
