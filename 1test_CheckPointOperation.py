@@ -27,6 +27,7 @@ class ASeleniumLogin_1(unittest.TestCase):
     def test_2Not500or404andLoginIsVisible(self):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
+        time.sleep(3)
         _ = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
 
         if __name__ == '__main__':
@@ -162,18 +163,23 @@ class ESeleniumEditCP(unittest.TestCase):
         assert "404" not in driver.title
         time.sleep(3)
 
-    def test_2editCP(self):
-        EditProject = driver.find_element_by_name('yt0')
-        EditProject.send_keys(Keys.PAGE_DOWN)
-        time.sleep(3)
-        triggerKPI = driver.find_element_by_xpath("//div[@id='DIV_IS_PRIORITY']/div/div/div/label").click()
-        time.sleep(1)
-        triggerDone = driver.find_element_by_xpath("//div[@id='DIV_IS_DONE']/div/div/div/span[2]").click()
-        assert "500" not in driver.title  # проверка на 500/404 ошибку
-        assert "404" not in driver.title
+    #def test_2editCP(self):
+    #    EditProject = driver.find_element_by_name('yt0')
+    #    EditProject.send_keys(Keys.PAGE_DOWN)
+    #    time.sleep(3)
+    #    triggerKPI = driver.find_element_by_xpath("//div[@id='DIV_IS_PRIORITY']/div/div/div/label").click()
+    #    time.sleep(1)
+    #    triggerDone = driver.find_element_by_xpath("//div[@id='DIV_IS_DONE']/div/div/div/span[2]").click()
+    #    assert "500" not in driver.title  # проверка на 500/404 ошибку
+    #    assert "404" not in driver.title
+    #    time.sleep(2)
+    #    EditProject = driver.find_element_by_name('yt0')
+    #    EditProject.send_keys(Keys.PAGE_UP)
 
     def test_3NPACreate(self):
-        time.sleep(3)
+        time.sleep(5)
+        driver.find_element_by_name('yt0').send_keys(Keys.PAGE_DOWN)
+        time.sleep(2)
         nap = driver.find_element_by_id("DIV_N_REALIZATION_TYPE").click()
         time.sleep(2)
         nap = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("Норматив" + Keys.ENTER)
