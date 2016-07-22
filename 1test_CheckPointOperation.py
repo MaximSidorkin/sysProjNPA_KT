@@ -68,14 +68,14 @@ class CSeleniumCreateNewCP(unittest.TestCase):
         elemSearch.click()
         elemSearch.send_keys('Selenium')
         elemSearch.send_keys(Keys.ENTER)
-        time.sleep(4)
+        time.sleep(5)
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
     def test_2FindBlock(self):
         #находим блок
         findBlock = driver.find_element_by_link_text('Создал Selenium _для редактирования')
         findBlock.click()
-        time.sleep(2)
+        time.sleep(3)
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 
@@ -83,7 +83,7 @@ class CSeleniumCreateNewCP(unittest.TestCase):
         #находим проект
         findProject = driver.find_element_by_xpath('//div[2]/div[2]/table/tbody/tr/td[1]/h4/strong/a/span')
         findProject.click()
-        time.sleep(2)
+        time.sleep(3)
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 
@@ -91,7 +91,7 @@ class CSeleniumCreateNewCP(unittest.TestCase):
         #создаем контрольную точку
         CreateCP = driver.find_element_by_id('create-cp')
         CreateCP.click()
-        time.sleep(2)
+        time.sleep(3)
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 
@@ -100,7 +100,7 @@ class CSeleniumCreateNewCP(unittest.TestCase):
 
 class DSeleniumTestCPForm(unittest.TestCase):
     def test_1FillingCPForm(self):
-        time.sleep(4)
+        time.sleep(7)
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'create-cp')))
         _ = driver.find_element_by_class_name('warn-cp').text == 'контрольную точку'  # test
         time.sleep(2)
@@ -130,6 +130,7 @@ class DSeleniumTestCPForm(unittest.TestCase):
         unittest.main()
 
     def test_2TriggersCPTest(self):
+        time.sleep(1)
         EditProject = driver.find_element_by_name('yt0')
         EditProject.send_keys(Keys.PAGE_DOWN)
         time.sleep(1)
@@ -193,7 +194,7 @@ class ESeleniumEditCP(unittest.TestCase):
         time.sleep(3)
 
     def test_4NPAFillingForm(self):
-        time.sleep(4)
+        time.sleep(7)
         assert "ЭОР" in driver.title
         # сокращение списка, выбираем правовые акты ДЭПР
         depr = driver.find_element_by_xpath('//div/div[2]/div[1]/div[2]/div[1]/div/span/span/span[2]')
@@ -208,9 +209,9 @@ class ESeleniumEditCP(unittest.TestCase):
         time.sleep(2)
         finishButton = driver.find_element_by_xpath('//form/div/div[2]/div[2]/div/input[2]')
         finishButton.click()
-        time.sleep(4)
+        time.sleep(6)
         # ответственный Согласование отраслевого управления
-        responsibleName1 = driver.find_element_by_xpath('//div[4]/div[1]/div[1]/div/span/span[1]/span/span[2]')  # ответственный Согласование у руководителя департамента
+        responsibleName1 = driver.find_element_by_xpath('//div[4]/div/div/div/span/span/span/span[2]')  # ответственный Согласование у руководителя департамента
         responsibleName1.click()
         responsibleName1 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
         responsibleName1.send_keys('DIT')
@@ -220,7 +221,7 @@ class ESeleniumEditCP(unittest.TestCase):
         createButton.send_keys(Keys.PAGE_DOWN)
         time.sleep(2)
         driver.implicitly_wait(10)
-        finishButton2 = driver.find_element_by_xpath('//form/div/div[2]/div[2]/div/input[2]')
+        finishButton2 = driver.find_element_by_name('yt0')
         #finishButton2 = driver.implicitly_wait(10)
         finishButton2.click()
         time.sleep(4)
