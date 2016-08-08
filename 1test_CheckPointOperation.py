@@ -135,18 +135,18 @@ class DSeleniumTestCPForm(unittest.TestCase):
         EditProject.send_keys(Keys.PAGE_DOWN)
         time.sleep(1)
         #туда
-        triggerKPI = driver.find_element_by_xpath("//div[@id='DIV_IS_PRIORITY']/div/div/div/label")
-        triggerKPI.click()
-        time.sleep(1)
-        triggerDone = driver.find_element_by_xpath("//div[@id='DIV_IS_DONE']/div/div/div/span[2]")
-        triggerDone.click()
-        time.sleep(1)
+        #triggerKPI = driver.find_element_by_xpath("//div[@id='DIV_IS_PRIORITY']/div/div/div/label")
+        #triggerKPI.click()
+        #time.sleep(1)
+        #triggerDone = driver.find_element_by_xpath("//div[@id='DIV_IS_DONE']/div/div/div/span[2]")
+        #triggerDone.click()
+        #time.sleep(1)
         #и обратно
-        triggerKPI.click()
-        time.sleep(1)
-        triggerDone.click()
-        time.sleep(1)
-        time.sleep(1)
+        #triggerKPI.click()
+        #time.sleep(1)
+        #triggerDone.click()
+        #time.sleep(1)
+        #time.sleep(1)
 
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
