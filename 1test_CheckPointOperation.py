@@ -107,20 +107,15 @@ class DSeleniumTestCPForm(unittest.TestCase):
         #имя контрольной точки
         nameCP = driver.find_element_by_id('Checkpoint_TITLE').send_keys("контрольная точка созданная Selenium")
         time.sleep(2)
-        #автор
-        autorName = driver.find_element_by_id('DIV_AUTHOR_MISSION').click()
-        #autorName = driver.find_element_by_xpath('//div[9]/div/span/span/span/span[2]')
-        #autorName.click()
-        autorNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
-        autorNameText.send_keys('Б' + Keys.ENTER)
-        time.sleep(2)
         #ответственный
-        responsibleName = driver.find_element_by_id('DIV_ID_RESPONSIBLE').click()
-        #responsibleName = driver.find_element_by_xpath('//div[10]/div/span/span/span/span[2]')
-        #responsibleName.click()
+        driver.implicitly_wait(10)
+        responsibleName = driver.find_element_by_xpath("//div[@id='DIV_ID_RESPONSIBLE']/div/span/span/span/span[2]")
+        responsibleName.click()
+        time.sleep(2)
         responsibleNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
         responsibleNameText.send_keys('DIT' + Keys.ENTER)
         time.sleep(2)
+        driver.implicitly_wait(10)
         #сроки
         terms = driver.find_element_by_id('Checkpoint_DEADLINE').send_keys('123' + Keys.ENTER)
         assert "500" not in driver.title  # проверка на 500/404 ошибку
@@ -134,20 +129,6 @@ class DSeleniumTestCPForm(unittest.TestCase):
         EditProject = driver.find_element_by_name('yt0')
         EditProject.send_keys(Keys.PAGE_DOWN)
         time.sleep(1)
-        #туда
-        #triggerKPI = driver.find_element_by_xpath("//div[@id='DIV_IS_PRIORITY']/div/div/div/label")
-        #triggerKPI.click()
-        #time.sleep(1)
-        #triggerDone = driver.find_element_by_xpath("//div[@id='DIV_IS_DONE']/div/div/div/span[2]")
-        #triggerDone.click()
-        #time.sleep(1)
-        #и обратно
-        #triggerKPI.click()
-        #time.sleep(1)
-        #triggerDone.click()
-        #time.sleep(1)
-        #time.sleep(1)
-
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
 
@@ -163,19 +144,6 @@ class ESeleniumEditCP(unittest.TestCase):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
         time.sleep(3)
-
-    #def test_2editCP(self):
-    #    EditProject = driver.find_element_by_name('yt0')
-    #    EditProject.send_keys(Keys.PAGE_DOWN)
-    #    time.sleep(3)
-    #    triggerKPI = driver.find_element_by_xpath("//div[@id='DIV_IS_PRIORITY']/div/div/div/label").click()
-    #    time.sleep(1)
-    #    triggerDone = driver.find_element_by_xpath("//div[@id='DIV_IS_DONE']/div/div/div/span[2]").click()
-    #    assert "500" not in driver.title  # проверка на 500/404 ошибку
-    #    assert "404" not in driver.title
-    #    time.sleep(2)
-    #    EditProject = driver.find_element_by_name('yt0')
-    #    EditProject.send_keys(Keys.PAGE_UP)
 
     def test_3NPACreate(self):
         time.sleep(5)
@@ -293,15 +261,11 @@ class ESeleniumEditCP(unittest.TestCase):
         planDate3 = driver.find_element_by_id('date_106_83')
         planDate3.clear()
         planDate3.send_keys(Keys.ENTER)
-
         CheckPiontID = driver.find_element_by_id('Checkpoint_TITLE')
         CheckPiontID.clear()
-
         editBtn = driver.find_element_by_name('yt0')
         editBtn.click()
-
         #подтверждаем невозможность создания
-
     def test_6NPANotCreate(self):
         time.sleep(3)
         driver.find_element_by_id('cp_title')
@@ -390,7 +354,6 @@ class ESeleniumEditCP(unittest.TestCase):
         editBtn.click()
         time.sleep(2)
         driver.find_element_by_css_selector("img[alt='Просрочено']")                # просрочен
-        #driver.find_element_by_partial_link_text("Срок исполнения (факт)")          # исполнен
         driver.find_element_by_css_selector("img[alt='В процессе исполнения']")     # в процессе
 
     def test_9AddCurrentState(self):
@@ -416,7 +379,6 @@ class ESeleniumEditCP(unittest.TestCase):
         responsibleName.send_keys('А')
         responsibleName.send_keys(Keys.ENTER)
         time.sleep(2)
-        #date = driver.find_element_by_xpath('(//input[@id="Checkpoint_DEADLINE]")[2]')
         date = driver.find_element_by_xpath ("//form[@id='npa-mission-form']/div[5]/div/input")
         date.click()
         date.send_keys('12345')
