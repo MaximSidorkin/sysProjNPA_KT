@@ -46,15 +46,9 @@ class ASeleniumLogin_1(unittest.TestCase):
         #имя контрольной точки
         nameCP = driver.find_element_by_id('Checkpoint_TITLE').send_keys("контрольная точка созданная с рабочего стола Selenium")
         time.sleep(2)
-        #автор
-        #autorName = driver.find_element_by_xpath('//div[5]/div/span/span/span/span[2]').click()
-        #autorNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
-        #autorNameText.send_keys('Б' + Keys.ENTER)
-        #time.sleep(2)
-        #ответственный
         #ответственный
         driver.implicitly_wait(10)
-        responsibleName = driver.find_element_by_xpath("//div[@id='DIV_ID_RESPONSIBLE']/div/span/span/span/span[2]")
+        responsibleName = driver.find_element_by_xpath("//div[5]/div/span/span/span/span[2]")  #("//div[@id='DIV_ID_RESPONSIBLE']/div[5]/span/span/span/span[2]")
         responsibleName.click()
         time.sleep(2)
         responsibleNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
