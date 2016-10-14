@@ -38,7 +38,8 @@ class ASeleniumLogin_1(unittest.TestCase):
     def test004_FillingCPForm(self):
         time.sleep(4)
         #имя родителя
-        driver.find_element_by_xpath("//div[2]/div/div/div/div/span").click()
+        driver.find_element_by_css_selector("i.fa.fa-angle-down").click()
+        time.sleep(1)
         driver.find_element_by_css_selector("input.form-control").send_keys("Тестовый проект созданный Selenium")
         time.sleep(1)
         driver.find_element_by_css_selector('span.find-text').click()
@@ -52,13 +53,18 @@ class ASeleniumLogin_1(unittest.TestCase):
         responsibleName.click()
         time.sleep(2)
         responsibleNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
-        responsibleNameText.send_keys('DIT' + Keys.ENTER)
+        responsibleNameText.send_keys('ipad' + Keys.ENTER)
         time.sleep(2)
         driver.implicitly_wait(10)
+        # new responsible name
+        driver.find_element_by_xpath('//div[6]/div/span/span/span/span[2]').click()
+        time.sleep(1)
+        driver.find_element_by_xpath('//span/input').send_keys('DIT' + Keys.ENTER)
+        time.sleep(1)
         #сроки
         terms = driver.find_element_by_id('Checkpoint_DEADLINE').send_keys('123' + Keys.ENTER)
         time.sleep(2)
-        driver.find_element_by_xpath("//button[@type='button']").click()
+        driver.find_element_by_xpath("//div/div[3]/span[2]").click()
 
     def test005_GotoAllPjct(self):
         time.sleep(3)
@@ -83,10 +89,12 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test007_SearchCP(self):
         time.sleep(4)
-        driver.find_element_by_link_text('Создал Selenium _для редактирования').click()
+        #driver.find_element(By.PARTIAL_LINK_TEXT('Selenium')).click()
+        driver.find_element_by_css_selector('a.cps-link').click()
         driver.implicitly_wait(10)
-        WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT,"Тестовый проект созданный Selenium"))) #
-        driver.find_element_by_link_text('Тестовый проект созданный Selenium').click()
+        time.sleep(2)
+        #WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.LINK_TEXT,"Тестовый проект созданный Selenium"))) #
+        driver.find_element_by_xpath("//div[2]/table/tbody/tr/td/h4/strong/a").click()
         time.sleep(1)
         try:
             driver.find_element_by_link_text('контрольная точка созданная с рабочего стола Selenium')
