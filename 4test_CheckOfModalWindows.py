@@ -163,9 +163,9 @@ class ASeleniumLogin_1(unittest.TestCase):
         try:
             wait.until(EC.element_to_be_clickable((By.XPATH, '//div[3]/div/button')))
             driver.find_element_by_xpath('//div[3]/div/button').click()
-            print('\n 16. Модальное окно "Блок Selenium +1 была удалена.", появилось и было закрыто \n')
+            print(' 16. Модальное окно "Блок Selenium +1 была удалена.", появилось и было закрыто \n')
         except:
-            print('\n 16. Модальное окно "Блок Selenium +1 была удалена.", не появилось \n')
+            print(' 16. Модальное окно "Блок Selenium +1 была удалена.", не появилось \n')
 
     def test_017_ProjectOperationS(self):
         time.sleep(1)
@@ -306,10 +306,72 @@ class ASeleniumLogin_1(unittest.TestCase):
         try:
             _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[3]/div/button')))
             driver.find_element_by_xpath('//div[3]/div/button').click()
-            print(' 30. Модальное окно "Проект Selenium +3 был удалена.", появилось и было закрыто \n')
+            print(' 30. Модальное окно "Проект Selenium +4 был удалена.", появилось и было закрыто \n')
         except:
-            print(' 30. Модальное окно "Проект Selenium +3 был удалена.", не появилось \n')
+            print(' 30. Модальное окно "Проект Selenium +4 был удалена.", не появилось \n')
 
+    def test_031_meetingTest(self):
+        time.sleep(1)
+        driver.find_element_by_link_text("Расписание").click()
+        wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'add-meeting')))
+        print(' 31. Переход в раздел "Расписание"\n')
+
+    def test_032_CreateNewMeeting(self):
+        wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@id='bs-example-navbar-collapse-3']/div[5]/div[2]")))
+        driver.find_element_by_xpath("//div[@id='bs-example-navbar-collapse-3']/div[5]/div[2]").click()
+        wait.until(EC.element_to_be_clickable((By.ID, 'MeetingsData_S_NAME')))
+        name = driver.find_element_by_id('MeetingsData_S_NAME').send_keys('Selenium +5')
+        invite = driver.find_element_by_id('MeetingsData_S_INVITED').send_keys('Selenium +5')
+        unit = driver.find_element_by_css_selector('ul.select2-selection__rendered').click()
+        unit = driver.find_element_by_xpath('//form/div[5]/div/span/span[1]/span/ul/li/input').send_keys('Соловьев Е' + Keys.ENTER)
+        place = driver.find_element_by_id('MeetingsData_S_PLACE').send_keys('Москва')
+        responsibleName = driver.find_element_by_xpath('//div[8]/div/span/span/span/span[2]').click()
+        time.sleep(2)
+        responsibleName = driver.find_element_by_xpath('//body[@id="ui-id-1"]/span/span/span/input').send_keys('Багреева' + Keys.ENTER)
+        comment = driver.find_element_by_id('MeetingsData_S_COMMENT').send_keys('комментарий к совещанию')
+        meetingDateB = driver.find_element_by_id('MeetingsData_D_START').clear()
+        meetingDateB = driver.find_element_by_id('MeetingsData_D_START').send_keys('19:07' + Keys.ENTER)
+        meetingDateE = driver.find_element_by_id('MeetingsData_D_END').clear()
+        meetingDateE = driver.find_element_by_id('MeetingsData_D_END').send_keys('20:07' + Keys.ENTER)
+        driver.find_element_by_name('yt0').click()
+        print(' 32. Заполняем форму создания совещания\n')
+
+    def test_033_OpenNewTab(self):
+        time.sleep(2)
+        body = driver.find_element_by_tag_name('body')
+        body.send_keys(Keys.CONTROL + 't')
+        driver.get('https://dev.eor.gosapi.ru/')
+        wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
+        driver.find_element_by_link_text("Расписание").click()
+        print(' 33. Открываем новую вкладку и переходим в "Расписание"\n')
+
+    def test_034_SearchMeetingAndDelete(self):
+        time.sleep(4)
+        driver.implicitly_wait(10)
+        driver.find_element_by_xpath("//span[. = '19:07 - 20:07' ]").click()
+        wait.until(EC.element_to_be_clickable((By.XPATH, "//button[4]")))
+        driver.find_element_by_xpath('//button[4]').click()
+        time.sleep(2)
+        driver.find_element_by_xpath('//div[3]/div/button').click()
+        time.sleep(2)
+        body = driver.find_element_by_tag_name('body')
+        body.send_keys(Keys.CONTROL+'w')
+        print(' 34. Находим созданное совещание и уалеяем его\n')
+
+    def test_035_TryToEditCP(self):
+        time.sleep(1)
+        wait.until(EC.element_to_be_clickable((By.XPATH, "//span[. = '19:07 - 20:07' ]")))
+        driver.find_element_by_xpath("//span[. = '19:07 - 20:07' ]").click()
+        print(' 35. Во вкладке 1 нажимаем кнопку "Редактировать"\n')
+
+    def test_036_CatchWindow(self):
+        time.sleep(1)
+        try:
+            _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[3]/div/button')))
+            driver.find_element_by_xpath('//div[3]/div/button').click()
+            print(' 36. Модальное окно "Совещание Selenium +5 было удалено.", появилось и было закрыто \n')
+        except:
+            print(' 36. Модальное окно "Совещание Selenium +5 было удалено.", не появилось \n')
 
 if __name__ == '__main__':
     unittest.main()
