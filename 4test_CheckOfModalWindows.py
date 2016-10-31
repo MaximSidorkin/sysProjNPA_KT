@@ -108,9 +108,9 @@ class ASeleniumLogin_1(unittest.TestCase):
         try:
             _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[3]/div/button')))
             driver.find_element_by_xpath('//div[3]/div/button').click()
-            print('\n Модальное окно "Контрольная точкаSelenium _2 была удалена.", появилось и было закрыто \n')
+            print(' 10. Модальное окно "Контрольная точкаSelenium _2 была удалена.", появилось и было закрыто \n')
         except:
-            print('\n Модальное окно "Контрольная точкаSelenium _2 была удалена.", не появилось \n')
+            print(' 10. Модальное окно "Контрольная точкаSelenium _2 была удалена.", не появилось \n')
 
     def test_011_BlockOperation(self):
         time.sleep(1)
@@ -163,9 +163,9 @@ class ASeleniumLogin_1(unittest.TestCase):
         try:
             wait.until(EC.element_to_be_clickable((By.XPATH, '//div[3]/div/button')))
             driver.find_element_by_xpath('//div[3]/div/button').click()
-            print('\n Модальное окно "Блок Selenium +1 была удалена.", появилось и было закрыто \n')
+            print('\n 16. Модальное окно "Блок Selenium +1 была удалена.", появилось и было закрыто \n')
         except:
-            print('\n Модальное окно "Блок Selenium +1 была удалена.", не появилось \n')
+            print('\n 16. Модальное окно "Блок Selenium +1 была удалена.", не появилось \n')
 
     def test_017_ProjectOperationS(self):
         time.sleep(1)
@@ -223,9 +223,9 @@ class ASeleniumLogin_1(unittest.TestCase):
         try:
             _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[3]/div/button')))
             driver.find_element_by_xpath('//div[3]/div/button').click()
-            print('\n Модальное окно "Проект Selenium +3 был удалена.", появилось и было закрыто \n')
+            print(' 20. Модальное окно "Проект Selenium +3 был удалена.", появилось и было закрыто \n')
         except:
-            print('\n Модальное окно "Проект Selenium +3 был удалена.", не появилось \n')
+            print(' 20. Модальное окно "Проект Selenium +3 был удалена.", не появилось \n')
 
     def test_021_CPOperation(self):
         time.sleep(1)
@@ -306,9 +306,9 @@ class ASeleniumLogin_1(unittest.TestCase):
         try:
             _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[3]/div/button')))
             driver.find_element_by_xpath('//div[3]/div/button').click()
-            print('\n Модальное окно "Проект Selenium +3 был удалена.", появилось и было закрыто \n')
+            print(' 30. Модальное окно "Проект Selenium +3 был удалена.", появилось и было закрыто \n')
         except:
-            print('\n Модальное окно "Проект Selenium +3 был удалена.", не появилось \n')
+            print(' 30. Модальное окно "Проект Selenium +3 был удалена.", не появилось \n')
 
 
 if __name__ == '__main__':
