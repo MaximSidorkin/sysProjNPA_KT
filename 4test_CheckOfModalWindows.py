@@ -373,5 +373,131 @@ class ASeleniumLogin_1(unittest.TestCase):
         except:
             print(' 36. Модальное окно "Совещание Selenium +5 было удалено.", не появилось \n')
 
+    def test_037_Question(self):
+        time.sleep(1)
+        driver.find_element_by_link_text("Вопросы/Приоритеты").click()
+        print(' 37. Переходим в раздел "Вопросы/Приоритеты"\n')
+
+    def test_038_CreateNewQuestion(self):
+        wait.until(EC.element_to_be_clickable((By.ID, 'btn_create_user')))
+        driver.find_element_by_id('btn_create_user').click()
+        wait.until(EC.element_to_be_clickable((By.NAME, 'yt0')))
+        driver.find_element_by_id('Question_S_DESCRIPTION').send_keys('Selenium +6')
+        driver.find_element_by_css_selector("span.select2-selection__arrow").click()
+        driver.find_element_by_xpath('//span/input').send_keys('ipad' + Keys.ENTER)
+        driver.find_element_by_name('yt0').click()
+        print(' 38. Создаём новый вопрос\n')
+        time.sleep(2)
+
+    def test_039_OpenNewTab(self):
+        time.sleep(1)
+        body = driver.find_element_by_tag_name('body')
+        body.send_keys(Keys.CONTROL + 't')
+        driver.get('https://dev.eor.gosapi.ru/')
+        wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
+        driver.find_element_by_link_text("Вопросы/Приоритеты").click()
+        print(' 39. Открываем новую вкладку и переходим в раздел "Вопросы/Приоритеты"\n')
+
+    def test_040_FindQAndDelete(self):
+        time.sleep(1)
+        wait.until(EC.element_to_be_clickable((By.ID, 'btn_create_user')))
+        driver.find_element_by_link_text('Selenium +6').click()
+        # btn_remove
+        wait.until(EC.element_to_be_clickable((By.ID, 'btn_remove')))
+        driver.find_element_by_id('btn_remove').click()
+        # //div[3]/div/button
+        wait.until(EC.element_to_be_clickable((By.ID, 'ui-id-2')))
+        driver.find_element_by_xpath('//div[3]/div/button').click()
+        time.sleep(1)
+        body = driver.find_element_by_tag_name('body')
+        body.send_keys(Keys.CONTROL + 'w')
+        print(' 40. Находим созданный вопрос и удаляем его\n')
+
+    def test_041_TryToEditQ(self):
+        time.sleep(1)
+        driver.find_element_by_link_text('Selenium +6').click()
+        print(' 41. В первой вкладке пытаемся открыть паспорт вопроса\n')
+
+    def test_042_CatchWindow(self):
+        time.sleep(1)
+        try:
+            _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[3]/div/button')))
+            driver.find_element_by_xpath('//div[3]/div/button').click()
+            print(' 42. Модальное окно "Вопрос Selenium +6 был удалено.", появилось и было закрыто \n')
+        except:
+            print(' 42. Модальное окно "Вопрос Selenium +6 был удалено.", не появилось \n')
+
+    def test_043_NPA(self):
+        time.sleep(1)
+        wait.until(EC.element_to_be_clickable((By.LINK_TEXT, 'Нормативно-правовые акты')))
+        driver.find_element_by_link_text('Нормативно-правовые акты').click()
+        print(' 43. Переходим в раздел "Нормативно-правовые акты"\n')
+
+    def test_044_CreateNPA(self):
+        wait.until(EC.element_to_be_clickable((By.ID, 'btn_create_user')))
+        driver.find_element_by_id('btn_create_user').click()
+        print(' 44. Нажимаем кнопку создать в раздете НПА\n')
+
+    def test_045_FillingNPAForm(self):
+        # сокращение списка, выбираем правовые акты ДЭПР
+        wait.until(EC.element_to_be_clickable((By.ID, 'npa_type_selectSelectBoxItArrowContainer')))
+        driver.find_element_by_id('npa_type_selectSelectBoxItArrowContainer').click()
+        time.sleep(1)
+        driver.find_element_by_link_text('Правовые акты ДЭПР').click()
+        time.sleep(1)
+        driver.find_element_by_id('Checkpoint_TITLE').send_keys('Selenium +7')
+        driver.find_element_by_id('Checkpoint_INITIATOR_IDSelectBoxItArrowContainer').click()
+        driver.find_element_by_link_text('ipad Ip. А.').click()
+        driver.find_element_by_css_selector('span.select2-selection__arrow').click()
+        #
+        driver.find_element_by_css_selector('input.select2-search__field').send_keys('ipad' + Keys.ENTER)
+        #
+        driver.find_element_by_id('date_106_74').send_keys('1234' + Keys.ENTER)
+        driver.find_element_by_id('date_106_76').send_keys('1234' + Keys.ENTER)
+        driver.find_element_by_id('date_106_83').send_keys('1234' + Keys.ENTER)
+        driver.find_element_by_css_selector('span.input-group-addon').click()
+        time.sleep(1)
+        driver.find_element_by_xpath('//div/div/div[2]/div/div/div[2]/div/div/input').send_keys('Selenium')
+        time.sleep(1)
+        driver.find_element_by_css_selector('div.title-item > span.find-text').click()
+        driver.find_element_by_name('yt0').click()
+        time.sleep(2)
+        print(' 45. заполняем форму НПА\n')
+
+    def test_046_OpenNewTab(self):
+        body = driver.find_element_by_tag_name('body')
+        body.send_keys(Keys.CONTROL + 't')
+        driver.get('https://dev.eor.gosapi.ru/')
+        wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
+        driver.find_element_by_link_text("Нормативно-правовые акты").click()
+        print(' 46. Открываем новую вкладку и переходим в раздел "Нормативно-правовые акты"\n')
+
+    def test_047_SearchNPAAndDelete(self):
+        wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'i.entypo-menu')))
+        driver.find_element_by_xpath('//tr[2]/td[2]').click()
+        wait.until(EC.element_to_be_clickable((By.NAME, 'yt1')))
+        driver.find_element_by_name('yt1').click()
+        time.sleep(2)
+        driver.find_element_by_xpath('//div[3]/div/button').click()
+        time.sleep(1)
+        body = driver.find_element_by_tag_name('body')
+        body.send_keys(Keys.CONTROL + 'w')
+        print(' 47. Находим созданный вопрос и удаляем его\n')
+
+    def test_048_TryToEditNPA(self):
+        time.sleep(1)
+        driver.find_element_by_name('yt0').click()
+        print(' 48. В первой вкладке пытаемся открыть паспорт вопроса\n')
+
+    def test_049_CatchWindow(self):
+        time.sleep(1)
+        try:
+            _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[3]/div/button')))
+            driver.find_element_by_xpath('//div[3]/div/button').click()
+            print(' 49. Модальное окно "НПА Selenium +6 был удален.", появилось и было закрыто \n')
+        except:
+            print(' 49. Модальное окно "НПА Selenium +6 был удален.", не появилось \n')
+
+
 if __name__ == '__main__':
     unittest.main()
