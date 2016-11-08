@@ -446,8 +446,8 @@ class ASeleniumLogin_1(unittest.TestCase):
         driver.find_element_by_link_text('Правовые акты ДЭПР').click()
         time.sleep(1)
         driver.find_element_by_id('Checkpoint_TITLE').send_keys('Selenium +7')
-        driver.find_element_by_id('Checkpoint_INITIATOR_IDSelectBoxItArrowContainer').click()
-        driver.find_element_by_link_text('ipad Ip. А.').click()
+        #driver.find_element_by_id('Checkpoint_INITIATOR_IDSelectBoxItArrowContainer').click()
+        #driver.find_element_by_link_text('ipad Ip. А.').click()
         driver.find_element_by_css_selector('span.select2-selection__arrow').click()
         #
         driver.find_element_by_css_selector('input.select2-search__field').send_keys('ipad' + Keys.ENTER)
@@ -474,7 +474,7 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test_047_SearchNPAAndDelete(self):
         wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'i.entypo-menu')))
-        driver.find_element_by_xpath('//tr[2]/td[2]').click()
+        driver.find_element_by_css_selector('h4').click()
         wait.until(EC.element_to_be_clickable((By.NAME, 'yt1')))
         driver.find_element_by_name('yt1').click()
         time.sleep(2)
