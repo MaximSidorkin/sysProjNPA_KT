@@ -1,6 +1,8 @@
 # ПРОВЕРКА НАЛИЧИЯ МОДАЛЬНЫХ ОКОН
 import time
 import unittest
+import HTMLTestRunner
+
 global str
 
 from selenium import webdriver
@@ -500,4 +502,13 @@ class ASeleniumLogin_1(unittest.TestCase):
 
 
 if __name__ == '__main__':
-    unittest.main()
+    suite = unittest.TestSuite()
+    suite.addTest(unittest.makeSuite(ASeleniumLogin_1))
+    # File
+    buf = open("at_for_CHECK_MODAL_WINDOWS.html", 'wb')
+    runner = HTMLTestRunner.HTMLTestRunner(
+        stream=buf,
+        title='ПРОВЕРКА НАЛИЧИЯ МОДАЛЬНЫХ МОДАЛЬНЫХ ОКОН',
+        description='Отчет по тестированию'
+    )
+    runner.run(suite)

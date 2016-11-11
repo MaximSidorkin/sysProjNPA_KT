@@ -1,6 +1,8 @@
 # СОЗДАНИЕ КОНТРОЛЬНОЙ ТОЧКИ C РАБОЧЕГО СТОЛА
 import time
 import unittest
+import HTMLTestRunner
+
 global str
 
 from selenium import webdriver
@@ -24,16 +26,23 @@ class ASeleniumLogin_1(unittest.TestCase):
         elem = driver.find_element_by_id("LoginForm_password")
         elem.send_keys("ipad")
         elem.send_keys(Keys.RETURN)
+
+        print('\n 1. Логинимся в систему\n')
+
     def test_002_Not500or404andLoginIsVisible(self):
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
         time.sleep(3)
         _ = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
 
+        print('\n 2. Ожидаем окончания загрузки страницы рабочего стола\n - страница загружена успешно')
+
     def test_003_CreateCPfromDT(self):
         time.sleep(2)
         driver.find_element_by_xpath("//div[@id='cps_panel']/div/div/ul/div/a/i").click()
         time.sleep(2)
+
+        print('\n 3. На рабочем столе выбираем создать контрольную\n точку путем нажатия кнопки "+"\n')
 
     def test_004_FillingCPForm(self):
         time.sleep(4)
@@ -66,6 +75,8 @@ class ASeleniumLogin_1(unittest.TestCase):
         time.sleep(2)
         driver.find_element_by_xpath("//div/div[3]/span[2]").click()
 
+        print('\n 4. Заполняем форму контрольной точки\n')
+
     def test_005_GotoAllPjct(self):
         time.sleep(3)
         menu = driver.find_element_by_css_selector("i.entypo-menu")
@@ -73,6 +84,8 @@ class ASeleniumLogin_1(unittest.TestCase):
         time.sleep(2)
         allpj = driver.find_element_by_link_text("Все проекты")
         allpj.click()
+
+        print('\n 5. Переходим в раздел все проекты\n')
 
     def test_006_FilterSetting(self):
         time.sleep(8)
@@ -87,6 +100,8 @@ class ASeleniumLogin_1(unittest.TestCase):
         driver.find_element_by_id('search-text').send_keys('контрольная точка созданная с рабочего стола Selenium'+Keys.ENTER)
         time.sleep(1)
 
+        print('\n 6. В фильтре вводим название созданной контрольной точки\n')
+
     def test_007_SearchCP(self):
         time.sleep(4)
         driver.find_element_by_css_selector('a.cps-link').click()
@@ -96,14 +111,22 @@ class ASeleniumLogin_1(unittest.TestCase):
         time.sleep(1)
         try:
             driver.find_element_by_link_text('контрольная точка созданная с рабочего стола Selenium')
-            print('\n КТ созданная с рабочего стола найдена и удалена, тест пройден \n')
+            print('\n 7. КТ созданная с рабочего стола найдена и удалена, тест пройден \n')
         except:
-            print('\n КТ созданная с рабочего стола не найдена, тест не пройден \n')
+            print('\n 7. КТ созданная с рабочего стола не найдена, тест не пройден \n')
 
         driver.find_element_by_xpath("//button[3]").click()
         time.sleep(1)
         driver.find_element_by_xpath('//div[3]/div/button').click()
 
 if __name__ == '__main__':
-    unittest.main()
-
+    suite = unittest.TestSuite()
+    suite.addTest(unittest.makeSuite(ASeleniumLogin_1))
+    # File
+    buf = open("at_for_CREATE_CHECKPOINT_FROM_DESKTOP.html", 'wb')
+    runner = HTMLTestRunner.HTMLTestRunner(
+        stream=buf,
+        title='ПРОВЕРКА СОЗДАНИЯ КОНТРОЛЬНОЙ ТОЧКИ С РАБОЧЕГО СТОЛА',
+        description='Отчет по тестированию'
+    )
+    runner.run(suite)

@@ -1,6 +1,8 @@
 # СОЗДАНИЕ КОНТРОЛЬНОЙ ТОЧКИ + СОЗДАНИЕ, РЕДАКТИРОВАНИЕ, УДАЛЕНИЕ НПА
 import time
 import unittest
+import HTMLTestRunner
+
 global str
 
 from selenium import webdriver
@@ -403,5 +405,15 @@ class ASeleniumLogin_1(unittest.TestCase):
         except:
             print(' 20. ТЕСТ ПРОШЕЛ ПОЛНОСТЬЮ УСПЕШНО, СОЗДАННЫЙ НПА УДАЛЕН \n')
 
+
 if __name__ == '__main__':
-    unittest.main()
+    suite = unittest.TestSuite()
+    suite.addTest(unittest.makeSuite(ASeleniumLogin_1))
+    # File
+    buf = open("at_for_CHECKPOINT_AND_NPA.html", 'wb')
+    runner = HTMLTestRunner.HTMLTestRunner(
+        stream=buf,
+        title='СОЗДАНИЕ/РЕДАКТИРОВАНИЕ/УДАЛЕНИЕ НПА ИЗ РАЗДЕЛА ВСЕ ПРОЕКТЫ',
+        description='Отчет по тестированию'
+    )
+    runner.run(suite)
