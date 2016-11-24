@@ -112,7 +112,7 @@ class ASeleniumLogin_1(unittest.TestCase):
             driver.find_element_by_xpath('//div[3]/div/button').click()
             print(' 10. Модальное окно "Контрольная точкаSelenium _2 была удалена.", появилось и было закрыто \n')
         except:
-            print(' 10. Модальное окно "Контрольная точкаSelenium _2 была удалена.", не появилось \n')
+            self.fail(print(' 10. Модальное окно "Контрольная точкаSelenium _2 была удалена.", не появилось \n'))
 
     def test_011_BlockOperation(self):
         time.sleep(1)
@@ -167,7 +167,7 @@ class ASeleniumLogin_1(unittest.TestCase):
             driver.find_element_by_xpath('//div[3]/div/button').click()
             print(' 16. Модальное окно "Блок Selenium +1 была удалена.", появилось и было закрыто \n')
         except:
-            print(' 16. Модальное окно "Блок Selenium +1 была удалена.", не появилось \n')
+            self.fail(print(' 16. Модальное окно "Блок Selenium +1 была удалена.", не появилось \n'))
 
     def test_017_ProjectOperationS(self):
         time.sleep(1)
@@ -227,7 +227,7 @@ class ASeleniumLogin_1(unittest.TestCase):
             driver.find_element_by_xpath('//div[3]/div/button').click()
             print(' 20. Модальное окно "Проект Selenium +3 был удалена.", появилось и было закрыто \n')
         except:
-            print(' 20. Модальное окно "Проект Selenium +3 был удалена.", не появилось \n')
+            self.fail(print(' 20. Модальное окно "Проект Selenium +3 был удалена.", не появилось \n'))
 
     def test_021_CPOperation(self):
         time.sleep(1)
@@ -310,7 +310,7 @@ class ASeleniumLogin_1(unittest.TestCase):
             driver.find_element_by_xpath('//div[3]/div/button').click()
             print(' 30. Модальное окно "Проект Selenium +4 был удалена.", появилось и было закрыто \n')
         except:
-            print(' 30. Модальное окно "Проект Selenium +4 был удалена.", не появилось \n')
+            self.fail(print(' 30. Модальное окно "Проект Selenium +4 был удалена.", не появилось \n'))
 
     def test_031_meetingTest(self):
         time.sleep(1)
@@ -373,7 +373,7 @@ class ASeleniumLogin_1(unittest.TestCase):
             driver.find_element_by_xpath('//div[3]/div/button').click()
             print(' 36. Модальное окно "Совещание Selenium +5 было удалено.", появилось и было закрыто \n')
         except:
-            print(' 36. Модальное окно "Совещание Selenium +5 было удалено.", не появилось \n')
+            self.fail(print(' 36. Модальное окно "Совещание Selenium +5 было удалено.", не появилось \n'))
 
     def test_037_Question(self):
         time.sleep(1)
@@ -427,7 +427,7 @@ class ASeleniumLogin_1(unittest.TestCase):
             driver.find_element_by_xpath('//div[3]/div/button').click()
             print(' 42. Модальное окно "Вопрос Selenium +6 был удалено.", появилось и было закрыто \n')
         except:
-            print(' 42. Модальное окно "Вопрос Selenium +6 был удалено.", не появилось \n')
+            self.fail(print(' 42. Модальное окно "Вопрос Selenium +6 был удалено.", не появилось \n'))
 
     def test_043_NPA(self):
         time.sleep(1)
@@ -498,7 +498,7 @@ class ASeleniumLogin_1(unittest.TestCase):
             driver.find_element_by_xpath('//div[3]/div/button').click()
             print(' 49. Модальное окно "НПА Selenium +6 был удален.", появилось и было закрыто \n')
         except:
-            print(' 49. Модальное окно "НПА Selenium +6 был удален.", не появилось \n')
+            self.fail(print(' 49. Модальное окно "НПА Selenium +6 был удален.", не появилось \n'))
 
 
 if __name__ == '__main__':
