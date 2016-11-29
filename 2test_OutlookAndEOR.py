@@ -37,7 +37,7 @@ class ASeleniumLogin_1(unittest.TestCase):
     def test_003_GotoSyncURL(self):
         driver.get("https://dev.eor.gosapi.ru/ewsup")
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'btn-ewsup')))
-        print(' 3. Переход на страницу синхронизатора \n')
+        print(' 3. Переход на страницу синхронизатора и нажатие кнопки "Синхронизировать" \n')
 
     def test_004_SyncClick(self):
         driver.find_element_by_id('btn-ewsup').click()

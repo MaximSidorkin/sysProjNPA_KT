@@ -114,7 +114,6 @@ class ASeleniumLogin_1(unittest.TestCase):
             print('\n 7. КТ созданная с рабочего стола найдена и удалена, тест пройден \n')
         except:
             print('\n 7. КТ созданная с рабочего стола не найдена, тест не пройден \n')
-
         driver.find_element_by_xpath("//button[3]").click()
         time.sleep(1)
         driver.find_element_by_xpath('//div[3]/div/button').click()

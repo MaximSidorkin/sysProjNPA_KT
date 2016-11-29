@@ -70,7 +70,6 @@ class ASeleniumLogin_1(unittest.TestCase):
         driver.find_element_by_xpath("//div/div[3]/span[2]").click()
         print(' 4. Заполняем форму контрольной точки и сохраняем её\n')
 
-    ### open new tab
     def test_005_OpenWindowTwo(self):
         wait.until(EC.element_to_be_clickable((By.NAME, "yt0")))
         body = driver.find_element_by_tag_name('body')
