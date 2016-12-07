@@ -1,15 +1,11 @@
-import unittest
-import HTMLTestRunner
-import time
+import unittest, HTMLTestRunner, time
 global str
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
-
 from selenium.webdriver.common.action_chains import ActionChains
-
 
 driver = webdriver.Firefox()
 driver.get("https://dev.eor.gosapi.ru/site/login")
@@ -25,7 +21,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
         elem = driver.find_element_by_id("LoginForm_username")
         elem.send_keys("Ipad")
-        elem = driver.find_element_by_id("LoginForm_password")
+        elem = driver.find_element_by_id("LoginForm_password1")
         elem.send_keys("ipad")
         elem.send_keys(Keys.RETURN)
         print('\n 1. Логинимся в систему')
@@ -67,8 +63,8 @@ class ASeleniumLogin_1(unittest.TestCase):
         driver.find_element_by_xpath('//div[3]/div/button').click()
         driver.find_element_by_id("search-text-push").click()
         try:
-            driver.find_element_by_css_selector('p')
-            print('5. Через поиск находим созданный каталог и удаляем его,\n затем проверяем, что и связанный с ним подкаталог удалён')
+            _ = driver.find_element_by_css_selector('p').text == 'По вашему запросу ничего не найдено'        # По вашему запросу ничего не найдено
+            print('5. Через поиск находим созданный каталог и удаляем его, затем проверяем, что и \nсвязанный с ним подкаталог удалён, выведен текст: "По вашему запросу ничего не найдено"\n')
         except:
             self.fail(print('\n \n 5. ОШИБКА! НЕ БЫЛ УДАЛЁН ОСНОВНОЙ СОЗДАННЙ КАТАЛОГ ИЛИ ПОДКАТАЛОГ\n \n'))
 
