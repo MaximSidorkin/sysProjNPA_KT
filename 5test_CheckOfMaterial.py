@@ -19,14 +19,14 @@ class ASeleniumLogin_1(unittest.TestCase):
     def test_001_LoginInEORDev(self):
         assert "Login" in driver.title
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
-        elem = driver.find_element_by_id("LoginForm_username")
+        elem = driver.find_element_by_id("LoginForm_username1")
         elem.send_keys("Ipad")
         elem = driver.find_element_by_id("LoginForm_password")
         elem.send_keys("ipad")
         elem.send_keys(Keys.RETURN)
         print('\n 1. Логинимся в систему')
         wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
-
+'''
     def test_002_GotoMaterial(self):
         wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'i.entypo-menu')))
         driver.find_element_by_css_selector("i.entypo-menu").click()
@@ -51,14 +51,12 @@ class ASeleniumLogin_1(unittest.TestCase):
         except:
             self.fail(print(' 4. Материалы не найден'))
 
-#if __name__ == "__main__":
-#    unittest.main()
     def test_005_CloseDriver(self):
         print(' 5. Тест завершен, браузер закрыт')
         driver.close()
-
+'''
 if __name__ == '__main__':
-    unittest.main()
+    #unittest.main()
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(ASeleniumLogin_1))
     # File
@@ -69,4 +67,8 @@ if __name__ == '__main__':
     description='Отчет по тестированию'
     )
     runner.run(suite)
+
+if __name__ == '__main__':
+    exit()
+    #unittest.main()
     #exit()
