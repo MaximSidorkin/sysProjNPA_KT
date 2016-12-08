@@ -29,7 +29,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         print('\n 1. Логинимся в систему')
         wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
     sys.exit()
-
+#
     #def test_002_GotoMaterial(self):
         #wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'i.entypo-menu')))
         #driver.find_element_by_css_selector("i.entypo-menu").click()
