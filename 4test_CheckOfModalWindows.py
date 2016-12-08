@@ -447,8 +447,6 @@ class ASeleniumLogin_1(unittest.TestCase):
         driver.find_element_by_link_text('Правовые акты ДЭПР').click()
         time.sleep(1)
         driver.find_element_by_id('Checkpoint_TITLE').send_keys('Selenium +7')
-        #driver.find_element_by_id('Checkpoint_INITIATOR_IDSelectBoxItArrowContainer').click()
-        #driver.find_element_by_link_text('ipad Ip. А.').click()
         driver.find_element_by_css_selector('span.select2-selection__arrow').click()
         #
         driver.find_element_by_css_selector('input.select2-search__field').send_keys('ipad' + Keys.ENTER)
@@ -498,6 +496,10 @@ class ASeleniumLogin_1(unittest.TestCase):
             print(' 49. Модальное окно "НПА Selenium +6 был удален.", появилось и было закрыто \n')
         except:
             self.fail(print(' 49. Модальное окно "НПА Selenium +6 был удален.", не появилось \n'))
+
+    def test_050_CloseBrowser(self):
+        print(' 50. Закрываем браузер \n')
+        driver.close()
 
 
 if __name__ == '__main__':

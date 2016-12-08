@@ -21,7 +21,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
         elem = driver.find_element_by_id("LoginForm_username")
         elem.send_keys("Ipad")
-        elem = driver.find_element_by_id("LoginForm_password1")
+        elem = driver.find_element_by_id("LoginForm_password")
         elem.send_keys("ipad")
         elem.send_keys(Keys.RETURN)
         print('\n 1. Логинимся в систему')
@@ -68,16 +68,16 @@ class ASeleniumLogin_1(unittest.TestCase):
         except:
             self.fail(print('\n \n 5. ОШИБКА! НЕ БЫЛ УДАЛЁН ОСНОВНОЙ СОЗДАННЙ КАТАЛОГ ИЛИ ПОДКАТАЛОГ\n \n'))
 
-    if __name__ == '__main__':
-        unittest.main()
 #if __name__ == '__main__':
-#    suite = unittest.TestSuite()
-#    suite.addTest(unittest.makeSuite(ASeleniumLogin_1))
-#    # File
-#    buf = open("at_for_BIBLIO.html", 'wb')
-#    runner = HTMLTestRunner.HTMLTestRunner(
-#    stream=buf,
-#    title='ПРОВЕРКА РАЗДЕЛА "БИБЛИОТЕКА" ',
-#    description='Отчет по тестированию'
-#    )
-#    runner.run(suite)
+#    unittest.main()
+if __name__ == '__main__':
+    suite = unittest.TestSuite()
+    suite.addTest(unittest.makeSuite(ASeleniumLogin_1))
+    # File
+    buf = open("at_for_BIBLIO.html", 'wb')
+    runner = HTMLTestRunner.HTMLTestRunner(
+    stream=buf,
+    title='ПРОВЕРКА РАЗДЕЛА "БИБЛИОТЕКА" ',
+    description='Отчет по тестированию'
+    )
+    runner.run(suite)
