@@ -58,6 +58,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         driver.close()
 
 if __name__ == '__main__':
+    unittest.main()
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(ASeleniumLogin_1))
     # File
@@ -68,4 +69,4 @@ if __name__ == '__main__':
     description='Отчет по тестированию'
     )
     runner.run(suite)
-    exit()
+    #exit()
