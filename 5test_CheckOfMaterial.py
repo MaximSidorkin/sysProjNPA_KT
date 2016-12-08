@@ -66,3 +66,4 @@ if __name__ == '__main__':
     description='Отчет по тестированию'
     )
     runner.run(suite)
+    exit(ASeleniumLogin_1)
