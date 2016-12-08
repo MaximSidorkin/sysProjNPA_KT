@@ -68,14 +68,16 @@ class ASeleniumLogin_1(unittest.TestCase):
         except:
             self.fail(print('\n \n 5. ОШИБКА! НЕ БЫЛ УДАЛЁН ОСНОВНОЙ СОЗДАННЙ КАТАЛОГ ИЛИ ПОДКАТАЛОГ\n \n'))
 
-if __name__ == '__main__':
-    suite = unittest.TestSuite()
-    suite.addTest(unittest.makeSuite(ASeleniumLogin_1))
-    # File
-    buf = open("at_for_BIBLIO.html", 'wb')
-    runner = HTMLTestRunner.HTMLTestRunner(
-    stream=buf,
-    title='ПРОВЕРКА РАЗДЕЛА "БИБЛИОТЕКА" ',
-    description='Отчет по тестированию'
-    )
-    runner.run(suite)
+    if __name__ == '__main__':
+        unittest.main()
+#if __name__ == '__main__':
+#    suite = unittest.TestSuite()
+#    suite.addTest(unittest.makeSuite(ASeleniumLogin_1))
+#    # File
+#    buf = open("at_for_BIBLIO.html", 'wb')
+#    runner = HTMLTestRunner.HTMLTestRunner(
+#    stream=buf,
+#    title='ПРОВЕРКА РАЗДЕЛА "БИБЛИОТЕКА" ',
+#    description='Отчет по тестированию'
+#    )
+#    runner.run(suite)
