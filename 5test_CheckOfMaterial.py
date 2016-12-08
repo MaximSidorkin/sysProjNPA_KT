@@ -51,6 +51,8 @@ class ASeleniumLogin_1(unittest.TestCase):
         except:
             self.fail(print(' 4. Материалы не найден'))
 
+if __name__ == "__main__":
+    unittest.main()
     #def test_005_CloseDriver(self):
     #    print(' 5. Тест завершен, браузер закрыт')
     #    driver.close()
