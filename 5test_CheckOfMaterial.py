@@ -41,19 +41,19 @@ class ASeleniumLogin_1(unittest.TestCase):
         driver.find_element_by_id('search-text-push').click()
         print(' 3. В поиске вводим "1"')
 
-    #def test_004_SecondTry(self):
-    #    driver.find_element_by_css_selector('b.caret').click()
-    #    driver.find_element(By.XPATH,"// a[contains(text(), 'Не учитывать')]").click()
-    #    try:
-    #        wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'span.find-text')))
-    #        driver.find_element_by_css_selector('span.find-text')
-    #        print(' 4. Материалы найден')
-    #    except:
-    #        self.fail(print(' 4. Материалы не найден'))
+    def test_004_SecondTry(self):
+        driver.find_element_by_css_selector('b.caret').click()
+        driver.find_element(By.XPATH,"// a[contains(text(), 'Не учитывать')]").click()
+        try:
+            wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'span.find-text')))
+            driver.find_element_by_css_selector('span.find-text')
+            print(' 4. Материалы найден')
+        except:
+            self.fail(print(' 4. Материалы не найден'))
 
-    #def test_005_CloseDriver(self):
-    #    print(' 5. Тест завершен, браузер закрыт')
-    #    driver.close()
+    def test_005_CloseDriver(self):
+        print(' 5. Тест завершен, браузер закрыт')
+        driver.close()
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()
