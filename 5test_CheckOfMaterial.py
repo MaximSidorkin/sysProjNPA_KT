@@ -40,7 +40,7 @@ if __name__ == '__main__':
             description='Отчет по тестированию'
            )
         runner.run(suite)
-        exit(1)
+        exit()
         #if __name__ == "__main__":
         #    unittest.main()
         #ret = not runner.run(suite).wasSuccessful()
