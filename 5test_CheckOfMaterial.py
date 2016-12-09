@@ -30,16 +30,16 @@ class ASeleniumLogin_1(unittest.TestCase):
         wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
         #sys.exit()
 
-#if __name__ == '__main__':
-        #suite = unittest.TestSuite()
-        #suite.addTest(unittest.makeSuite(ASeleniumLogin_1))
-        #buf = open("at_for_MATERIAL.html", 'wb')
-        #runner = HTMLTestRunner.HTMLTestRunner(
-        #    stream=buf,
-        #    title='ПРОВЕРКА РАЗДЕЛА "МАТЕРИАЛЫ" НА ОТОБРАЖЕНИЕ МАТЕРИАЛОВ ПО ПОИСКУ БЕЗ УЧЁТА ВРЕМЕНИ',
-        #    description='Отчет по тестированию'
-        #   )
-        #runner.run(suite)
+if __name__ == '__main__':
+        suite = unittest.TestSuite()
+        suite.addTest(unittest.makeSuite(ASeleniumLogin_1))
+        buf = open("at_for_MATERIAL.html", 'wb')
+        runner = HTMLTestRunner.HTMLTestRunner(
+            stream=buf,
+            title='ПРОВЕРКА РАЗДЕЛА "МАТЕРИАЛЫ" НА ОТОБРАЖЕНИЕ МАТЕРИАЛОВ ПО ПОИСКУ БЕЗ УЧЁТА ВРЕМЕНИ',
+            description='Отчет по тестированию'
+           )
+        runner.run(suite)
 
         #if __name__ == "__main__":
         #    unittest.main()
