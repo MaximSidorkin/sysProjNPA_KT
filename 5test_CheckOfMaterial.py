@@ -28,7 +28,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         elem.send_keys(Keys.RETURN)
         print('\n 1. Логинимся в систему')
         wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
-        exit(1)
+
 
 if __name__ == '__main__':
         suite = unittest.TestSuite()
@@ -40,7 +40,7 @@ if __name__ == '__main__':
             description='Отчет по тестированию'
            )
         runner.run(suite)
-
+        exit(1)
         #if __name__ == "__main__":
         #    unittest.main()
         #ret = not runner.run(suite).wasSuccessful()
