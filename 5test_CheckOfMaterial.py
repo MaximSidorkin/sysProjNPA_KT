@@ -42,7 +42,7 @@ if __name__ == '__main__':
         ret = not runner.run(suite).wasSuccessful()
         sys.exit(ret)
         #runner.run(suite)
-
+#
         #if __name__ == "__main__":
         #    unittest.main()
         #ret = not runner.run(suite).wasSuccessful()
