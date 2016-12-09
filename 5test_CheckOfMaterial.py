@@ -21,14 +21,13 @@ class ASeleniumLogin_1(unittest.TestCase):
     def test_001_LoginInEORDev(self):
         assert "Login" in driver.title
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
-        elem = driver.find_element_by_id("LoginForm_username")
+        elem = driver.find_element_by_id("LoginForm_username1")
         elem.send_keys("Ipad")
         elem = driver.find_element_by_id("LoginForm_password")
         elem.send_keys("ipad")
         elem.send_keys(Keys.RETURN)
         print('\n 1. Логинимся в систему')
         wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
-
 
 if __name__ == '__main__':
         suite = unittest.TestSuite()
@@ -39,8 +38,9 @@ if __name__ == '__main__':
             title='ПРОВЕРКА РАЗДЕЛА "МАТЕРИАЛЫ" НА ОТОБРАЖЕНИЕ МАТЕРИАЛОВ ПО ПОИСКУ БЕЗ УЧЁТА ВРЕМЕНИ',
             description='Отчет по тестированию'
            )
-        runner.run(suite)
         exit()
+        runner.run(suite)
+
         #if __name__ == "__main__":
         #    unittest.main()
         #ret = not runner.run(suite).wasSuccessful()
