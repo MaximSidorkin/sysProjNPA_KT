@@ -2,6 +2,7 @@
 import time
 import unittest
 import HTMLTestRunner
+import sys
 
 global str
 
