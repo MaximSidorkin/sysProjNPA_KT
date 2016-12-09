@@ -21,7 +21,7 @@ class ASeleniumLogin_1(unittest.TestCase):
     def test_001_LoginInEORDev(self):
         assert "Login" in driver.title
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
-        elem = driver.find_element_by_id("LoginForm_username")
+        elem = driver.find_element_by_id("LoginForm_username1")
         elem.send_keys("Ipad")
         elem = driver.find_element_by_id("LoginForm_password")
         elem.send_keys("ipad")
@@ -46,8 +46,8 @@ if __name__ == '__main__':
         #sys.exit(ret)
 
 #if __name__ == '__main__':
-        ret = not runner.run(suite).wasSuccessful()
-        sys.exit(ret)
+        #ret = not runner.run(suite).wasSuccessful()
+        #sys.exit(ret)
 
 #    unittest.main(sys.exit())
     #sys.exit()
