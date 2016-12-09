@@ -38,8 +38,10 @@ if __name__ == '__main__':
             title='ПРОВЕРКА РАЗДЕЛА "МАТЕРИАЛЫ" НА ОТОБРАЖЕНИЕ МАТЕРИАЛОВ ПО ПОИСКУ БЕЗ УЧЁТА ВРЕМЕНИ',
             description='Отчет по тестированию'
            )
-        exit()
-        runner.run(suite)
+        #exit()
+        ret = not runner.run(suite).wasSuccessful()
+        sys.exit(ret)
+        #runner.run(suite)
 
         #if __name__ == "__main__":
         #    unittest.main()
