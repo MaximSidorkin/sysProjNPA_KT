@@ -128,4 +128,5 @@ if __name__ == '__main__':
         title='ПРОВЕРКА СОЗДАНИЯ КОНТРОЛЬНОЙ ТОЧКИ С РАБОЧЕГО СТОЛА',
         description='Отчет по тестированию'
     )
-    runner.run(suite)
+    ret = not runner.run(suite).wasSuccessful()
+    sys.exit(ret)
