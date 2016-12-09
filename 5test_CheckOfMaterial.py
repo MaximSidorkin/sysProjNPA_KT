@@ -47,5 +47,5 @@ if __name__ == '__main__':
         #sys.exit(ret)
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(exit())
     #sys.exit()
