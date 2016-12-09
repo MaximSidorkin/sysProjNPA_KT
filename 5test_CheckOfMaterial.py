@@ -29,7 +29,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         print('\n 1. Логинимся в систему')
         wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
         #sys.exit()
-#
+
 #if __name__ == '__main__':
         #suite = unittest.TestSuite()
         #suite.addTest(unittest.makeSuite(ASeleniumLogin_1))
