@@ -1,4 +1,4 @@
-import unittest, HTMLTestRunner, time
+import unittest, HTMLTestRunner, time, sys
 global str
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -101,6 +101,7 @@ if __name__ == '__main__':
         title='СОЗДАНИЕ И УДАЛЕНИЕ ПРИОРИТЕТА',
         description='Отчет по тестированию'
     )
-    runner.run(suite)
+    ret = not runner.run(suite).wasSuccessful()
+    sys.exit(ret)
 
 
