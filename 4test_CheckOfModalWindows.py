@@ -495,7 +495,7 @@ class ASeleniumLogin_1(unittest.TestCase):
             driver.find_element_by_xpath('//div[3]/div/button').click()
             print(' 49. Модальное окно "НПА Selenium +6 был удален.", появилось и было закрыто \n')
         except:
-            self.fail(print(' 49. Модальное окно "НПА Selenium +6 был удален.", не появилось \n'))
+            self.fail(print(' 49. Модальное окно "НПА Selenium +7 был удален.", не появилось \n'))
 
     def test_050_CloseBrowser(self):
         print(' 50. Закрываем браузер \n')
