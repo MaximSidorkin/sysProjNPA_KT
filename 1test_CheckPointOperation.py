@@ -364,13 +364,20 @@ class ASeleniumLogin_1(unittest.TestCase):
         editBtn = driver.find_element_by_name('yt0')
         editBtn.click()
         time.sleep(2)
-        driver.find_element_by_css_selector("img[alt='Просрочено']")                # просрочен
-        driver.find_element_by_css_selector("img[alt='В процессе исполнения']")     # в процессе
-        print(' 18. Изменяем статусы заполеннных полей (просрочен/в процессе). Сохраняем \n')
+        try:
+            driver.find_element_by_css_selector("img[alt='Просрочено']")                # просрочен
+            driver.find_element_by_css_selector("img[alt='В процессе исполнения']")     # в процессе
+            print(' 18. Изменяем статусы заполеннных полей (просрочен/в процессе). Сохраняем \n')
+        except:
+            self.fail(print(' 18. В процессе сохранения / отображения статусов возникла непредвиденная ошибка'))
 
     def test_019_AddCurrentState(self):
-        addCS = driver.find_element_by_css_selector("div a[ data-original-title='Создать поручение']")
-        addCS.click()
+        try:
+            addCS = driver.find_element_by_css_selector("div a[ data-original-title='Создать поручение']")
+            addCS.click()
+        except:
+            self.fail(print("\n\n 19. В ПРОЦЕССЕ СОЗДАНИЯ ПОРУЧЕНИЯ ЧЕРЕЗ \n КНОПКУ + ВОЗНИКЛА НЕПРЕДВИДЕННАЯ ОШИБКА! \n\n"))
+
         createAddCS = driver.find_element_by_xpath('//div/div[3]/span[2]')
         time.sleep(7)
         nameAddCS = driver.find_element_by_xpath("//div[2]/div/div[4]/div/textarea")
@@ -394,14 +401,17 @@ class ASeleniumLogin_1(unittest.TestCase):
         time.sleep(3)
         driver.find_element_by_name('yt1').click()                      # delete button click
         time.sleep(2)
-        driver.find_element_by_xpath('//div[3]/div/button').click()     # confirm button click
-        print(' 19. Создаем ещё одно поручение через нопку + на форме НПА\n (проверка обязательности полей включена) \n')
+        try:
+            driver.find_element_by_xpath('//div[3]/div/button').click()     # confirm button click
+            print(' 19. Создаем ещё одно поручение через кнопку + на форме НПА\n (проверка обязательности полей включена) \n')
+        except:
+            self.fail(print(' 19. В процессе создания поручения через кнопку + возникла непредвиденная ошибка!'))
 
     def test_020_Check500Error(self):
         time.sleep(10)
         try:
             driver.find_element_by_css_selector('fa fa-spinner fa-spin fa-2x')
-            print(' 20. ОШИБКА 500 ПРИ УДАЛЕНИИ НПА \n')
+            self.fail(print(' 20. ОШИБКА 500 ПРИ УДАЛЕНИИ НПА \n'))
         except:
             print(' 20. ТЕСТ ПРОШЕЛ ПОЛНОСТЬЮ УСПЕШНО, СОЗДАННЫЙ НПА УДАЛЕН \n')
 

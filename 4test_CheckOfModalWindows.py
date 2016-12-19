@@ -493,7 +493,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         try:
             _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[3]/div/button')))
             driver.find_element_by_xpath('//div[3]/div/button').click()
-            print(' 49. Модальное окно "НПА Selenium +6 был удален.", появилось и было закрыто \n')
+            print(' 49. Модальное окно "НПА Selenium +7 был удален.", появилось и было закрыто \n')
         except:
             self.fail(print(' 49. Модальное окно "НПА Selenium +7 был удален.", не появилось \n'))
 
