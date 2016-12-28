@@ -30,7 +30,6 @@ class ASeleniumLogin_1(unittest.TestCase):
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[text()='Создать событие']/..")))
         driver.find_element(By.XPATH, ".//*[text()='Создать событие']/..").click()
         # Получатели
-        #time.sleep(5)
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[2]/div[2]/div[2]/div/div/input")))
         driver.find_element_by_xpath('//div[2]/div[2]/div[2]/div/div/input').send_keys('Selenium из Outlook. Отв.: ipad Ip.А., Уч. DIT Di.')
         time.sleep(2)
@@ -134,7 +133,6 @@ class ASeleniumLogin_1(unittest.TestCase):
         print(" Изменив название сохраняем")
 
     def test012_gotoEOR(self):
-        #print(" Пререходим к синхронизатору")
         ASeleniumLogin_1.test008_Sync(self)
 
     def test013_gotoMeet(self):
@@ -199,7 +197,6 @@ class ASeleniumLogin_1(unittest.TestCase):
         time.sleep(1)
 
     def test018_GotoEOR(self):
-        #print(" Пререходим к синхронизатору")
         ASeleniumLogin_1.test008_Sync(self)
         time.sleep(1)
         wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'i.entypo-menu')))
@@ -400,7 +397,6 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test034_GotoOut(self):
         time.sleep(1)
-        #print(" Запускаем синхронизацию")
         ASeleniumLogin_1.test031_GotoSync(self)
         driver.get("https://owa.mos.ru/")
         print(' Переходим в Outlook')
@@ -426,7 +422,6 @@ class ASeleniumLogin_1(unittest.TestCase):
             self.fail(print("\n\n\n ОШИБКА! ВОЗНИКЛИ ПРОБЛЕМЫ ПРИ УДАЛЕНИИ СОВЕЩАНИЯ \n\n\n"))
 
     def test035_GotoEOR(self):
-        #print(" Запускаем синхронизацию")
         time.sleep(2)
         ASeleniumLogin_1.test031_GotoSync(self)
         time.sleep(2)
