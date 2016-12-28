@@ -86,7 +86,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         driver.find_element_by_id('MeetingsData_S_NAME').clear()
         time.sleep(1)
         driver.find_element_by_id('MeetingsData_S_NAME').send_keys('Selenium из Outlook (1)')
-        driver.find_element_by_css_selector('input.select2-search__field').send_keys('Web'+Keys.ENTER)
+        #driver.find_element_by_css_selector('input.select2-search__field').send_keys('Web'+Keys.ENTER)
         driver.find_element_by_xpath('//div[8]/div/span/span/span/span').click()
         driver.find_element_by_xpath('//span/input').send_keys('Web'+Keys.ENTER)
         driver.find_element_by_name('yt0').click()
@@ -112,7 +112,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, './/*[text()="Календарь"]/..')))
         driver.find_element(By.XPATH, ".//*[text()='Календарь']/..").click()
         try:
-            driver.find_element_by_xpath(".//*[text()='Selenium из Outlook (1) Отв.: Web w.w., участ.: Web w.w., ']/..").click()
+            driver.find_element_by_xpath(".//*[text()='Selenium из Outlook (1) Отв.: Web w.w.']/..").click()
             print(' Совещание созданное в ЭОР найдено')
         except:
             print('аутглюк завис')
@@ -124,7 +124,7 @@ class ASeleniumLogin_1(unittest.TestCase):
             print(' аутглюк завис')
 
     def test011_editMeetInOutL(self):
-        time.sleep(2)
+        wait.until(EC.element_to_be_clickable((By.XPATH, '//div[2]/div[2]/div[2]/div/div/input')))
         driver.find_element_by_xpath('//div[2]/div[2]/div[2]/div/div/input').clear()
         driver.find_element_by_xpath('//div[2]/div[2]/div[2]/div/div/input').send_keys('Selenium из Outlook + участники')
         time.sleep(1)
@@ -150,8 +150,8 @@ class ASeleniumLogin_1(unittest.TestCase):
 
         wait.until(EC.element_to_be_clickable((By.ID, "MeetingsData_S_NAME")))
         name = driver.find_element_by_id('MeetingsData_S_NAME').send_keys('ЭОР to Outlook (Selenium)')
-        unit = driver.find_element_by_css_selector('ul.select2-selection__rendered').click()
-        unit = driver.find_element_by_xpath('//form/div[5]/div/span/span[1]/span/ul/li/input').send_keys('Соловьев Е' + Keys.ENTER)
+        #unit = driver.find_element_by_css_selector('ul.select2-selection__rendered').click()
+        #unit = driver.find_element_by_xpath('//form/div[5]/div/span/span[1]/span/ul/li/input').send_keys('Соловьев Е' + Keys.ENTER)
         place = driver.find_element_by_id('MeetingsData_S_PLACE').send_keys('Москва')
         responsibleName = driver.find_element_by_xpath('//div[8]/div/span/span/span/span[2]').click()
         time.sleep(1)
@@ -182,8 +182,8 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test017_editMeet(self):
         time.sleep(1)
-        _ = wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[text()='ЭОР to Outlook (Selenium) Отв.: Web w.w., участ.: Соловьев Е.В., ']/..")))
-        driver.find_element_by_xpath(".//*[text()='ЭОР to Outlook (Selenium) Отв.: Web w.w., участ.: Соловьев Е.В., ']/..").click()
+        _ = wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[text()='ЭОР to Outlook (Selenium) Отв.: Web w.w.']/..")))
+        driver.find_element_by_xpath(".//*[text()='ЭОР to Outlook (Selenium) Отв.: Web w.w.']/..").click()
         try:
             time.sleep(1)
             driver.find_element_by_xpath(".//*[text()='ИЗМЕНИТЬ']/..").click()
@@ -282,14 +282,13 @@ class ASeleniumLogin_1(unittest.TestCase):
         except:
             self.fail(print(' аутглюк завис'))
         try:
-            time.sleep(1)
+            _ = wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[text()='ИЗМЕНИТЬ']/..")))
             driver.find_element_by_xpath(".//*[text()='ИЗМЕНИТЬ']/..").click()
             print(' Открываем на просмотр совещание:')
         except:
             self.fail(print(' аутглюк завис'))
-
-        time.sleep(3)
         try:
+            _ = wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[text()='Весь день']/..")))
             driver.find_element(By.XPATH, ".//*[text()='Весь день']/..")
             print(" Совещение созданно на весь день")
         except:
@@ -374,6 +373,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         driver.find_element_by_xpath('//li/div[2]/div/div/div/input').clear()
         driver.find_element_by_xpath('//li/div[2]/div/div/div/input').send_keys('23:00')
         time.sleep(1)
+        _ = wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[text()='СОХРАНИТЬ']/..")))
         driver.find_element(By.XPATH, ".//*[text()='СОХРАНИТЬ']/..").click()
         print(' Переходим в раздел календарь и создаём новое совещание')
 
@@ -393,7 +393,7 @@ class ASeleniumLogin_1(unittest.TestCase):
             driver.find_element_by_xpath("//span[. = '23:00 - 23:30' ]")
             print(' Совещание передалось в ЭОР корректно')
         except:
-            self.fail(print('ОШИБКА СОВЕЩАНИЕ НЕ ПЕРЕДАЛОСЬ!'))
+            self.fail(print('ОШИБКА СОВЕЩАНИЕ НЕ ПЕРЕДАЛОСЬ\n ИЛИ НЕБЫЛО СОХРАНЕНО В OUTLOOK!'))
 
     def test034_GotoOut(self):
         time.sleep(1)
@@ -439,9 +439,10 @@ class ASeleniumLogin_1(unittest.TestCase):
         print(' Нажимаем кнопку "Создать" на открывшейся форме')
         time.sleep(3)
         name = driver.find_element_by_id('MeetingsData_S_NAME').send_keys('for LOGIN')
-        unit = driver.find_element_by_css_selector('ul.select2-selection__rendered').click()
-        unit = driver.find_element_by_xpath('//form/div[5]/div/span/span[1]/span/ul/li/input').send_keys('Афа' + Keys.ENTER)
+        unit = driver.find_element_by_xpath('//div[5]/div/div/div/input').click()
+        unit = driver.find_element_by_xpath('//div[5]/div/div/div/input').send_keys('Афа')
         time.sleep(2)
+        unit = driver.find_element_by_xpath('//div[5]/div/div/div/input').send_keys(Keys.ENTER)
         meetingDateB = driver.find_element_by_id('MeetingsData_D_START').clear()
         meetingDateB = driver.find_element_by_id('MeetingsData_D_START').send_keys('23:00' + Keys.ENTER)
         meetingDateE = driver.find_element_by_id('MeetingsData_D_END').clear()
@@ -536,8 +537,10 @@ class ASeleniumLogin_1(unittest.TestCase):
         driver.find_element_by_xpath('//tr[23]/td[2]').click()
         time.sleep(2)
         name = driver.find_element_by_id('MeetingsData_S_NAME').send_keys('for LOGIN_2')
-        unit = driver.find_element_by_css_selector('ul.select2-selection__rendered').click()
-        unit = driver.find_element_by_xpath('//form/div[5]/div/span/span[1]/span/ul/li/input').send_keys('Афа' + Keys.ENTER)
+        unit = driver.find_element_by_xpath('//div[5]/div/div/div/input').click()
+        unit = driver.find_element_by_xpath('//div[5]/div/div/div/input').send_keys('Афа')
+        time.sleep(2)
+        unit = driver.find_element_by_xpath('//div[5]/div/div/div/input').send_keys(Keys.ENTER)
         meetingDateB = driver.find_element_by_id('MeetingsData_D_START').clear()
         meetingDateB = driver.find_element_by_id('MeetingsData_D_START').send_keys('23:00' + Keys.ENTER)
         meetingDateE = driver.find_element_by_id('MeetingsData_D_END').clear()
