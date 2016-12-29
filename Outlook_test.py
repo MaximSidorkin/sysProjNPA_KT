@@ -147,7 +147,6 @@ class ASeleniumLogin_1(unittest.TestCase):
         wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@id='bs-example-navbar-collapse-3']/div[5]/div[2]")))
         crMeeting = driver.find_element_by_xpath("//div[@id='bs-example-navbar-collapse-3']/div[5]/div[2]").click()
         print(' Нажимаем кнопку "Создать" на открывшейся форме')
-
         wait.until(EC.element_to_be_clickable((By.ID, "MeetingsData_S_NAME")))
         name = driver.find_element_by_id('MeetingsData_S_NAME').send_keys('ЭОР to Outlook (Selenium)')
         #unit = driver.find_element_by_css_selector('ul.select2-selection__rendered').click()
@@ -171,8 +170,8 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test015_bricktestGotoSync(self):
         print(" Пререходим к синхронизатору")
-        driver.get("https://dev.eor.gosapi.ru/ewsup")
-        ASeleniumLogin_1.test004_Sync(self)
+        #driver.get("https://dev.eor.gosapi.ru/ewsup")      # раскомментировать
+        #ASeleniumLogin_1.test004_Sync(self)
 
     def test016_gotoOut(self):
         driver.get("https://owa.mos.ru/")
@@ -359,7 +358,9 @@ class ASeleniumLogin_1(unittest.TestCase):
             print(' Совещание успешно удалено')
         except:
             self.fail(print("\n\n\n ОШИБКА! ВОЗНИКЛИ ПРОБЛЕМЫ ПРИ УДАЛЕНИИ СОВЕЩАНИЯ \n\n\n"))
-
+#
+# разделить на 2 теста отсюда.
+#
     def test030_DelMeetInOut(self):
         print(' Проверка корректности удаления совещания в outlook и передачи \n данных в ЭОР')
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, './/*[text()="Календарь"]/..')))
@@ -381,6 +382,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         time.sleep(1)
         print(" Запускаем синхронизацию")
         driver.get("https://dev.eor.gosapi.ru/ewsup")
+        time.sleep(4)
         ASeleniumLogin_1.test004_Sync(self)
 
     def test032_GotoSedul(self):
@@ -550,7 +552,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         print(' Создаем совещание с рабочего стола')
 
     def test043_GotoSync(self):
-        ASeleniumLogin_1.test031_GotoSync(self)
+        #ASeleniumLogin_1.test031_GotoSync(self)        # раскомментировать
         time.sleep(2)
         driver.get("https://owa.mos.ru/")
         print(' Переходим в Outlook')
@@ -642,7 +644,7 @@ class ASeleniumLogin_1(unittest.TestCase):
             print("I DON'T SEE POPUP")
 
     def test047_GotoSync(self):
-        ASeleniumLogin_1.test008_Sync(self)
+        #ASeleniumLogin_1.test008_Sync(self)        # раскомментировать
         time.sleep(2)
 
     def test048_GotoOut(self):
