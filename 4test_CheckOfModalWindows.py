@@ -14,7 +14,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 driver = webdriver.Firefox()
 driver.get("https://dev.eor.gosapi.ru/site/login")
 driver.maximize_window()
-wait = WebDriverWait(driver, 20)
+wait = WebDriverWait(driver, 40)
 body = driver.find_element_by_tag_name('body')
 
 class ASeleniumLogin_1(unittest.TestCase):
