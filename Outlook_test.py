@@ -570,7 +570,7 @@ class ASeleniumLogin_1(unittest.TestCase):
             self.fail(print(' аутглюк завис'))
         try:
             time.sleep(1)
-            _ = wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[text()='УДАЛИТЬ']/..")))
+            _ = wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[text()='Удалить']/..")))
             driver.find_element_by_xpath(".//*[text()='Удалить']/..").click()
             print(' Совещание успешно удалено')
         except:
