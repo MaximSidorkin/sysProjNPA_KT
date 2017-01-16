@@ -10,8 +10,8 @@ from selenium.webdriver.common.action_chains import ActionChains
 driver = webdriver.Firefox()
 driver.get("https://dev.eor.gosapi.ru/site/login")
 driver.maximize_window()
-wait = WebDriverWait(driver, 20)
-driver.implicitly_wait(20)
+wait = WebDriverWait(driver, 50)
+driver.implicitly_wait(50)
 body = driver.find_element_by_tag_name('body')
 
 class ASeleniumLogin_1(unittest.TestCase):
