@@ -400,6 +400,7 @@ class ASeleniumLogin_1(unittest.TestCase):
     def test034_GotoOut(self):
         time.sleep(1)
         ASeleniumLogin_1.test031_GotoSync(self)
+        driver.set_page_load_timeout(20)
         driver.get("https://owa.mos.ru/")
         print(' Переходим в Outlook')
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, './/*[text()="Календарь"]/..')))
@@ -554,6 +555,7 @@ class ASeleniumLogin_1(unittest.TestCase):
     def test043_GotoSync(self):
         #ASeleniumLogin_1.test031_GotoSync(self)        # раскомментировать
         time.sleep(2)
+        driver.set_page_load_timeout(20)
         driver.get("https://owa.mos.ru/")
         print(' Переходим в Outlook')
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, './/*[text()="Календарь"]/..')))

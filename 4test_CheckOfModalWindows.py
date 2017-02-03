@@ -285,7 +285,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         driver.find_element_by_id('search-text').send_keys('Selenium +4'+Keys.ENTER)
         time.sleep(4)
         driver.find_element_by_css_selector('a.cps-link').click()
-        time.sleep(1)
+        time.sleep(2)
         driver.find_element_by_link_text('Selenium').click()
         time.sleep(1)
         driver.find_element_by_xpath('//button[3]').click()
