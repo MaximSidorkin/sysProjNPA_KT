@@ -555,14 +555,14 @@ class ASeleniumLogin_1(unittest.TestCase):
     def test043_GotoSync(self):
         #ASeleniumLogin_1.test031_GotoSync(self)        # раскомментировать
         time.sleep(2)
-        driver.set_page_load_timeout(20)
+        #driver.set_page_load_timeout(20)
         driver.get("https://owa.mos.ru/")
         print(' Переходим в Outlook')
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, './/*[text()="Календарь"]/..')))
         driver.find_element(By.XPATH, ".//*[text()='Календарь']/..").click()
         try:
-            _ = wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[text()='for LOGIN Участ.: Афанасьев В.П., ']/..")))
-            driver.find_element_by_xpath(".//*[text()='for LOGIN Участ.: Афанасьев В.П., ']/..").click()
+            _ = wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[text()='for LOGIN Участ.: Афанасьев В.П.']/..")))
+            driver.find_element_by_xpath(".//*[text()='for LOGIN Участ.: Афанасьев В.П.']/..").click()
             print(' Совещание созданное в ЭОР - Расписание найдено')
         except:
             self.fail(print(' аутглюк завис'))
@@ -581,8 +581,8 @@ class ASeleniumLogin_1(unittest.TestCase):
             self.fail(print("\n\n\n ОШИБКА! ВОЗНИКЛИ ПРОБЛЕМЫ ПРИ УДАЛЕНИИ СОВЕЩАНИЯ \n\n\n"))
         time.sleep(3)
         try:
-            _ = wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[text()='for LOGIN_2 Участ.: Афанасьев В.П., ']/..")))
-            driver.find_element_by_xpath(".//*[text()='for LOGIN_2 Участ.: Афанасьев В.П., ']/..").click()
+            _ = wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[text()='for LOGIN_2 Участ.: Афанасьев В.П.']/..")))
+            driver.find_element_by_xpath(".//*[text()='for LOGIN_2 Участ.: Афанасьев В.П.']/..").click()
             print(' Совещание созданное в ЭОР - Расписание найдено')
         except:
             self.fail(print(' аутглюк завис'))
