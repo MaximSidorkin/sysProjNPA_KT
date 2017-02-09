@@ -127,7 +127,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         wait.until(EC.element_to_be_clickable((By.XPATH, '//div[2]/div[2]/div[2]/div/div/input')))
         driver.find_element_by_xpath('//div[2]/div[2]/div[2]/div/div/input').clear()
         driver.find_element_by_xpath('//div[2]/div[2]/div[2]/div/div/input').send_keys('Selenium из Outlook + участники')
-        time.sleep(1)
+        time.sleep(3)
         driver.find_element(By.XPATH, ".//*[text()='СОХРАНИТЬ']/..").click()
         time.sleep(1)
         print(" Изменив название сохраняем")
@@ -633,10 +633,10 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test046_CreateMeetInEORAndCheckEmail(self):
         time.sleep(4)
-        ASeleniumLogin_1.test040_loginIpad(self)
+        # ASeleniumLogin_1.test040_loginIpad(self)
         print(' Проверка почтовых уведомлений для созданных в ЭОР совещаний')
         time.sleep(4)
-        ASeleniumLogin_1.test013_gotoMeet(self)
+        # ASeleniumLogin_1.test013_gotoMeet(self)
         time.sleep(4)
         crMeeting = driver.find_element_by_xpath("//div[@id='bs-example-navbar-collapse-3']/div[5]/div[2]").click()
         print(' Нажимаем кнопку "Создать" на открывшейся форме')
@@ -646,6 +646,12 @@ class ASeleniumLogin_1(unittest.TestCase):
         meetingDateB = driver.find_element_by_id('MeetingsData_D_START').send_keys('22:01' + Keys.ENTER)
         meetingDateE = driver.find_element_by_id('MeetingsData_D_END').clear()
         meetingDateE = driver.find_element_by_id('MeetingsData_D_END').send_keys('22:31' + Keys.ENTER)
+
+        driver.find_element_by_xpath('//div[5]/div/div/div/input').send_keys('ipad')
+        time.sleep(2)
+        driver.find_element_by_xpath('//div[5]/div/div/div/input').send_keys(Keys.ENTER)
+        time.sleep(1)
+
         print(' Заполняем форму создания совещания')
         time.sleep(1)
         driver.find_element_by_name('yt0').click()
