@@ -341,24 +341,29 @@ class ASeleniumLogin_1(unittest.TestCase):
             self.fail(print(' Триггер "Целый день" установелн в положении -', val))
 
     def test029_GotoOutlook(self):
+        driver.set_page_load_timeout(20)
         driver.get("https://owa.mos.ru/")
+        driver.set_page_load_timeout(20)
         print(' Переходим в Outlook')
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, './/*[text()="Календарь"]/..')))
         driver.find_element(By.XPATH, ".//*[text()='Календарь']/..").click()
         try:
-            time.sleep(1)
+            time.sleep(3)
+            _ = wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[text()='sync selenium']/..")))
             driver.find_element_by_xpath(".//*[text()='sync selenium']/..").click()
             print(' Совещание созданное в ЭОР найдено')
         except:
             self.fail(print(' аутглюк завис'))
         try:
-            time.sleep(1)
+            time.sleep(3)
+            _ = wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[text()='УДАЛИТЬ']/..")))
             driver.find_element_by_xpath(".//*[text()='УДАЛИТЬ']/..").click()
             print(' Удаляем совещание')
         except:
             self.fail(print(' аутглюк завис'))
         try:
-            time.sleep(1)
+            time.sleep(3)
+            _ = wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[text()='Удалить']/..")))
             driver.find_element_by_xpath(".//*[text()='Удалить']/..").click()
             print(' Совещание успешно удалено')
         except:
