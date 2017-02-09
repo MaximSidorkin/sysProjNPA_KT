@@ -272,6 +272,11 @@ class ASeleniumLogin_1(unittest.TestCase):
         print(' Авторизуемся в Outlook')
 
     def test026_ViewCalendar(self):
+        driver.set_page_load_timeout(20)
+        if driver.find_element_by_xpath('//div[12]/div/div/div/div/div/div/div[3]/button'):
+            driver.find_element_by_xpath('//div[4]/div/button').click()
+        else:
+            print(' Всплывающее уведомление не поялвилось')
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, './/*[text()="Календарь"]/..')))
         driver.find_element(By.XPATH, ".//*[text()='Календарь']/..").click()
         try:
@@ -657,7 +662,7 @@ class ASeleniumLogin_1(unittest.TestCase):
             wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Проверка почтовых уведомлений')]")))
             print(' Уведомление по почте о создании совещания пришло, всё правильно')
         except:
-            self.fail(print(' \n\n\n ОШИБКА! НЕТ УВЕДОМЛЕНИЯ НА ПОЧТУ \n (НЕ ПРИШЛО В ТЕЧЕНИИ 2х МИНУТ) \n\n\n'))
+            print(' \n\n\n ОШИБКА! НЕТ УВЕДОМЛЕНИЯ НА ПОЧТУ \n (НЕ ПРИШЛО В ТЕЧЕНИИ 2х МИНУТ) \n\n\n')
 
     def test049_DelMeet(self):
         time.sleep(3)
