@@ -347,6 +347,10 @@ class ASeleniumLogin_1(unittest.TestCase):
         print(' Переходим в Outlook')
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, './/*[text()="Календарь"]/..')))
         driver.find_element(By.XPATH, ".//*[text()='Календарь']/..").click()
+        if driver.find_element_by_xpath('//div[12]/div/div/div/div/div/div/div[3]/button'):
+            driver.find_element_by_xpath('//div[4]/div/button').click()
+        else:
+            print(' Всплывающее уведомление не поялвилось')
         try:
             time.sleep(3)
             _ = wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[text()='sync selenium']/..")))
