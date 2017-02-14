@@ -11,7 +11,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 import sys
 
 driver = webdriver.Firefox()
-driver.get("https://dev.eor.gosapi.ru/site/login")
+driver.get("https://dev.eor.gosapi.ru/new")
 driver.maximize_window()
 wait = WebDriverWait(driver, 20)
 driver.implicitly_wait(10)

@@ -8,7 +8,7 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
 
 driver = webdriver.Firefox()
-driver.get("https://dev.eor.gosapi.ru/site/login")
+driver.get("https://dev.eor.gosapi.ru/new/")
 driver.maximize_window()
 wait = WebDriverWait(driver, 50)
 driver.implicitly_wait(50)

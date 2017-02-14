@@ -41,7 +41,7 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test003_GotoSync(self):
         time.sleep(1)
-        driver.get("https://dev.eor.gosapi.ru/ewsup")
+        driver.get("https://dev.eor.gosapi.ru/new/ewsup")
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
         elem = driver.find_element_by_id("LoginForm_username")
         elem.send_keys("Ipad")
@@ -100,7 +100,7 @@ class ASeleniumLogin_1(unittest.TestCase):
             print("I DON'T SEE POPUP")
 
     def test008_Sync(self):
-        driver.get("https://dev.eor.gosapi.ru/ewsup")
+        driver.get("https://dev.eor.gosapi.ru/new/ewsup")
         print(" Пререходим к синхронизатору")
         ASeleniumLogin_1.test004_Sync(self)
 
@@ -300,7 +300,7 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test027_GotoEOR(self):
         time.sleep(3)
-        driver.get("https://dev.eor.gosapi.ru/ewsup")
+        driver.get("https://dev.eor.gosapi.ru/new/ewsup")
         print(" Открываем страницу синхронизатора и синхронизируем Outlook - ЭОР")
 
     def test028_Sync(self):
@@ -395,7 +395,7 @@ class ASeleniumLogin_1(unittest.TestCase):
     def test031_GotoSync(self):
         time.sleep(1)
         print(" Запускаем синхронизацию")
-        driver.get("https://dev.eor.gosapi.ru/ewsup")
+        driver.get("https://dev.eor.gosapi.ru/new/ewsup")
         time.sleep(4)
         ASeleniumLogin_1.test004_Sync(self)
 
@@ -477,7 +477,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         time.sleep(1)
         body = driver.find_element_by_tag_name('body')
         body.send_keys(Keys.CONTROL+'t')
-        driver.get("https://dev.eor.gosapi.ru/")
+        driver.get("https://dev.eor.gosapi.ru/new/")
         wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'span.caret')))
         driver.find_element_by_css_selector('span.caret').click()
         driver.find_element_by_link_text('Выход').click()
@@ -681,7 +681,7 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test049_DelMeet(self):
         time.sleep(3)
-        driver.get('https://dev.eor.gosapi.ru/schedule')
+        driver.get('https://dev.eor.gosapi.ru/new/schedule')
         ASeleniumLogin_1.test013_gotoMeet(self)
         time.sleep(3)
         driver.find_element_by_xpath("//span[. = '22:01 - 22:31' ]").click()
