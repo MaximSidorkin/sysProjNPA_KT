@@ -162,17 +162,17 @@ class ASeleniumLogin_1(unittest.TestCase):
         # сокращение списка, выбираем правовые акты ДЭПР
         depr = driver.find_element_by_xpath('//div/div[2]/div[1]/div[2]/div[1]/div/span/span/span[2]')
         depr.click()
-        time.sleep(3)
+        time.sleep(5)
         deprText = driver.find_element_by_xpath('//div[1]/div/span/ul/li[3]/a')
         deprText.click()
-        time.sleep(3)
+        time.sleep(5)
         # приверим все обязательные поля
         createButton = driver.find_element_by_id('create-cp')
         createButton.send_keys(Keys.PAGE_DOWN)
-        time.sleep(2)
+        time.sleep(5)
         finishButton = driver.find_element_by_xpath('//form/div/div[2]/div[2]/div/input[2]')
         finishButton.click()
-        time.sleep(6)
+        time.sleep(8)
 
         # ответственный Согласование отраслевого управления
         responsibleName1 = driver.find_element_by_xpath('//div[4]/div/div/div/span/span/span/span[2]')  # ответственный Согласование у руководителя департамента
@@ -183,12 +183,12 @@ class ASeleniumLogin_1(unittest.TestCase):
         responsibleName1.send_keys(Keys.ENTER)
         # проверим все обязательные элементы ещё раз
         createButton.send_keys(Keys.PAGE_DOWN)
-        time.sleep(2)
-        driver.implicitly_wait(10)
+        time.sleep(3)
+        driver.implicitly_wait(30)
         finishButton2 = driver.find_element_by_name('yt0')
         #finishButton2 = driver.implicitly_wait(10)
         finishButton2.click()
-        time.sleep(4)
+        time.sleep(6)
         try:
             _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[3]/div/button')))
             #time.sleep(1)
@@ -204,7 +204,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         planDate1.send_keys(Keys.ENTER)
 
         # Получение согласований, определенных регламентами
-        time.sleep(3)
+        time.sleep(6)
         responsibleName2 = driver.find_element_by_xpath('//div[4]/div[2]/div[1]/div/span/span[1]/span/span[2]') # ответственный Получение согласований, определенных регламентами
         responsibleName2.click()
         responsibleName2 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
@@ -217,7 +217,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         planDate2.send_keys(Keys.ENTER)
 
         # Утверждение руководителя департамента
-        time.sleep(3)
+        time.sleep(6)
         responsibleName3 = driver.find_element_by_xpath('//div[4]/div[3]/div[1]/div/span/span[1]/span/span[2]')# ответственный Утверждение руководителя департамента
         responsibleName3.click()
         responsibleName3 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
