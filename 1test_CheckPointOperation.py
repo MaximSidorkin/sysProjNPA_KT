@@ -68,8 +68,9 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test_006_FindBlock(self):
         #находим блок
-        findBlock = driver.find_element_by_link_text('Создал Selenium _для редактирования')
-        findBlock.click()
+        driver.find_element_by_xpath("//a[contains(text(),'Создал Selenium _для редактирования')]").click()
+        #findBlock = driver.find_element_by_link_text('Создал Selenium _для редактирования')
+        #findBlock.click()
         time.sleep(3)
         assert "500" not in driver.title  # проверка на 500/404 ошибку
         assert "404" not in driver.title
