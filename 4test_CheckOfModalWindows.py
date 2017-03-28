@@ -11,7 +11,8 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-driver = webdriver.Firefox()
+driver = webdriver.Chrome()
+#driver = webdriver.Firefox()
 driver.get("https://dev.eor.gosapi.ru/new/")
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
@@ -76,9 +77,9 @@ class ASeleniumLogin_1(unittest.TestCase):
         wait.until(EC.element_to_be_clickable((By.NAME, "yt0")))
         body = driver.find_element_by_tag_name('body')
         time.sleep(3)
-        driver.execute_script("window.open('https://dev.eor.gosapi.ru/new/','_blank')")
-        #body.send_keys(Keys.CONTROL + 't')
-        #time.sleep(3)
+        #driver.execute_script("window.open('https://dev.eor.gosapi.ru/new/','_blank')")
+        body.send_keys(Keys.CONTROL + 't')
+        time.sleep(5)
         driver.get('https://dev.eor.gosapi.ru/new/')
         print(' 5. Открываем новую вкладку\n')
 
