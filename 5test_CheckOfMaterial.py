@@ -38,7 +38,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         print(' 2. Переходим в раздел "Материалы"')
 
     def test_003_FilterSetting(self):
-        driver.find_element_by_id('search-show').click()
+        driver.find_element_by_link_text('Поиск').click()
         driver.find_element_by_id('search-text').send_keys('1')
         driver.find_element_by_id('search-text-push').click()
         print(' 3. В поиске вводим "1"')

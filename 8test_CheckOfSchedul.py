@@ -10,7 +10,8 @@ from selenium.webdriver.support.wait import WebDriverWait
 
 dev = 'https://dev.eor.gosapi.ru/new/'
 
-driver = webdriver.Firefox()
+driver = webdriver.Chrome()
+#driver = webdriver.Firefox()
 driver.get(dev)
 driver.maximize_window()
 wait = WebDriverWait(driver, 20)

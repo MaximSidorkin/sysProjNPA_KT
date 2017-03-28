@@ -7,7 +7,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
 
-driver = webdriver.Firefox()
+driver = webdriver.Chrome()
+#driver = webdriver.Firefox()
 driver.get("https://dev.eor.gosapi.ru/new/")
 driver.maximize_window()
 wait = WebDriverWait(driver, 50)
@@ -36,6 +37,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         print('2. переходим в раздел "Библиотека"')
 
     def test_003_CreateCatalog(self):
+        wait.until(EC.element_to_be_clickable((By.LINK_TEXT, "Создать каталог")))
         driver.find_element_by_link_text("Создать каталог").click()
         wait.until(EC.element_to_be_clickable((By.ID, "Document_S_NAME")))
         driver.find_element_by_id("Document_S_NAME").send_keys('Selenium catalog')
@@ -48,28 +50,41 @@ class ASeleniumLogin_1(unittest.TestCase):
         driver.find_element_by_id("search-text-push").click()
         wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,'span.find-text')))
         driver.find_element_by_css_selector('span.find-text').click()
-        ASeleniumLogin_1.test_003_CreateCatalog(self)
-        time.sleep(2)
-        driver.find_element_by_id("search-text-push").click()
-        print("4. В созданном каталоге создаём подкаталог")
 
+        #ASeleniumLogin_1.test_003_CreateCatalog(self)
+
+        time.sleep(2)
+        wait.until(EC.element_to_be_clickable((By.LINK_TEXT, "Создать каталог")))
+        driver.find_element_by_link_text("Создать каталог").click()
+        wait.until(EC.element_to_be_clickable((By.ID, "Document_S_NAME")))
+        driver.find_element_by_id("Document_S_NAME").send_keys('Selenium catalog')
+        driver.find_element_by_xpath("//div/div[3]/span").click()
+        print('3. Создаём каталог')
+
+        #driver.find_element_by_id("search-text-push").click()
+        print("4. В созданном каталоге создаём подкаталог")
+#
     def test_005_DeleteMainCatalog(self):
+        driver.implicitly_wait(10)
         wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'span.find-text')))
         coords = driver.find_element_by_css_selector('span.find-text')
         #coords.
+        time.sleep(2)
         hover = ActionChains(driver).move_to_element(coords)
         hover.perform()
+        time.sleep(2)
         driver.find_element_by_xpath('//div/div[2]/span').click()
+        time.sleep(2)
         driver.find_element_by_xpath('//div[3]/div/button').click()
+        time.sleep(2)
         driver.find_element_by_id("search-text-push").click()
+        time.sleep(2)
         try:
             _ = driver.find_element_by_css_selector('p').text == 'По вашему запросу ничего не найдено'        # По вашему запросу ничего не найдено
             print('5. Через поиск находим созданный каталог и удаляем его, затем проверяем, что и \nсвязанный с ним подкаталог удалён, выведен текст: "По вашему запросу ничего не найдено"\n')
         except:
             self.fail(print('\n \n 5. ОШИБКА! НЕ БЫЛ УДАЛЁН ОСНОВНОЙ СОЗДАННЙ КАТАЛОГ ИЛИ ПОДКАТАЛОГ\n \n'))
 
-#if __name__ == '__main__':
-#    unittest.main()
 if __name__ == '__main__':
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(ASeleniumLogin_1))

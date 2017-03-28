@@ -34,12 +34,13 @@ class ASeleniumLogin_1(unittest.TestCase):
         print(' 2. Логин пользователя отображается\n')
 
     def test_003_CreateCPfromDT(self):
+        time.sleep(10)
         wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@id='cps_panel']/div/div/ul/div/a/i")))
         driver.find_element_by_xpath("//div[@id='cps_panel']/div/div/ul/div/a/i").click()
         print(' 3. Создаём контрольтную точку с рабочего стола\n')
 
     def test_004_FillingCPForm(self):
-        time.sleep(4)
+        time.sleep(10)
         #имя родителя
         driver.find_element_by_css_selector("i.fa.fa-angle-down").click()
         time.sleep(1)
@@ -71,14 +72,19 @@ class ASeleniumLogin_1(unittest.TestCase):
         print(' 4. Заполняем форму контрольной точки и сохраняем её\n')
 
     def test_005_OpenWindowTwo(self):
+        time.sleep(10)
         wait.until(EC.element_to_be_clickable((By.NAME, "yt0")))
         body = driver.find_element_by_tag_name('body')
-        body.send_keys(Keys.CONTROL + 't')
-        driver.get('https://dev.eor.gosapi.ru/')
+        time.sleep(3)
+        driver.execute_script("window.open('https://dev.eor.gosapi.ru/new/','_blank')")
+        #body.send_keys(Keys.CONTROL + 't')
+        #time.sleep(3)
+        driver.get('https://dev.eor.gosapi.ru/new/')
         print(' 5. Открываем новую вкладку\n')
 
     def test_006_SearchCPinNewTab(self):
         wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
+        time.sleep(10)
         driver.find_element_by_xpath("//div[@id='cps_panel']/div/div/ul/li[2]/a/span[2]/span").click()
         wait.until(EC.element_to_be_clickable((By.LINK_TEXT, "Selenium _2")))
         driver.find_element_by_link_text('Selenium _2').click()
@@ -87,11 +93,12 @@ class ASeleniumLogin_1(unittest.TestCase):
     def test_007_DeleteThisCP(self):
         wait.until(EC.element_to_be_clickable((By.NAME, 'yt2')))
         driver.find_element_by_name('yt2').click()
-        time.sleep(2)
+        time.sleep(5)
         driver.find_element_by_xpath('//div[3]/div/button').click()
         print(' 7. Удаляем КТ\n')
 
     def test_008_GoToPreviousTab(self):
+        time.sleep(10)
         body = driver.find_element_by_tag_name('body')
         body.send_keys(Keys.CONTROL+'w')#(Keys.CONTROL+Keys.PAGE_UP)
         print(' 8. Закрываем вкладку\n')
@@ -140,7 +147,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         time.sleep(2)
         body = driver.find_element_by_tag_name('body')
         body.send_keys(Keys.CONTROL + 't')
-        driver.get('https://dev.eor.gosapi.ru/')
+        driver.get('https://dev.eor.gosapi.ru/new/')
         wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
         driver.find_element_by_link_text("Все проекты").click()
         wait.until(EC.element_to_be_clickable((By.ID, 'create-cp')))
@@ -195,7 +202,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         time.sleep(2)
         body = driver.find_element_by_tag_name('body')
         body.send_keys(Keys.CONTROL + 't')
-        driver.get('https://dev.eor.gosapi.ru/')
+        driver.get('https://dev.eor.gosapi.ru/new/')
         wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
         driver.find_element_by_link_text("Все проекты").click()
         wait.until(EC.element_to_be_clickable((By.ID, 'create-cp')))
@@ -274,7 +281,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         time.sleep(2)
         body = driver.find_element_by_tag_name('body')
         body.send_keys(Keys.CONTROL + 't')
-        driver.get('https://dev.eor.gosapi.ru/')
+        driver.get('https://dev.eor.gosapi.ru/new/')
         wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
         driver.find_element_by_link_text("Все проекты").click()
         print(' 27. Открываем новую вкладку и переходим во "Все проекты"\n')
@@ -341,7 +348,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         time.sleep(2)
         body = driver.find_element_by_tag_name('body')
         body.send_keys(Keys.CONTROL + 't')
-        driver.get('https://dev.eor.gosapi.ru/')
+        driver.get('https://dev.eor.gosapi.ru/new/')
         wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
         driver.find_element_by_link_text("Расписание").click()
         print(' 33. Открываем новую вкладку и переходим в "Расписание"\n')
@@ -394,7 +401,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         time.sleep(1)
         body = driver.find_element_by_tag_name('body')
         body.send_keys(Keys.CONTROL + 't')
-        driver.get('https://dev.eor.gosapi.ru/')
+        driver.get('https://dev.eor.gosapi.ru/new/')
         wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
         driver.find_element_by_link_text("Вопросы/Приоритеты").click()
         print(' 39. Открываем новую вкладку и переходим в раздел "Вопросы/Приоритеты"\n')
@@ -466,7 +473,7 @@ class ASeleniumLogin_1(unittest.TestCase):
     def test_046_OpenNewTab(self):
         body = driver.find_element_by_tag_name('body')
         body.send_keys(Keys.CONTROL + 't')
-        driver.get('https://dev.eor.gosapi.ru/')
+        driver.get('https://dev.eor.gosapi.ru/new/')
         wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
         driver.find_element_by_link_text("Нормативно-правовые акты").click()
         print(' 46. Открываем новую вкладку и переходим в раздел "Нормативно-правовые акты"\n')
