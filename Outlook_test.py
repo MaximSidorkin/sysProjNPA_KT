@@ -150,8 +150,6 @@ class ASeleniumLogin_1(unittest.TestCase):
         print(' Нажимаем кнопку "Создать" на открывшейся форме')
         wait.until(EC.element_to_be_clickable((By.ID, "MeetingsData_S_NAME")))
         name = driver.find_element_by_id('MeetingsData_S_NAME').send_keys('ЭОР to Outlook (Selenium)')
-        #unit = driver.find_element_by_css_selector('ul.select2-selection__rendered').click()
-        #unit = driver.find_element_by_xpath('//form/div[5]/div/span/span[1]/span/ul/li/input').send_keys('Соловьев Е' + Keys.ENTER)
         place = driver.find_element_by_id('MeetingsData_S_PLACE').send_keys('Москва')
         responsibleName = driver.find_element_by_xpath('//div[8]/div/span/span/span/span[2]').click()
         time.sleep(1)
@@ -192,9 +190,9 @@ class ASeleniumLogin_1(unittest.TestCase):
             print(' аутглюк завис')
         time.sleep(1)
         driver.find_element_by_xpath('//div[2]/div[2]/div[2]/div/div/input').send_keys(Keys.END + ' DIT')
-        time.sleep(1)
+        time.sleep(3)
         driver.find_element(By.XPATH, ".//*[text()='СОХРАНИТЬ']/..").click()
-        time.sleep(1)
+        time.sleep(3)
 
     def test018_GotoEOR(self):
         ASeleniumLogin_1.test008_Sync(self)
@@ -281,12 +279,14 @@ class ASeleniumLogin_1(unittest.TestCase):
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, './/*[text()="Календарь"]/..')))
         driver.find_element(By.XPATH, ".//*[text()='Календарь']/..").click()
         try:
+            time.sleep(3)
             _ = wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[text()='sync selenium']/..")))
             driver.find_element_by_xpath(".//*[text()='sync selenium']/..").click()
             print(' Совещание созданное в ЭОР найдено')
         except:
             self.fail(print(' аутглюк завис'))
         try:
+            time.sleep(3)
             _ = wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[text()='ИЗМЕНИТЬ']/..")))
             driver.find_element_by_xpath(".//*[text()='ИЗМЕНИТЬ']/..").click()
             print(' Открываем на просмотр совещание:')
@@ -433,7 +433,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         except:
             self.fail(print(' аутглюк завис'))
         try:
-            time.sleep(1)
+            time.sleep(2)
             driver.find_element_by_xpath(".//*[text()='Удалить']/..").click()
             print(' Совещание успешно удалено')
         except:

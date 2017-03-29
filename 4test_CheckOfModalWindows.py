@@ -64,21 +64,28 @@ class ASeleniumLogin_1(unittest.TestCase):
         # new responsible name
         driver.find_element_by_xpath('//div[6]/div/span/span/span/span[2]').click()
         time.sleep(1)
-        driver.find_element_by_xpath('//span/input').send_keys('DIT' + Keys.ENTER)
+        driver.find_element_by_xpath('//span/input').send_keys('Selenium_1' + Keys.ENTER)
         time.sleep(1)
         #сроки
         terms = driver.find_element_by_id('Checkpoint_DEADLINE').send_keys('123' + Keys.ENTER)
         time.sleep(2)
         driver.find_element_by_xpath("//div/div[3]/span[2]").click()
         print(' 4. Заполняем форму контрольной точки и сохраняем её\n')
-
+# v. 2.0
     def test_005_OpenWindowTwo(self):
-        time.sleep(10)
+        time.sleep(1)
         wait.until(EC.element_to_be_clickable((By.NAME, "yt0")))
-        body = driver.find_element_by_tag_name('body')
-        time.sleep(3)
-        #driver.execute_script("window.open('https://dev.eor.gosapi.ru/new/','_blank')")
-        body.send_keys(Keys.CONTROL + 't')
+        time.sleep(1)
+        #body =
+        try:
+            body = driver.find_element_by_tag_name('body')
+            print(body)
+        except:
+            print('no such BODY')
+
+        driver.find_element_by_tag_name('body').send_keys(Keys.CONTROL + 't')
+
+        #body.send_keys(Keys.CONTROL + 't')
         time.sleep(5)
         driver.get('https://dev.eor.gosapi.ru/new/')
         print(' 5. Открываем новую вкладку\n')
