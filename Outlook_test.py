@@ -41,7 +41,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         print(' Переходим в раздел календарь и создаём новое совещание')
 
     def test003_GotoSync(self):
-        time.sleep(1)
+        time.sleep(2)
         driver.get("https://dev.eor.gosapi.ru/new/ewsup")
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
         elem = driver.find_element_by_id("LoginForm_username")
@@ -255,6 +255,7 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test024_ClickCreateMeeting(self):
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@id='bs-example-navbar-collapse-3']/div[5]/div[2]")))
+        time.sleep(1)
         crMeeting = driver.find_element_by_xpath("//div[@id='bs-example-navbar-collapse-3']/div[5]/div[2]").click()
         print(' Нажимаем кнопку "Создать" на открывшейся форме')
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'MeetingsData_S_NAME')))
@@ -272,10 +273,18 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test026_ViewCalendar(self):
         driver.set_page_load_timeout(20)
-        if driver.find_element_by_xpath('//div[12]/div/div/div/div/div/div/div[3]/button'):
+        try:
+            driver.find_element_by_xpath('//div[12]/div/div/div/div/div/div/div[3]/button')
+            time.sleep(3)
             driver.find_element_by_xpath('//div[4]/div/button').click()
-        else:
+        except:
             print(' Всплывающее уведомление не поялвилось')
+
+        #if driver.find_element_by_xpath('//div[12]/div/div/div/div/div/div/div[3]/button'):
+        #    driver.find_element_by_xpath('//div[4]/div/button').click()
+        #else:
+        #    print(' Всплывающее уведомление не поялвилось')
+
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, './/*[text()="Календарь"]/..')))
         driver.find_element(By.XPATH, ".//*[text()='Календарь']/..").click()
         try:
@@ -421,19 +430,21 @@ class ASeleniumLogin_1(unittest.TestCase):
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, './/*[text()="Календарь"]/..')))
         driver.find_element(By.XPATH, ".//*[text()='Календарь']/..").click()
         try:
-            time.sleep(1)
+            time.sleep(2)
             driver.find_element_by_xpath(".//*[text()='Selenium from Outlook Delete']/..").click()
             print(' Совещание созданное в ЭОР найдено')
         except:
             self.fail(print(' аутглюк завис'))
         try:
-            time.sleep(1)
+            time.sleep(2)
+            _ = wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[text()='УДАЛИТЬ']/..")))
             driver.find_element_by_xpath(".//*[text()='УДАЛИТЬ']/..").click()
             print(' Удаляем совещание')
         except:
             self.fail(print(' аутглюк завис'))
         try:
             time.sleep(2)
+            _ = wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[text()='Удалить']/..")))
             driver.find_element_by_xpath(".//*[text()='Удалить']/..").click()
             print(' Совещание успешно удалено')
         except:
