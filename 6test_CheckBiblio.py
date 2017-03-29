@@ -60,12 +60,13 @@ class ASeleniumLogin_1(unittest.TestCase):
         driver.find_element_by_id("Document_S_NAME").send_keys('Selenium catalog')
         driver.find_element_by_xpath("//div/div[3]/span").click()
         print('3. Создаём каталог')
-
-        #driver.find_element_by_id("search-text-push").click()
+        time.sleep(2)
+        driver.find_element_by_id("search-text-push").click()
         print("4. В созданном каталоге создаём подкаталог")
 #
     def test_005_DeleteMainCatalog(self):
         driver.implicitly_wait(10)
+        time.sleep(3)
         wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'span.find-text')))
         coords = driver.find_element_by_css_selector('span.find-text')
         #coords.
