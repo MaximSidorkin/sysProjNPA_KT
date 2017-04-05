@@ -11,7 +11,7 @@ from selenium.webdriver.common.action_chains import ActionChains
 
 driver = webdriver.Chrome()
 #driver = webdriver.Firefox()
-wait = WebDriverWait(driver, 120)
+wait = WebDriverWait(driver, 180)
 
 class ASeleniumLogin_1(unittest.TestCase):
     def test001_GotoOutlook(self):
@@ -26,6 +26,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         print(' Авторизуемся в Outlook')
 
     def test002_ViewCalendar(self):
+        driver.set_page_load_timeout(40)
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, './/*[text()="Календарь"]/..')))
         driver.find_element(By.XPATH, ".//*[text()='Календарь']/..").click()
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[text()='Создать событие']/..")))
@@ -41,7 +42,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         print(' Переходим в раздел календарь и создаём новое совещание')
 
     def test003_GotoSync(self):
-        time.sleep(2)
+        time.sleep(4)
         driver.get("https://dev.eor.gosapi.ru/new/ewsup")
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
         elem = driver.find_element_by_id("LoginForm_username")
@@ -125,12 +126,20 @@ class ASeleniumLogin_1(unittest.TestCase):
             print(' аутглюк завис')
 
     def test011_editMeetInOutL(self):
+        driver.set_page_load_timeout(40)
+        try:
+            driver.find_element_by_xpath('//div[12]/div/div/div/div/div/div/div[3]/button')
+            time.sleep(3)
+            driver.find_element_by_xpath('//div[4]/div/button').click()
+        except:
+            print(' Всплывающее уведомление не поялвилось')
+
         wait.until(EC.element_to_be_clickable((By.XPATH, '//div[2]/div[2]/div[2]/div/div/input')))
         driver.find_element_by_xpath('//div[2]/div[2]/div[2]/div/div/input').clear()
         driver.find_element_by_xpath('//div[2]/div[2]/div[2]/div/div/input').send_keys('Selenium из Outlook + участники')
         time.sleep(3)
         driver.find_element(By.XPATH, ".//*[text()='СОХРАНИТЬ']/..").click()
-        time.sleep(1)
+        time.sleep(2)
         print(" Изменив название сохраняем")
 
     def test012_gotoEOR(self):
@@ -213,22 +222,22 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test020_DelAllObj(self):
         driver.find_element_by_xpath("//span[. = '21:41 - 22:11' ]").click()
-        time.sleep(1)
-        wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[text()='Удалить']/..")))
-        time.sleep(1)
-        driver.find_element(By.XPATH, ".//*[text()='Удалить']/..").click()
         time.sleep(2)
+        wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[text()='Удалить']/..")))
+        time.sleep(2)
+        driver.find_element(By.XPATH, ".//*[text()='Удалить']/..").click()
+        time.sleep(3)
         wait.until(EC.element_to_be_clickable((By.XPATH, "//div[3]/div/button")))
         driver.find_element(By.XPATH, "//div[3]/div/button").click()
-        time.sleep(1)
-        wait.until(EC.element_to_be_clickable((By.XPATH, "//span[. = '22:01 - 22:31' ]")))
-        time.sleep(1)
-        driver.find_element_by_xpath("//span[. = '22:01 - 22:31' ]").click()
-        time.sleep(1)
-        wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[text()='Удалить']/..")))
-        time.sleep(1)
-        driver.find_element(By.XPATH, ".//*[text()='Удалить']/..").click()
         time.sleep(2)
+        wait.until(EC.element_to_be_clickable((By.XPATH, "//span[. = '22:01 - 22:31' ]")))
+        time.sleep(2)
+        driver.find_element_by_xpath("//span[. = '22:01 - 22:31' ]").click()
+        time.sleep(2)
+        wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[text()='Удалить']/..")))
+        time.sleep(2)
+        driver.find_element(By.XPATH, ".//*[text()='Удалить']/..").click()
+        time.sleep(3)
         wait.until(EC.element_to_be_clickable((By.XPATH, "//div[3]/div/button")))
         driver.find_element(By.XPATH, "//div[3]/div/button").click()
         print(" Удаляем совещания созданные в ЭОР и Outlook")
@@ -272,7 +281,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         print(' Авторизуемся в Outlook')
 
     def test026_ViewCalendar(self):
-        driver.set_page_load_timeout(20)
+        driver.set_page_load_timeout(40)
         try:
             driver.find_element_by_xpath('//div[12]/div/div/div/div/div/div/div[3]/button')
             time.sleep(3)
@@ -288,14 +297,14 @@ class ASeleniumLogin_1(unittest.TestCase):
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, './/*[text()="Календарь"]/..')))
         driver.find_element(By.XPATH, ".//*[text()='Календарь']/..").click()
         try:
-            time.sleep(3)
+            time.sleep(5)
             _ = wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[text()='sync selenium']/..")))
             driver.find_element_by_xpath(".//*[text()='sync selenium']/..").click()
             print(' Совещание созданное в ЭОР найдено')
         except:
             self.fail(print(' аутглюк завис'))
         try:
-            time.sleep(3)
+            time.sleep(5)
             _ = wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[text()='ИЗМЕНИТЬ']/..")))
             driver.find_element_by_xpath(".//*[text()='ИЗМЕНИТЬ']/..").click()
             print(' Открываем на просмотр совещание:')
@@ -403,7 +412,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         print(' Переходим в раздел календарь и создаём новое совещание')
 
     def test031_GotoSync(self):
-        time.sleep(1)
+        time.sleep(4)
         print(" Запускаем синхронизацию")
         driver.get("https://dev.eor.gosapi.ru/new/ewsup")
         time.sleep(4)
