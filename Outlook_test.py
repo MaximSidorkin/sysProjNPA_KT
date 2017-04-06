@@ -282,6 +282,7 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test026_ViewCalendar(self):
         driver.set_page_load_timeout(40)
+        time.sleep(7)
         try:
             driver.find_element_by_xpath('//div[12]/div/div/div/div/div/div/div[3]/button')
             time.sleep(3)
@@ -366,9 +367,16 @@ class ASeleniumLogin_1(unittest.TestCase):
         print(' Переходим в Outlook')
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, './/*[text()="Календарь"]/..')))
         driver.find_element(By.XPATH, ".//*[text()='Календарь']/..").click()
-        if driver.find_element_by_xpath('//div[12]/div/div/div/div/div/div/div[3]/button'):
+        time.sleep(10)
+        #if driver.find_element_by_xpath('//div[12]/div/div/div/div/div/div/div[3]/button'):
+        #    driver.find_element_by_xpath('//div[4]/div/button').click()
+        #else:
+        #    print(' Всплывающее уведомление не поялвилось')
+        try:
+            driver.find_element_by_xpath('//div[12]/div/div/div/div/div/div/div[3]/button')
             driver.find_element_by_xpath('//div[4]/div/button').click()
-        else:
+            print(' Всплывающее окно появлилось и было закрыто')
+        except:
             print(' Всплывающее уведомление не поялвилось')
         try:
             time.sleep(3)
@@ -471,6 +479,7 @@ class ASeleniumLogin_1(unittest.TestCase):
             print(' Совещание удалено корректно, проверка прошла успешно')
 
     def test036_DelMeetAnotherUser(self):
+        self.skipTest(self)
         print(' Создаём совещание пользователем 1 с участником 2, \nи удаляем совещание у ползователя 2')
         print(' Создаём новое совещение пользователем Ipad')
         crMeeting = driver.find_element_by_xpath("//div[@id='bs-example-navbar-collapse-3']/div[5]/div[2]").click()
@@ -496,6 +505,7 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test037_Relog(self):
         time.sleep(1)
+        self.skipTest(self)
         body = driver.find_element_by_tag_name('body')
         body.send_keys(Keys.CONTROL+'t')
         driver.get("https://dev.eor.gosapi.ru/new/")
@@ -511,6 +521,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         print(' Перезаходим в систему под пользователем login/login ')
 
     def test038_gotoSedul(self):
+        self.skipTest(self)
         time.sleep(3)
         _ = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'i.entypo-menu')))
         time.sleep(2)
@@ -520,6 +531,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         print(" Переходим в раздел расписания пользователя login")
 
     def test039_searchMeet(self):
+        self.skipTest(self)
         driver.find_element_by_xpath("//span[. = '23:00 - 23:30' ]").click()
         time.sleep(1)
         wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[text()='Удалить']/..")))
@@ -532,6 +544,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         print(' В разделе расписания находим созданное пользоватлеме ipad совещание\n и удаляем его')
 
     def test040_loginIpad(self):
+        self.skipTest(self)
         wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'span.caret')))
         driver.find_element_by_css_selector('span.caret').click()
         driver.find_element_by_link_text('Выход').click()
@@ -544,6 +557,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         print(' Перезаходим в систему под пользователем ipad/ipad ')
 
     def test041_gotoMeet(self):
+        self.skipTest(self)
         time.sleep(3)
         ASeleniumLogin_1.test013_gotoMeet(self)
         time.sleep(2)
@@ -564,6 +578,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         print(' Удаляем совещание пользоватлеме ipad')
 
     def test042_CreateInEORDelInOutlook(self):
+        self.skipTest(self)
         print(' Создание совещаний из раздела расписания и рабочий\n стол для Вед. и Уч. и удаление их в Outlook')
         ASeleniumLogin_1.test036_DelMeetAnotherUser(self)
         print(' Переходим в рабочий стол')
@@ -588,6 +603,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         print(' Создаем совещание с рабочего стола')
 
     def test043_GotoSync(self):
+        self.skipTest(self)
         #ASeleniumLogin_1.test031_GotoSync(self)        # раскомментировать
         time.sleep(2)
         #driver.set_page_load_timeout(20)
@@ -636,6 +652,7 @@ class ASeleniumLogin_1(unittest.TestCase):
             self.fail(print("\n\n\n ОШИБКА! ВОЗНИКЛИ ПРОБЛЕМЫ ПРИ УДАЛЕНИИ СОВЕЩАНИЯ \n\n\n"))
 
     def test044_GotoEOR(self):
+        self.skipTest(self)
         ASeleniumLogin_1.test031_GotoSync(self)
         ASeleniumLogin_1.test013_gotoMeet(self)
         try:
@@ -646,6 +663,7 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test045_GotoEORforAnotherUser(self):
         time.sleep(1)
+        self.skipTest(self)
         ASeleniumLogin_1.test037_Relog(self)
         time.sleep(2)
         ASeleniumLogin_1.test038_gotoSedul(self)
@@ -657,6 +675,7 @@ class ASeleniumLogin_1(unittest.TestCase):
             print(' Мероприятие удалено корректно')
 
     def test046_CreateMeetInEORAndCheckEmail(self):
+        self.skipTest(self)
         time.sleep(4)
         # ASeleniumLogin_1.test040_loginIpad(self)
         print(' Проверка почтовых уведомлений для созданных в ЭОР совещаний')
@@ -687,10 +706,12 @@ class ASeleniumLogin_1(unittest.TestCase):
             print("I DON'T SEE POPUP")
 
     def test047_GotoSync(self):
+        self.skipTest(self)
         #ASeleniumLogin_1.test008_Sync(self)        # раскомментировать
         time.sleep(2)
 
     def test048_GotoOut(self):
+        self.skipTest(self)
         driver.get("https://owa.mos.ru/")
         print(' Переходим в Outlook')
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, './/*[text()="Календарь"]/..')))
@@ -701,6 +722,7 @@ class ASeleniumLogin_1(unittest.TestCase):
             print(' \n\n\n ОШИБКА! НЕТ УВЕДОМЛЕНИЯ НА ПОЧТУ \n (НЕ ПРИШЛО В ТЕЧЕНИИ 2х МИНУТ) \n\n\n')
 
     def test049_DelMeet(self):
+        self.skipTest(self)
         time.sleep(3)
         driver.get('https://dev.eor.gosapi.ru/new/schedule')
         ASeleniumLogin_1.test013_gotoMeet(self)

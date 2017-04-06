@@ -3,6 +3,8 @@ import time
 import unittest
 import HTMLTestRunner
 import sys
+import datetime
+
 global str
 
 from selenium import webdriver
@@ -16,110 +18,98 @@ driver = webdriver.Chrome()
 driver.get("https://dev.eor.gosapi.ru/new/")
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
-body = driver.find_element_by_tag_name('body')
+test_time = datetime.datetime.now()
+test_day = test_time.day
+test_month = test_time.month
+
 
 class ASeleniumLogin_1(unittest.TestCase):
     def test_001_LoginInEORDev(self):
         assert "Login" in driver.title
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
         elem = driver.find_element_by_id("LoginForm_username")
-        elem.send_keys("Ipad")
+        elem.send_keys("Selenium_1")
         elem = driver.find_element_by_id("LoginForm_password")
-        elem.send_keys("ipad")
+        elem.send_keys("123")
         elem.send_keys(Keys.RETURN)
         print('\n 1. Логинимся в систему\n')
 
     def test_002_Not500or404andLoginIsVisible(self):
-        time.sleep(3)
+        self.skipTest(self)
         _ = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
         print(' 2. Логин пользователя отображается\n')
 
     def test_003_CreateCPfromDT(self):
-        time.sleep(10)
+        self.skipTest(self)
         wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@id='cps_panel']/div/div/ul/div/a/i")))
         driver.find_element_by_xpath("//div[@id='cps_panel']/div/div/ul/div/a/i").click()
         print(' 3. Создаём контрольтную точку с рабочего стола\n')
 
     def test_004_FillingCPForm(self):
-        time.sleep(10)
-        #имя родителя
+        self.skipTest(self)
+        wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "i.fa.fa-angle-down")))
         driver.find_element_by_css_selector("i.fa.fa-angle-down").click()
-        time.sleep(1)
         driver.find_element_by_css_selector("input.form-control").send_keys("Тестовый проект созданный Selenium")
-        time.sleep(1)
         driver.find_element_by_css_selector('span.find-text').click()
-        time.sleep(1)
-        #имя контрольной точки
-        nameCP = driver.find_element_by_id('Checkpoint_TITLE').send_keys("Selenium _2")
-        time.sleep(2)
-        #ответственный
+        driver.find_element_by_id('Checkpoint_TITLE').send_keys("Selenium")
+        # ответственный
         driver.implicitly_wait(10)
-        responsibleName = driver.find_element_by_xpath("//div[5]/div/span/span/span/span[2]")
-        responsibleName.click()
-        time.sleep(2)
-        responsibleNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
-        responsibleNameText.send_keys('ipad' + Keys.ENTER)
-        time.sleep(2)
+        driver.find_element_by_xpath("//div[5]/div/span/span/span/span[2]").click()
+        driver.find_element_by_xpath('html/body/span/span/span[1]/input').send_keys('Selenium_1' + Keys.ENTER)
         driver.implicitly_wait(10)
         # new responsible name
         driver.find_element_by_xpath('//div[6]/div/span/span/span/span[2]').click()
-        time.sleep(1)
         driver.find_element_by_xpath('//span/input').send_keys('Selenium_1' + Keys.ENTER)
-        time.sleep(1)
-        #сроки
-        terms = driver.find_element_by_id('Checkpoint_DEADLINE').send_keys('123' + Keys.ENTER)
-        time.sleep(2)
+        # сроки
+        driver.find_element_by_id('Checkpoint_DEADLINE').send_keys('123' + Keys.ENTER)
         driver.find_element_by_xpath("//div/div[3]/span[2]").click()
         print(' 4. Заполняем форму контрольной точки и сохраняем её\n')
-# v. 2.0
+
     def test_005_OpenWindowTwo(self):
-        time.sleep(1)
-        wait.until(EC.element_to_be_clickable((By.NAME, "yt0")))
-        time.sleep(1)
-        #body =
-        try:
-            body = driver.find_element_by_tag_name('body')
-            print(body)
-        except:
-            print('no such BODY')
-
-        driver.find_element_by_tag_name('body').send_keys(Keys.CONTROL + 't')
-
-        #body.send_keys(Keys.CONTROL + 't')
-        time.sleep(5)
-        driver.get('https://dev.eor.gosapi.ru/new/')
+        self.skipTest(self)
+        driver.execute_script("window.open('https://dev.eor.gosapi.ru/new/','_blank');")
         print(' 5. Открываем новую вкладку\n')
 
     def test_006_SearchCPinNewTab(self):
-        wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
+        self.skipTest(self)
         time.sleep(10)
-        driver.find_element_by_xpath("//div[@id='cps_panel']/div/div/ul/li[2]/a/span[2]/span").click()
-        wait.until(EC.element_to_be_clickable((By.LINK_TEXT, "Selenium _2")))
-        driver.find_element_by_link_text('Selenium _2').click()
-        print(' 6. на рабочем столе ищем созданную КТ\n')
+        #driver.find_element_by_css_selector('td.col-md-10.cps-link-td').click()
+        #time.sleep(5)
+        #wait.until(EC.element_to_be_clickable((By.LINK_TEXT, 'Selenium')))
+        driver.implicitly_wait(15)
+        #wait.until(EC.visibility_of_element_located((By.LINK_TEXT,'Selenium')))
+        #driver.implicitly_wait(EC.element_to_be_clickable((By.LINK_TEXT,'Selenium')))
+        driver.find_element(By.XPATH, "// a[contains(text(), 'Selenium')]").click()
+        #driver.find_element_by_link_text('Selenium').click()
+        print('Клик по ссылке ')
 
     def test_007_DeleteThisCP(self):
+        self.skipTest(self)
         wait.until(EC.element_to_be_clickable((By.NAME, 'yt2')))
         driver.find_element_by_name('yt2').click()
-        time.sleep(5)
         driver.find_element_by_xpath('//div[3]/div/button').click()
         print(' 7. Удаляем КТ\n')
+        time.sleep(10)
 
     def test_008_GoToPreviousTab(self):
-        time.sleep(10)
-        body = driver.find_element_by_tag_name('body')
-        body.send_keys(Keys.CONTROL+'w')#(Keys.CONTROL+Keys.PAGE_UP)
+        self.skipTest(self)
+        time.sleep(3)
+        driver.switch_to.window(driver.window_handles[-1])
         print(' 8. Закрываем вкладку\n')
+        driver.close()
+        time.sleep(1)
 
     def test_009_TryToEditCP(self):
-        time.sleep(3)
-        body = driver.find_element_by_tag_name('body')
-        body.send_keys(Keys.TAB)
+        #body = driver.find_element_by_tag_name('body')
+        #body.send_keys(Keys.TAB)
+        self.skipTest(self)
         wait.until(EC.element_to_be_clickable((By.NAME, 'yt0')))
         driver.find_element_by_name('yt0').click()
         print(' 9. В паспорте КТ на вкладке 1 нажимаем кнопку "Редактровать"\n')
+        time.sleep(10)
 
     def test_010_CatchWindow(self):
+        self.skipTest(self)
         time.sleep(1)
         try:
             _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[3]/div/button')))
@@ -128,11 +118,13 @@ class ASeleniumLogin_1(unittest.TestCase):
         except:
             self.fail(print(' 10. Модальное окно "Контрольная точкаSelenium _2 была удалена.", не появилось \n'))
 
+    # v. 2.0
     def test_011_BlockOperation(self):
         time.sleep(1)
         wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'i.entypo-menu')))
         assert "ЭОР" in driver.title
         driver.find_element_by_css_selector("i.entypo-menu").click()
+        wait.until(EC.element_to_be_clickable((By.LINK_TEXT, 'Все проекты')))
         driver.find_element_by_link_text("Все проекты").click()
         print(' 11. Переходим в раздел "Все проекты"\n')
 
@@ -152,15 +144,12 @@ class ASeleniumLogin_1(unittest.TestCase):
         print(' 13. Ищем только что созданный блок через поиск\n')
 
     def test_014_OpenNewTabAndSearchBlock(self):
-        time.sleep(2)
-        body = driver.find_element_by_tag_name('body')
-        body.send_keys(Keys.CONTROL + 't')
-        driver.get('https://dev.eor.gosapi.ru/new/')
-        wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
-        driver.find_element_by_link_text("Все проекты").click()
-        wait.until(EC.element_to_be_clickable((By.ID, 'create-cp')))
-        time.sleep(2)
+        time.sleep(4)
+        driver.execute_script("window.open('https://dev.eor.gosapi.ru/new/checkpoint/checkpoint','_blank');")
+        wait.until(EC.element_to_be_clickable((By.ID, 'search-show')))
+        time.sleep(4)
         driver.find_element_by_id('search-show').click()
+        time.sleep(7)
         driver.find_element_by_id('search-text').send_keys('Selenium +1'+Keys.ENTER)
         print(' 14. Открываем новую вкладку и ищем созданный блок\n')
 
@@ -168,12 +157,12 @@ class ASeleniumLogin_1(unittest.TestCase):
         wait.until(EC.element_to_be_clickable((By.XPATH, '//td[2]/button[2]')))
         driver.find_element_by_xpath('//td[2]/button[2]').click()
         driver.find_element_by_xpath('//div[3]/div/button').click()
-        body = driver.find_element_by_tag_name('body')
-        body.send_keys(Keys.CONTROL+'w')
+        driver.switch_to.window(driver.window_handles[-1])
+        driver.close()
         print(' 15. Удаляем Блок\n')
 
     def test_016_TryEditBlock(self):
-        time.sleep(1)
+        time.sleep(5)
         driver.find_element_by_xpath('//td[2]/button').click()
         time.sleep(1)
         try:
