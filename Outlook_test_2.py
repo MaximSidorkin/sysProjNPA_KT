@@ -165,6 +165,13 @@ class ASeleniumLogin_1(unittest.TestCase):
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, './/*[text()="Календарь"]/..')))
         driver.find_element(By.XPATH, ".//*[text()='Календарь']/..").click()
         try:
+            _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[12]/div/div/div/div/div/div/div[3]/button')))
+            driver.find_element_by_xpath('//div[12]/div/div/div/div/div/div/div[3]/button')
+            driver.find_element_by_xpath('//div[4]/div/button').click()
+            print(' Всплывающее окно появлилось и было закрыто')
+        except:
+            print(' Всплывающее уведомление не поялвилось')
+        try:
             time.sleep(1)
             _ = wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[text()='for LOGIN Участ.: Афанасьев В.П.']/..")))
             driver.find_element_by_xpath(".//*[text()='for LOGIN Участ.: Афанасьев В.П.']/..").click()
