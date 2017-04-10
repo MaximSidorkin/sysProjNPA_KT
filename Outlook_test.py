@@ -373,6 +373,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         #else:
         #    print(' Всплывающее уведомление не поялвилось')
         try:
+            _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[12]/div/div/div/div/div/div/div[3]/button')))
             driver.find_element_by_xpath('//div[12]/div/div/div/div/div/div/div[3]/button')
             driver.find_element_by_xpath('//div[4]/div/button').click()
             print(' Всплывающее окно появлилось и было закрыто')
@@ -399,9 +400,7 @@ class ASeleniumLogin_1(unittest.TestCase):
             print(' Совещание успешно удалено')
         except:
             self.fail(print("\n\n\n ОШИБКА! ВОЗНИКЛИ ПРОБЛЕМЫ ПРИ УДАЛЕНИИ СОВЕЩАНИЯ \n\n\n"))
-#
-# разделить на 2 теста отсюда.
-#
+
     def test030_DelMeetInOut(self):
         print(' Проверка корректности удаления совещания в outlook и передачи \n данных в ЭОР')
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, './/*[text()="Календарь"]/..')))
@@ -447,6 +446,13 @@ class ASeleniumLogin_1(unittest.TestCase):
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, './/*[text()="Календарь"]/..')))
         driver.find_element(By.XPATH, ".//*[text()='Календарь']/..").click()
         try:
+            _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[12]/div/div/div/div/div/div/div[3]/button')))
+            driver.find_element_by_xpath('//div[12]/div/div/div/div/div/div/div[3]/button')
+            driver.find_element_by_xpath('//div[4]/div/button').click()
+            print(' Всплывающее окно появлилось и было закрыто')
+        except:
+            print(' Всплывающее уведомление не поялвилось')
+        try:
             time.sleep(2)
             driver.find_element_by_xpath(".//*[text()='Selenium from Outlook Delete']/..").click()
             print(' Совещание созданное в ЭОР найдено')
@@ -477,7 +483,7 @@ class ASeleniumLogin_1(unittest.TestCase):
             self.fail(print(' Совещние не удалено'))
         except:
             print(' Совещание удалено корректно, проверка прошла успешно')
-
+# v.2.0
     def test036_DelMeetAnotherUser(self):
         self.skipTest(self)
         print(' Создаём совещание пользователем 1 с участником 2, \nи удаляем совещание у ползователя 2')
@@ -739,7 +745,12 @@ class ASeleniumLogin_1(unittest.TestCase):
         print(' Находим совещание созданное для проверки почтовых уведомлений\n и удаляем его')
 
     def test050_CloseBrowser(self):
-        print(' Браузер закрыт')
+        print(' Тест завершён. Браузер закрыт.\n '
+              '! ВНИМЕНИЕ!'
+              '\n ТЕСТ МОЖЕТ БЫТЬ НЕ СТАБИЛЕН ПО ПРИЧИНЕ КРАЙНЕ "СПЕЦИФИЧЕСКОЙ" РАБОТЫ OUTLOOK'
+              '\n - НЕОЖИДАННО ВСПЛЫВАЮЩИЕ ОКНА, ДОЛГАЯ НЕКЛИКАБЕЛЬНОСТЬ ЭЛЕМЕНТОВ СТРАНИЦЫ'
+              '\n ПО ПРИЧИНАМ ОТ НАС НЕ ЗАВИСЯЩИХ И СУГУБО НЕВЕДОМЫМ. '
+              '\n ')
         driver.close()
 
 if __name__ == '__main__':
