@@ -6,9 +6,12 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
+oracle = 'https://task.eor.gosapi.ru/oracle/site/login'
+pgs = 'https://task.eor.gosapi.ru/pgs/site/login'
+
 driver = webdriver.Chrome()
 #driver = webdriver.Firefox()
-driver.get("https://dev.eor.gosapi.ru/new/")
+driver.get(oracle)
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
 driver.implicitly_wait(40)
@@ -61,7 +64,7 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test_006_AddInit(self):
         driver.find_element_by_xpath('//div/span/span/span/span').click()
-        driver.find_element_by_xpath('//span/input').send_keys('Ipad'+Keys.ENTER)
+        driver.find_element_by_xpath('//span/input').send_keys('яIpad'+Keys.ENTER)
         print('Добавляем инициатора')
 
     def test_007_Create(self):

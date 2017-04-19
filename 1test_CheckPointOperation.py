@@ -11,9 +11,11 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
-#driver = webdriver.Firefox()
+oracle = 'https://task.eor.gosapi.ru/oracle/site/login'
+pgs = 'https://task.eor.gosapi.ru/pgs/site/login'
+
 driver = webdriver.Chrome()
-driver.get("https://dev.eor.gosapi.ru/new")
+driver.get(oracle)
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
 
@@ -23,9 +25,9 @@ class ASeleniumLogin_1(unittest.TestCase):
         #wait = WebDriverWait(driver, 10)
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
         elem = driver.find_element_by_id("LoginForm_username")
-        elem.send_keys("Ipad")
+        elem.send_keys("Selenium_01")
         elem = driver.find_element_by_id("LoginForm_password")
-        elem.send_keys("ipad")
+        elem.send_keys("123")
         elem.send_keys(Keys.RETURN)
         print('\n 1. Логинимся в систему\n')
 
@@ -69,7 +71,7 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test_006_FindBlock(self):
         #находим блок
-        driver.find_element_by_xpath("//a[contains(text(),'Создал Selenium _для редактирования')]").click()
+        driver.find_element_by_xpath("//a[contains(text(),'Selenium')]").click()
         #findBlock = driver.find_element_by_link_text('Создал Selenium _для редактирования')
         #findBlock.click()
         time.sleep(3)
@@ -109,7 +111,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         responsibleName.click()
         time.sleep(2)
         responsibleNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
-        responsibleNameText.send_keys('DIT' + Keys.ENTER)
+        responsibleNameText.send_keys('Selenium' + Keys.ENTER)
         time.sleep(2)
         driver.implicitly_wait(10)
         #сроки
@@ -180,7 +182,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         responsibleName1 = driver.find_element_by_xpath('//div[4]/div/div/div/span/span/span/span[2]')  # ответственный Согласование у руководителя департамента
         responsibleName1.click()
         responsibleName1 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
-        responsibleName1.send_keys('DIT')
+        responsibleName1.send_keys('Selenium')
         responsibleName1.send_keys(Keys.ARROW_DOWN)
         responsibleName1.send_keys(Keys.ENTER)
         # проверим все обязательные элементы ещё раз
@@ -211,7 +213,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         responsibleName2.click()
         responsibleName2 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
         responsibleName2.click()
-        responsibleName2.send_keys('DIT')
+        responsibleName2.send_keys('Selenium')
         responsibleName2.send_keys(Keys.ENTER)
         planDate2 = driver.find_element_by_id('date_106_76')# срок исполнения Получение согласований, определенных регламентами
         planDate2.click()
@@ -224,7 +226,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         responsibleName3.click()
         responsibleName3 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
         responsibleName3.click()
-        responsibleName3.send_keys('DIT')
+        responsibleName3.send_keys('Selenium')
         responsibleName3.send_keys(Keys.ENTER)
         planDate3 = driver.find_element_by_id('date_106_83')# срок исполнения Передача в правовое управление
         planDate3.click()
@@ -305,7 +307,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         responsibleName1 = driver.find_element_by_xpath('//div[4]/div[1]/div[1]/div/span/span[1]/span/span[2]')  # ответственный Согласование у руководителя департамента
         responsibleName1.click()
         responsibleName1 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
-        responsibleName1.send_keys('DIT')
+        responsibleName1.send_keys('Selenium')
         responsibleName1.send_keys(Keys.ARROW_DOWN)
         responsibleName1.send_keys(Keys.ENTER)
         # проверим все обязательные элементы ещё раз
@@ -327,7 +329,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         responsibleName2.click()
         responsibleName2 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
         responsibleName2.click()
-        responsibleName2.send_keys('DIT')
+        responsibleName2.send_keys('Selenium')
         responsibleName2.send_keys(Keys.ENTER)
         planDate2 = driver.find_element_by_id('date_106_76')  # срок исполнения Получение согласований, определенных регламентами
         planDate2.click()
@@ -340,7 +342,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         responsibleName3.click()
         responsibleName3 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
         responsibleName3.click()
-        responsibleName3.send_keys('ipad')
+        responsibleName3.send_keys('Selenium')
         responsibleName3.send_keys(Keys.ENTER)
         planDate3 = driver.find_element_by_id('date_106_83')  # срок исполнения Передача в правовое управление
         planDate3.click()
@@ -390,7 +392,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         driver.find_element_by_xpath('//div[7]/div/span/span/span/span[2]').click()    # responsible name
         responsibleName = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
         responsibleName.click()
-        responsibleName.send_keys('А' + Keys.ENTER)
+        responsibleName.send_keys('S' + Keys.ENTER)
         time.sleep(2)
         date = driver.find_element_by_xpath("//div[9]/div/input")   #.click()
         time.sleep(1)

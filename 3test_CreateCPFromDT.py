@@ -12,9 +12,11 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
+oracle = 'https://task.eor.gosapi.ru/oracle/site/login'
+pgs = 'https://task.eor.gosapi.ru/pgs/site/login'
+
 driver = webdriver.Chrome()
-#driver = webdriver.Firefox()
-driver.get("https://dev.eor.gosapi.ru/new/")
+driver.get(oracle)
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
 
@@ -51,7 +53,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         #имя родителя
         driver.find_element_by_css_selector("i.fa.fa-angle-down").click()
         time.sleep(1)
-        driver.find_element_by_css_selector("input.form-control").send_keys("Тестовый проект созданный Selenium")
+        driver.find_element_by_css_selector("input.form-control").send_keys("Selenium")
         time.sleep(1)
         driver.find_element_by_css_selector('span.find-text').click()
         time.sleep(1)
@@ -64,13 +66,13 @@ class ASeleniumLogin_1(unittest.TestCase):
         responsibleName.click()
         time.sleep(2)
         responsibleNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
-        responsibleNameText.send_keys('ipad' + Keys.ENTER)
+        responsibleNameText.send_keys('яIpad' + Keys.ENTER)
         time.sleep(2)
         driver.implicitly_wait(10)
         # new responsible name
         driver.find_element_by_xpath('//div[6]/div/span/span/span/span[2]').click()
         time.sleep(1)
-        driver.find_element_by_xpath('//span/input').send_keys('DIT' + Keys.ENTER)
+        driver.find_element_by_xpath('//span/input').send_keys('Selenium' + Keys.ENTER)
         time.sleep(1)
         #сроки
         terms = driver.find_element_by_id('Checkpoint_DEADLINE').send_keys('123' + Keys.ENTER)
