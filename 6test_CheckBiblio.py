@@ -7,9 +7,12 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.action_chains import ActionChains
 
+oracle = 'https://task.eor.gosapi.ru/oracle/site/login'
+pgs = 'https://task.eor.gosapi.ru/pgs/site/login'
+
 driver = webdriver.Chrome()
 #driver = webdriver.Firefox()
-driver.get("https://dev.eor.gosapi.ru/new/")
+driver.get(oracle)
 driver.maximize_window()
 wait = WebDriverWait(driver, 50)
 driver.implicitly_wait(50)
