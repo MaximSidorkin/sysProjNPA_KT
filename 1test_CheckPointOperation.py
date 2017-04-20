@@ -25,9 +25,9 @@ class ASeleniumLogin_1(unittest.TestCase):
         #wait = WebDriverWait(driver, 10)
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
         elem = driver.find_element_by_id("LoginForm_username")
-        elem.send_keys("Selenium_01")
+        elem.send_keys("Ipad")
         elem = driver.find_element_by_id("LoginForm_password")
-        elem.send_keys("123")
+        elem.send_keys("ipad")
         elem.send_keys(Keys.RETURN)
         print('\n 1. Логинимся в систему\n')
 
@@ -161,22 +161,22 @@ class ASeleniumLogin_1(unittest.TestCase):
         print(' 13. Выбираем форму реализации - НПА, сохраняем изменения\n и заново нажимаем Редактировать \n')
 
     def test_014_NPAFillingForm(self):
-        time.sleep(7)
+        time.sleep(1)
         assert "ЭОР" in driver.title
         # сокращение списка, выбираем правовые акты ДЭПР
         depr = driver.find_element_by_xpath('//div/div[2]/div[1]/div[2]/div[1]/div/span/span/span[2]')
         depr.click()
-        time.sleep(5)
+        time.sleep(3)
         deprText = driver.find_element_by_xpath('//div[1]/div/span/ul/li[3]/a')
         deprText.click()
-        time.sleep(5)
+        time.sleep(3)
         # приверим все обязательные поля
         createButton = driver.find_element_by_id('create-cp')
         createButton.send_keys(Keys.PAGE_DOWN)
-        time.sleep(5)
+        time.sleep(2)
         finishButton = driver.find_element_by_xpath('//form/div/div[2]/div[2]/div/input[2]')
         finishButton.click()
-        time.sleep(8)
+        time.sleep(4)
 
         # ответственный Согласование отраслевого управления
         responsibleName1 = driver.find_element_by_xpath('//div[4]/div/div/div/span/span/span/span[2]')  # ответственный Согласование у руководителя департамента
@@ -187,17 +187,17 @@ class ASeleniumLogin_1(unittest.TestCase):
         responsibleName1.send_keys(Keys.ENTER)
         # проверим все обязательные элементы ещё раз
         createButton.send_keys(Keys.PAGE_DOWN)
-        time.sleep(3)
+        time.sleep(2)
         driver.implicitly_wait(30)
         finishButton2 = driver.find_element_by_name('yt0')
         #finishButton2 = driver.implicitly_wait(10)
         finishButton2.click()
-        time.sleep(6)
+        time.sleep(2)
         try:
             _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[3]/div/button')))
-            time.sleep(2)
+            time.sleep(1)
             driver.find_element_by_xpath('//div[3]/div/button').click()
-            time.sleep(2)
+            time.sleep(1)
             print('\n Модальное окно "Внимание!", относящееся к НПА, появилось и было закрыто \n')
         except:
             print('\n Модальное окно "Внимание!", относящееся к НПА, не появилось \n')
@@ -208,7 +208,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         planDate1.send_keys(Keys.ENTER)
 
         # Получение согласований, определенных регламентами
-        time.sleep(6)
+        time.sleep(3)
         responsibleName2 = driver.find_element_by_xpath('//div[4]/div[2]/div[1]/div/span/span[1]/span/span[2]') # ответственный Получение согласований, определенных регламентами
         responsibleName2.click()
         responsibleName2 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
@@ -221,7 +221,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         planDate2.send_keys(Keys.ENTER)
 
         # Утверждение руководителя департамента
-        time.sleep(6)
+        time.sleep(3)
         responsibleName3 = driver.find_element_by_xpath('//div[4]/div[3]/div[1]/div/span/span[1]/span/span[2]')# ответственный Утверждение руководителя департамента
         responsibleName3.click()
         responsibleName3 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
@@ -232,10 +232,18 @@ class ASeleniumLogin_1(unittest.TestCase):
         planDate3.click()
         planDate3.send_keys('12345')
         planDate3.send_keys(Keys.ENTER)
+
+        # Проект
+        time.sleep(1)
+        driver.find_element_by_css_selector('span.input-group-addon').click()
+        driver.find_element_by_css_selector('div.input-group.search-field > input.form-control').send_keys('Selenium')
+        driver.find_element_by_css_selector('span.find-text').click()
+
+
         print(' 14. Частично заполняем форму НПА, пробуем сохранить\n видим сообщения об обязательности заоления полей\n и заполняем обязательные поля полностью. Сохраняем.')
 
     def test_015_EditNPA(self):
-        time.sleep(4)
+        time.sleep(2)
         assert "ЭОР" in driver.title
         editBtn = driver.find_element_by_name('yt0')
         editBtn.click()
