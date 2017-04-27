@@ -13,24 +13,26 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
+oracle = 'https://task.eor.gosapi.ru/oracle/site/login'
+pgs = 'https://task.eor.gosapi.ru/pgs/site/login'
+dev = 'https://dev.eor.gosapi.ru/new/site/login'
+
 driver = webdriver.Chrome()
-#driver = webdriver.Firefox()
-driver.get("https://dev.eor.gosapi.ru/new/")
+driver.get(dev)
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
 test_time = datetime.datetime.now()
 test_day = test_time.day
 test_month = test_time.month
 
-
 class ASeleniumLogin_1(unittest.TestCase):
     def test_001_LoginInEORDev(self):
         assert "Login" in driver.title
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
         elem = driver.find_element_by_id("LoginForm_username")
-        elem.send_keys("Selenium_1")
+        elem.send_keys("ipad")
         elem = driver.find_element_by_id("LoginForm_password")
-        elem.send_keys("123")
+        elem.send_keys("ipad")
         elem.send_keys(Keys.RETURN)
         print('\n 1. Логинимся в систему\n')
         # yes
@@ -46,13 +48,13 @@ class ASeleniumLogin_1(unittest.TestCase):
     def test_004_FillingCPForm(self):
         wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "i.fa.fa-angle-down")))
         driver.find_element_by_css_selector("i.fa.fa-angle-down").click()
-        driver.find_element_by_css_selector("input.form-control").send_keys("Тестовый проект созданный Selenium")
+        driver.find_element_by_css_selector("input.form-control").send_keys("Selenium")
         driver.find_element_by_css_selector('span.find-text').click()
-        driver.find_element_by_id('Checkpoint_TITLE').send_keys("Selenium")
+        driver.find_element_by_id('Checkpoint_TITLE').send_keys("Selenium _1")
         # ответственный
         driver.implicitly_wait(10)
         driver.find_element_by_xpath("//div[5]/div/span/span/span/span[2]").click()
-        driver.find_element_by_xpath('html/body/span/span/span[1]/input').send_keys('Selenium_1' + Keys.ENTER)
+        driver.find_element_by_xpath('html/body/span/span/span[1]/input').send_keys('Selenium' + Keys.ENTER)
         driver.implicitly_wait(10)
         # new responsible name
         driver.find_element_by_xpath('//div[6]/div/span/span/span/span[2]').click()
@@ -70,8 +72,10 @@ class ASeleniumLogin_1(unittest.TestCase):
         # yes
     def test_006_SearchCPinNewTab(self):
         time.sleep(5)
+        driver.find_element_by_xpath("//div[@id='cps_panel']/div/div/ul/li[2]/a/span[2]/span").click()
+        time.sleep(1)
         driver.implicitly_wait(15)
-        driver.find_element(By.XPATH, "// a[contains(text(), 'Selenium')]").click()
+        driver.find_element(By.XPATH, "// a[contains(text(), 'Selenium _1')]").click()
         print('Клик по ссылке ')
         # yes
     def test_007_DeleteThisCP(self):
@@ -252,7 +256,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         wait.until(EC.element_to_be_clickable((By.ID, 'Checkpoint_TITLE')))
         driver.find_element_by_id('Checkpoint_TITLE').send_keys("Selenium +4")
         driver.find_element_by_xpath("//div[@id='DIV_ID_RESPONSIBLE']/div/span/span/span/span[2]").click()
-        driver.find_element_by_xpath('html/body/span/span/span[1]/input').send_keys('Selenium' + Keys.ENTER)
+        driver.find_element_by_xpath('html/body/span/span/span[1]/input').send_keys('ipad' + Keys.ENTER)
         driver.implicitly_wait(10)
         driver.find_element_by_id('Checkpoint_DEADLINE').send_keys('123' + Keys.ENTER)
         print(' 25. Заполняем форму контрольной точки\n')
@@ -375,7 +379,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         wait.until(EC.element_to_be_clickable((By.NAME, 'yt0')))
         driver.find_element_by_id('Question_S_DESCRIPTION').send_keys('Selenium +6')
         driver.find_element_by_css_selector("span.select2-selection__arrow").click()
-        driver.find_element_by_xpath('//span/input').send_keys('Selenium' + Keys.ENTER)
+        driver.find_element_by_xpath('//span/input').send_keys('ipad' + Keys.ENTER)
         driver.find_element_by_name('yt0').click()
         print(' 38. Создаём новый вопрос\n')
         time.sleep(2)
@@ -435,7 +439,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         driver.find_element_by_id('Checkpoint_TITLE').send_keys('Selenium +7')
         driver.find_element_by_css_selector('span.select2-selection__arrow').click()
         #
-        driver.find_element_by_css_selector('input.select2-search__field').send_keys('Selenium' + Keys.ENTER)
+        driver.find_element_by_css_selector('input.select2-search__field').send_keys('ipad' + Keys.ENTER)
         #
         driver.find_element_by_id('date_106_74').send_keys('1234' + Keys.ENTER)
         driver.find_element_by_id('date_106_76').send_keys('1234' + Keys.ENTER)
@@ -457,6 +461,10 @@ class ASeleniumLogin_1(unittest.TestCase):
         print(' 46. Открываем новую вкладку и переходим в раздел "Нормативно-правовые акты"\n')
 
     def test_047_SearchNPAAndDelete(self):
+        #driver.find_element_by_css_selector('span.title_executor').click()
+        #driver.find_element_by_id('btn_executor').click()
+        #driver.find_element_by_id('btn_success_executor').click()
+
         wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'h4')))
         driver.find_element_by_css_selector('h4').click()
         wait.until(EC.element_to_be_clickable((By.NAME, 'yt1')))
