@@ -14,9 +14,10 @@ from selenium.webdriver.support.wait import WebDriverWait
 #
 oracle = 'https://task.eor.gosapi.ru/oracle/site/login'
 pgs = 'https://task.eor.gosapi.ru/pgs/site/login'
+dev = 'https://dev.eor.gosapi.ru/new/site/login'
 
 driver = webdriver.Chrome()
-driver.get(oracle)
+driver.get(pgs)
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
 
@@ -26,9 +27,9 @@ class ASeleniumLogin_1(unittest.TestCase):
         #wait = WebDriverWait(driver, 10)
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
         elem = driver.find_element_by_id("LoginForm_username")
-        elem.send_keys("Ipad")
+        elem.send_keys("admin")
         elem = driver.find_element_by_id("LoginForm_password")
-        elem.send_keys("ipad")
+        elem.send_keys("adminpass")
         elem.send_keys(Keys.RETURN)
 
         print('\n 1. Логинимся в систему\n')
@@ -66,7 +67,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         responsibleName.click()
         time.sleep(2)
         responsibleNameText = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
-        responsibleNameText.send_keys('яIpad' + Keys.ENTER)
+        responsibleNameText.send_keys('Selenium' + Keys.ENTER)
         time.sleep(2)
         driver.implicitly_wait(10)
         # new responsible name
@@ -107,7 +108,8 @@ class ASeleniumLogin_1(unittest.TestCase):
         print('\n 6. В фильтре вводим название созданной контрольной точки\n')
 
     def test_007_SearchCP(self):
-        time.sleep(4)
+        time.sleep(5)
+        _ = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'a.cps-link')))
         driver.find_element_by_css_selector('a.cps-link').click()
         driver.implicitly_wait(10)
         time.sleep(2)
@@ -121,6 +123,9 @@ class ASeleniumLogin_1(unittest.TestCase):
         driver.find_element_by_xpath("//button[3]").click()
         time.sleep(1)
         driver.find_element_by_xpath('//div[3]/div/button').click()
+
+        time.sleep(2)
+        driver.close()
 
 if __name__ == '__main__':
     suite = unittest.TestSuite()
