@@ -93,6 +93,36 @@ class ASeleniumLogin_1(unittest.TestCase):
             print('5. Папка с названием Selenium catalog удалена')
             #self.fail(print('\n \n 5. ОШИБКА! НЕ БЫЛ УДАЛЁН ОСНОВНОЙ СОЗДАННЙ КАТАЛОГ ИЛИ ПОДКАТАЛОГ\n \n'))
 
+    def test_006_addAttach(self):
+        driver.find_element_by_link_text('Добавить документы').click()
+        wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'i.fa.fa-link')))
+        driver.find_element_by_css_selector('i.fa.fa-link').click()
+        driver.find_element_by_xpath('//div[2]/div[2]/input').send_keys('Selenium')
+        driver.find_element_by_xpath('//div[2]/input[2]').send_keys('Selenium')
+        driver.find_element_by_xpath('//span[3]/span/i').click()
+        wait.until(EC.element_to_be_clickable((By.LINK_TEXT, 'Selenium')))
+        driver.find_element_by_xpath('//div/div[3]/span').click()
+
+        driver.find_element_by_id('search-show').click()
+        driver.find_element_by_id('search-text').send_keys('Selenium')
+        driver.find_element_by_id("search-text-push").click()
+        wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR,'span.find-text')))
+
+        coords = driver.find_element_by_css_selector('span.find-text')
+        time.sleep(2)
+        hover = ActionChains(driver).move_to_element(coords)
+        hover.perform()
+        driver.find_element_by_xpath('//div/div[2]/span').click()
+        time.sleep(2)
+        driver.find_element_by_xpath('//div[3]/div/button').click()
+        time.sleep(1)
+        print("6. Создаём вложение - ссылку и удаляем его")
+        try:
+            check = driver.find_element_by_css_selector('div.toast-message')
+            print(check.text)
+        except:
+            self.fail(print('Не выведено сообщение о успешном удалении вложения'))
+
 if __name__ == '__main__':
     suite = unittest.TestSuite()
     suite.addTest(unittest.makeSuite(ASeleniumLogin_1))
