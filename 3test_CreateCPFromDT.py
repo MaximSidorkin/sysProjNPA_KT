@@ -17,7 +17,7 @@ pgs = 'https://task.eor.gosapi.ru/pgs/site/login'
 dev = 'https://dev.eor.gosapi.ru/new/site/login'
 
 driver = webdriver.Chrome()
-driver.get(pgs)
+driver.get(oracle)
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
 
@@ -27,9 +27,9 @@ class ASeleniumLogin_1(unittest.TestCase):
         #wait = WebDriverWait(driver, 10)
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
         elem = driver.find_element_by_id("LoginForm_username")
-        elem.send_keys("admin")
+        elem.send_keys("ipad")
         elem = driver.find_element_by_id("LoginForm_password")
-        elem.send_keys("adminpass")
+        elem.send_keys("ipad")
         elem.send_keys(Keys.RETURN)
 
         print('\n 1. Логинимся в систему\n')
@@ -50,8 +50,9 @@ class ASeleniumLogin_1(unittest.TestCase):
         print('\n 3. На рабочем столе выбираем создать контрольную\n точку путем нажатия кнопки "+"\n')
 
     def test_004_FillingCPForm(self):
-        time.sleep(4)
+        #time.sleep(4)
         #имя родителя
+        _ = wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'i.fa.fa-angle-down')))
         driver.find_element_by_css_selector("i.fa.fa-angle-down").click()
         time.sleep(1)
         driver.find_element_by_css_selector("input.form-control").send_keys("Selenium")
