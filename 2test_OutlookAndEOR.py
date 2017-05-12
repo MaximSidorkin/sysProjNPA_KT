@@ -37,7 +37,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         print(' 2. Логин пользователя отображается\n')
 
     def test_003_GotoSyncURL(self):
-        driver.get("https://task.eor.gosapi.ru/oracle/ewsup/")
+        driver.get("https://dev.eor.gosapi.ru/new/ewsup/")
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'btn-ewsup')))
         print(' 3. Переход на страницу синхронизатора и нажатие кнопки "Синхронизировать" \n')
 
