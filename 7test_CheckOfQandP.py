@@ -8,9 +8,9 @@ from selenium.webdriver.support.wait import WebDriverWait
 #
 oracle = 'https://task.eor.gosapi.ru/oracle/site/login'
 pgs = 'https://task.eor.gosapi.ru/pgs/site/login'
+dev = 'https://dev.eor.gosapi.ru/new/'
 
 driver = webdriver.Chrome()
-#driver = webdriver.Firefox()
 driver.get(oracle)
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
@@ -18,7 +18,6 @@ driver.implicitly_wait(40)
 body = driver.find_element_by_tag_name('body')
 
 class ASeleniumLogin_1(unittest.TestCase):
-
     def test_001_LoginInEORDev(self):
         assert "Login" in driver.title
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
