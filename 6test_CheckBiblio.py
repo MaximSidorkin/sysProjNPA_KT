@@ -12,7 +12,7 @@ pgs = 'https://task.eor.gosapi.ru/pgs/site/login'
 dev = 'https://dev.eor.gosapi.ru/new/'
 
 driver = webdriver.Chrome()
-driver.get(oracle)
+driver.get(dev)
 driver.maximize_window()
 wait = WebDriverWait(driver, 50)
 driver.implicitly_wait(50)
@@ -60,14 +60,14 @@ class ASeleniumLogin_1(unittest.TestCase):
         wait.until(EC.element_to_be_clickable((By.ID, "Document_S_NAME")))
         driver.find_element_by_id("Document_S_NAME").send_keys('Selenium catalog')
         driver.find_element_by_xpath("//div/div[3]/span").click()
-        print('3. Создаём каталог')
+        print('3. Создаём каталог\n4. В созданном каталоге создаём подкаталог')
         time.sleep(2)
         #driver.find_element_by_id("search-text-push").click()
-        print("4. В созданном каталоге создаём подкаталог")
+        #print('4. В созданном каталоге создаём подкаталог')
 #
     def test_005_DeleteMainCatalog(self):
         driver.implicitly_wait(10)
-        time.sleep(3)
+        #time.sleep(3)
         driver.find_element(By.CSS_SELECTOR, "a.cursor").click()
         #wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, 'span.find-text')))
         time.sleep(2)

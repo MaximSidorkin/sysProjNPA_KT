@@ -8,9 +8,12 @@ from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.action_chains import ActionChains
+#
+oracle = 'https://task.eor.gosapi.ru/oracle/site/login'
+pgs = 'https://task.eor.gosapi.ru/pgs/site/login'
+dev = 'https://dev.eor.gosapi.ru/new/site/login'
 
 driver = webdriver.Chrome()
-#driver = webdriver.Firefox()
 wait = WebDriverWait(driver, 180)
 
 class ASeleniumLogin_1(unittest.TestCase):
@@ -33,7 +36,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         driver.find_element(By.XPATH, ".//*[text()='Создать событие']/..").click()
         # Получатели
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[2]/div[2]/div[2]/div/div/input")))
-        driver.find_element_by_xpath('//div[2]/div[2]/div[2]/div/div/input').send_keys('Selenium из Outlook. Отв.: ipad Ip.А., Уч. DIT Di.')
+        driver.find_element_by_xpath('//div[2]/div[2]/div[2]/div/div/input').send_keys('Selenium из Outlook. Отв.: ipad Ip.А., Уч. Selenium Qa.')
         time.sleep(2)
         driver.find_element_by_xpath('//li/div[2]/div/div/div/input').clear()
         driver.find_element_by_xpath('//li/div[2]/div/div/div/input').send_keys('21:41')
@@ -43,7 +46,7 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test003_GotoSync(self):
         time.sleep(4)
-        driver.get("https://dev.eor.gosapi.ru/new/ewsup")
+        driver.get('https://dev.eor.gosapi.ru/new/ewsup/')
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
         elem = driver.find_element_by_id("LoginForm_username")
         elem.send_keys("Ipad")
@@ -55,7 +58,6 @@ class ASeleniumLogin_1(unittest.TestCase):
     def test004_Sync(self):
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'btn-ewsup')))
         driver.find_element_by_id('btn-ewsup').click()
-        #time.sleep(3)
         try:
             wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'COMPLETE')]")))
             print(' Синхронизация прошла успешно ')
@@ -75,7 +77,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         except:
             self.fail(print('В РАСПИСАНИИ НЕТ МЕРОПРИЯТИЯ ИЗ OUTLOOK'))
         try:
-            _ = driver.find_element_by_class_name('col-md-12').text == 'Selenium из Outlook. Отв.: ipad Ip.А., Уч. DIT Di.'
+            _ = driver.find_element_by_class_name('col-md-12').text == 'Selenium из Outlook. Отв.: ipad Ip.А., Уч. Selenium Qa.'
             print('Название совещания соответствует переданному из outlook')
         except:
             print('Название совещания не соответствует переданному из outlook')
@@ -90,7 +92,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         driver.find_element_by_id('MeetingsData_S_NAME').send_keys('Selenium из Outlook (1)')
         #driver.find_element_by_css_selector('input.select2-search__field').send_keys('Web'+Keys.ENTER)
         driver.find_element_by_xpath('//div[8]/div/span/span/span/span').click()
-        driver.find_element_by_xpath('//span/input').send_keys('Web'+Keys.ENTER)
+        driver.find_element_by_xpath('//span/input').send_keys('Selenium'+Keys.ENTER)
         driver.find_element_by_name('yt0').click()
         print(" Изменяем название совещания в ЭОР")
 
@@ -102,7 +104,7 @@ class ASeleniumLogin_1(unittest.TestCase):
             print("I DON'T SEE POPUP")
 
     def test008_Sync(self):
-        driver.get("https://dev.eor.gosapi.ru/new/ewsup")
+        driver.get("https://dev.eor.gosapi.ru/new/ewsup/")
         print(" Пререходим к синхронизатору")
         ASeleniumLogin_1.test004_Sync(self)
 
@@ -114,7 +116,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, './/*[text()="Календарь"]/..')))
         driver.find_element(By.XPATH, ".//*[text()='Календарь']/..").click()
         try:
-            driver.find_element_by_xpath(".//*[text()='Selenium из Outlook (1) Отв.: Web w.w.']/..").click()
+            driver.find_element_by_xpath(".//*[text()='Selenium из Outlook (1) Отв.: Selenium Qa.']/..").click()
             print(' Совещание созданное в ЭОР найдено')
         except:
             print('аутглюк завис')
@@ -162,7 +164,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         place = driver.find_element_by_id('MeetingsData_S_PLACE').send_keys('Москва')
         responsibleName = driver.find_element_by_xpath('//div[8]/div/span/span/span/span[2]').click()
         time.sleep(1)
-        responsibleName = driver.find_element_by_xpath('//body[@id="ui-id-1"]/span/span/span/input').send_keys('Web' + Keys.ENTER)
+        responsibleName = driver.find_element_by_xpath('//body[@id="ui-id-1"]/span/span/span/input').send_keys('Selenium' + Keys.ENTER)
         meetingDateB = driver.find_element_by_id('MeetingsData_D_START').clear()
         meetingDateB = driver.find_element_by_id('MeetingsData_D_START').send_keys('22:01' + Keys.ENTER)
         meetingDateE = driver.find_element_by_id('MeetingsData_D_END').clear()
@@ -178,8 +180,6 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test015_bricktestGotoSync(self):
         print(" Пререходим к синхронизатору")
-        #driver.get("https://dev.eor.gosapi.ru/ewsup")      # раскомментировать
-        #ASeleniumLogin_1.test004_Sync(self)
 
     def test016_gotoOut(self):
         driver.get("https://owa.mos.ru/")
@@ -189,8 +189,8 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test017_editMeet(self):
         time.sleep(1)
-        _ = wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[text()='ЭОР to Outlook (Selenium) Отв.: Web w.w.']/..")))
-        driver.find_element_by_xpath(".//*[text()='ЭОР to Outlook (Selenium) Отв.: Web w.w.']/..").click()
+        _ = wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[text()='ЭОР to Outlook (Selenium) Отв.: Selenium Qa.']/..")))
+        driver.find_element_by_xpath(".//*[text()='ЭОР to Outlook (Selenium) Отв.: Selenium Qa.']/..").click()
         try:
             time.sleep(1)
             driver.find_element_by_xpath(".//*[text()='ИЗМЕНИТЬ']/..").click()
@@ -290,11 +290,6 @@ class ASeleniumLogin_1(unittest.TestCase):
         except:
             print(' Всплывающее уведомление не поялвилось')
 
-        #if driver.find_element_by_xpath('//div[12]/div/div/div/div/div/div/div[3]/button'):
-        #    driver.find_element_by_xpath('//div[4]/div/button').click()
-        #else:
-        #    print(' Всплывающее уведомление не поялвилось')
-
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, './/*[text()="Календарь"]/..')))
         driver.find_element(By.XPATH, ".//*[text()='Календарь']/..").click()
         try:
@@ -320,7 +315,7 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test027_GotoEOR(self):
         time.sleep(3)
-        driver.get("https://dev.eor.gosapi.ru/new/ewsup")
+        driver.get('https://dev.eor.gosapi.ru/new/ewsup/')
         print(" Открываем страницу синхронизатора и синхронизируем Outlook - ЭОР")
 
     def test028_Sync(self):
@@ -368,10 +363,6 @@ class ASeleniumLogin_1(unittest.TestCase):
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, './/*[text()="Календарь"]/..')))
         driver.find_element(By.XPATH, ".//*[text()='Календарь']/..").click()
         time.sleep(10)
-        #if driver.find_element_by_xpath('//div[12]/div/div/div/div/div/div/div[3]/button'):
-        #    driver.find_element_by_xpath('//div[4]/div/button').click()
-        #else:
-        #    print(' Всплывающее уведомление не поялвилось')
         try:
             _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[12]/div/div/div/div/div/div/div[3]/button')))
             driver.find_element_by_xpath('//div[12]/div/div/div/div/div/div/div[3]/button')
@@ -421,7 +412,7 @@ class ASeleniumLogin_1(unittest.TestCase):
     def test031_GotoSync(self):
         time.sleep(4)
         print(" Запускаем синхронизацию")
-        driver.get("https://dev.eor.gosapi.ru/new/ewsup")
+        driver.get("https://dev.eor.gosapi.ru/new/ewsup/")
         time.sleep(4)
         ASeleniumLogin_1.test004_Sync(self)
 
@@ -493,7 +484,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         time.sleep(3)
         name = driver.find_element_by_id('MeetingsData_S_NAME').send_keys('for LOGIN')
         unit = driver.find_element_by_xpath('//div[5]/div/div/div/input').click()
-        unit = driver.find_element_by_xpath('//div[5]/div/div/div/input').send_keys('Афа')
+        unit = driver.find_element_by_xpath('//div[5]/div/div/div/input').send_keys('Selenium')
         time.sleep(2)
         unit = driver.find_element_by_xpath('//div[5]/div/div/div/input').send_keys(Keys.ENTER)
         meetingDateB = driver.find_element_by_id('MeetingsData_D_START').clear()
@@ -759,7 +750,7 @@ if __name__ == '__main__':
     buf = open("at_for_SYNCHRON_EOR_and_OUTLOOK.html", 'wb')
     runner = HTMLTestRunner.HTMLTestRunner(
     stream=buf,
-    title='ПРОВЕРКА СИНХРОНИЗАЦИИ СОВЕЩАНИЙ СОЗДАННЫХ В OUTLOOK И ЭОР',
+    title='ПРОВЕРКА СИНХРОНИЗАЦИИ СОВЕЩАНИЙ СОЗДАННЫХ В OUTLOOK И ЭОР (часть 1)',
     description='Отчет по тестированию'
     )
     ret = not runner.run(suite).wasSuccessful()

@@ -8,7 +8,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
 
 driver = webdriver.Chrome()
-#driver = webdriver.Firefox()   #
 driver.get("https://dev.eor.gosapi.ru/new")
 driver.maximize_window()
 wait = WebDriverWait(driver, 150)
@@ -21,7 +20,6 @@ class ASeleniumLogin_1(unittest.TestCase):
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'LoginForm_username')))
         elem = driver.find_element_by_id("LoginForm_username").send_keys("Ipad")
         elem = driver.find_element_by_id("LoginForm_password").send_keys("ipad"+Keys.RETURN)
-        #elem.send_keys(Keys.RETURN)
         print('\n Логинимся в систему')
         wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
 
@@ -34,7 +32,6 @@ class ASeleniumLogin_1(unittest.TestCase):
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@id='bs-example-navbar-collapse-3']/div[5]/div[2]")))
         crMeeting = driver.find_element_by_xpath("//div[@id='bs-example-navbar-collapse-3']/div[5]/div[2]").click()
         print(' Нажимаем кнопку "Создать" на открывшейся форме')
-        #time.sleep(3)
         name = driver.find_element_by_id('MeetingsData_S_NAME').send_keys('for LOGIN')
         unit = driver.find_element_by_xpath('//div[5]/div/div/div/input').click()
         unit = driver.find_element_by_xpath('//div[5]/div/div/div/input').send_keys('Афанасьев')

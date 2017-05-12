@@ -76,7 +76,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         time.sleep(1)
         driver.implicitly_wait(15)
         driver.find_element(By.XPATH, "// a[contains(text(), 'Selenium _1')]").click()
-        print('Клик по ссылке ')
+        print(' 6. Клик по ссылке ')
         # yes
     def test_007_DeleteThisCP(self):
         wait.until(EC.element_to_be_clickable((By.NAME, 'yt2')))
@@ -151,7 +151,6 @@ class ASeleniumLogin_1(unittest.TestCase):
         driver.find_element_by_xpath('//div[3]/div/button').click()
         print(' 15. Удаляем Блок\n')
         # yes
-
     def test_016_TryEditBlock(self):
         time.sleep(3)
         driver.close()
