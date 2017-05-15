@@ -63,7 +63,7 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test_006_AddInit(self):
         driver.find_element_by_xpath('//div/span/span/span/span').click()
-        driver.find_element_by_xpath('//span/input').send_keys('яIpad'+Keys.ENTER)
+        driver.find_element_by_xpath('//span/input').send_keys('Ipad'+Keys.ENTER)
         print('Добавляем инициатора')
 
     def test_007_Create(self):
