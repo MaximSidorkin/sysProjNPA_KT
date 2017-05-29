@@ -113,10 +113,12 @@ class ASeleniumLogin_1(unittest.TestCase):
         print(" Переходим в Outlook")
 
     def test010_CheckMeet(self):
+        driver.set_page_load_timeout(40)
+        time.sleep(15)
         _ = wait.until(EC.element_to_be_clickable((By.XPATH, './/*[text()="Календарь"]/..')))
         driver.find_element(By.XPATH, ".//*[text()='Календарь']/..").click()
         try:
-            driver.find_element_by_xpath(".//*[text()='Selenium из Outlook (1) Отв.: Selenium Qa.']/..").click()
+            driver.find_element_by_xpath(".//*[text()='Selenium из Outlook (1) Отв.: Selenium_1 Qa.']/..").click()
             print(' Совещание созданное в ЭОР найдено')
         except:
             print('аутглюк завис')
@@ -189,8 +191,8 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test017_editMeet(self):
         time.sleep(1)
-        _ = wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[text()='ЭОР to Outlook (Selenium) Отв.: Selenium Qa.']/..")))
-        driver.find_element_by_xpath(".//*[text()='ЭОР to Outlook (Selenium) Отв.: Selenium Qa.']/..").click()
+        _ = wait.until(EC.element_to_be_clickable((By.XPATH, ".//*[text()='ЭОР to Outlook (Selenium) Отв.: Selenium_1 Qa.']/..")))
+        driver.find_element_by_xpath(".//*[text()='ЭОР to Outlook (Selenium) Отв.: Selenium_1 Qa.']/..").click()
         try:
             time.sleep(1)
             driver.find_element_by_xpath(".//*[text()='ИЗМЕНИТЬ']/..").click()
