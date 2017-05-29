@@ -281,7 +281,9 @@ class ASeleniumLogin_1(unittest.TestCase):
         time.sleep(2)   #4
         driver.find_element_by_css_selector('a.cps-link').click()
         time.sleep(2)
-        driver.find_element_by_link_text('Selenium').click()
+        #driver.find_element_by_link_text('Selenium').click()
+        #driver.find_element_by_css_selector('div.title-item > span.find-text').click()
+        driver.find_element_by_xpath('//div[2]/table/tbody/tr/td/h4/strong/a').click()
         time.sleep(2)
         driver.find_element_by_xpath('//button[3]').click()
         time.sleep(1)
