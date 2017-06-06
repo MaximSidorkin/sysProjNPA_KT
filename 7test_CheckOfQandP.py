@@ -11,7 +11,7 @@ pgs = 'https://task.eor.gosapi.ru/pgs/site/login'
 dev = 'https://dev.eor.gosapi.ru/new/'
 
 driver = webdriver.Chrome()
-driver.get(dev)
+driver.get(oracle)
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
 driver.implicitly_wait(40)
@@ -63,7 +63,7 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test_006_AddInit(self):
         driver.find_element_by_xpath('//div/span/span/span/span').click()
-        driver.find_element_by_xpath('//span/input').send_keys('Ipad'+Keys.ENTER)
+        driver.find_element_by_xpath('//span/input').send_keys('яIpad'+Keys.ENTER)
         print('Добавляем инициатора')
 
     def test_007_Create(self):
