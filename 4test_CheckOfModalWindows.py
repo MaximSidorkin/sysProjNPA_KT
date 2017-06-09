@@ -18,7 +18,7 @@ pgs = 'https://task.eor.gosapi.ru/pgs/site/login'
 dev = 'https://dev.eor.gosapi.ru/new/site/login'
 
 driver = webdriver.Chrome()
-driver.get(dev)
+driver.get(pgs)
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
 test_time = datetime.datetime.now()
@@ -58,7 +58,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         driver.implicitly_wait(10)
         # new responsible name
         driver.find_element_by_xpath('//div[6]/div/span/span/span/span[2]').click()
-        driver.find_element_by_xpath('//span/input').send_keys('Selenium_1' + Keys.ENTER)
+        driver.find_element_by_xpath('//span/input').send_keys('Selenium' + Keys.ENTER)
         # сроки
         driver.find_element_by_id('Checkpoint_DEADLINE').send_keys('123' + Keys.ENTER)
         driver.find_element_by_xpath("//div/div[3]/span[2]").click()
@@ -66,7 +66,8 @@ class ASeleniumLogin_1(unittest.TestCase):
         # yes
     def test_005_OpenWindowTwo(self):
         time.sleep(2)
-        driver.execute_script("window.open('https://dev.eor.gosapi.ru/new/','_blank');")
+        #driver.execute_script("window.open('https://dev.eor.gosapi.ru/new/','_blank');")
+        driver.execute_script("window.open('https://task.eor.gosapi.ru/pgs/site/','_blank');")
         driver.switch_to.window(driver.window_handles[-1])
         print(' 5. Открываем новую вкладку\n')
         # yes
@@ -134,7 +135,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         # yes
     def test_014_OpenNewTabAndSearchBlock(self):
         time.sleep(4)
-        driver.execute_script("window.open('https://dev.eor.gosapi.ru/new/','_blank');")
+        driver.execute_script("window.open('https://task.eor.gosapi.ru/pgs/site/','_blank');")
         driver.switch_to.window(driver.window_handles[-1])
         wait.until(EC.element_to_be_clickable((By.LINK_TEXT, "Все проекты")))
         driver.find_element_by_link_text("Все проекты").click()
@@ -180,9 +181,9 @@ class ASeleniumLogin_1(unittest.TestCase):
         wait.until(EC.element_to_be_clickable((By.ID, 'Checkpoint_TITLE')))
         driver.find_element_by_id('Checkpoint_TITLE').send_keys('Selenium +3')
         autorDown = driver.find_element_by_xpath("//div[@id='DIV_ID_RESPONSIBLE']/div/span/span/span/span").click()
-        autorName = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("багреева" + Keys.ENTER)
+        autorName = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("Иванов И" + Keys.ENTER)
         pjctMansger = driver.find_element_by_xpath("//div[@id='DIV_PROJECT_CURATOR']/div/span/span/span/span[2]").click()
-        pjctMansgerName = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("DIT" + Keys.ENTER)
+        pjctMansgerName = driver.find_element_by_xpath("html/body/span/span/span[1]/input").send_keys("Иванов И" + Keys.ENTER)
         time.sleep(1)
         driver.find_element_by_name("yt0").send_keys(Keys.PAGE_DOWN)
         time.sleep(1)
@@ -191,7 +192,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         # yes
     def test_018_OpenNewTab(self):
         time.sleep(2)
-        driver.execute_script("window.open('https://dev.eor.gosapi.ru/new/','_blank');")
+        driver.execute_script("window.open('https://task.eor.gosapi.ru/pgs/site/','_blank');")
         driver.switch_to.window(driver.window_handles[-1])
         wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
         driver.find_element_by_link_text("Все проекты").click()
@@ -255,7 +256,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         wait.until(EC.element_to_be_clickable((By.ID, 'Checkpoint_TITLE')))
         driver.find_element_by_id('Checkpoint_TITLE').send_keys("Selenium +4")
         driver.find_element_by_xpath("//div[@id='DIV_ID_RESPONSIBLE']/div/span/span/span/span[2]").click()
-        driver.find_element_by_xpath('html/body/span/span/span[1]/input').send_keys('ipad' + Keys.ENTER)
+        driver.find_element_by_xpath('html/body/span/span/span[1]/input').send_keys('Иванов И' + Keys.ENTER)
         driver.implicitly_wait(10)
         driver.find_element_by_id('Checkpoint_DEADLINE').send_keys('123' + Keys.ENTER)
         print(' 25. Заполняем форму контрольной точки\n')
@@ -268,7 +269,7 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test_027_OpenNewTab(self):
         time.sleep(2)
-        driver.execute_script("window.open('https://dev.eor.gosapi.ru/new/','_blank');")
+        driver.execute_script("window.open('https://task.eor.gosapi.ru/pgs/site/','_blank');")
         driver.switch_to.window(driver.window_handles[-1])
         wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
         driver.find_element_by_link_text("Все проекты").click()
@@ -334,7 +335,7 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test_033_OpenNewTab(self):
         time.sleep(2)
-        driver.execute_script("window.open('https://dev.eor.gosapi.ru/new/','_blank');")
+        driver.execute_script("window.open('https://task.eor.gosapi.ru/pgs/site/','_blank');")
         driver.switch_to.window(driver.window_handles[-1])
         time.sleep(2)
         wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
@@ -377,16 +378,17 @@ class ASeleniumLogin_1(unittest.TestCase):
     def test_038_CreateNewQuestion(self):
         wait.until(EC.element_to_be_clickable((By.ID, 'btn_create_user')))
         driver.find_element_by_id('btn_create_user').click()
-        wait.until(EC.element_to_be_clickable((By.NAME, 'yt0')))
+        wait.until(EC.element_to_be_clickable((By.XPATH, '//div[11]/span')))
         driver.find_element_by_id('Question_S_DESCRIPTION').send_keys('Selenium +6')
         driver.find_element_by_css_selector("span.select2-selection__arrow").click()
-        driver.find_element_by_xpath('//span/input').send_keys('ipad' + Keys.ENTER)
-        driver.find_element_by_name('yt0').click()
+        driver.find_element_by_xpath('//span/input').send_keys('Иванов И' + Keys.ENTER)
+        #driver.find_element_by_name('yt0').click()
+        driver.find_element_by_xpath('//div[11]/span').click()
         print(' 38. Создаём новый вопрос\n')
         time.sleep(2)
 
     def test_039_OpenNewTab(self):
-        driver.execute_script("window.open('https://dev.eor.gosapi.ru/new/','_blank');")
+        driver.execute_script("window.open('https://task.eor.gosapi.ru/pgs/site/','_blank');")
         driver.switch_to.window(driver.window_handles[-1])
         wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
         driver.find_element_by_link_text("Вопросы/Приоритеты").click()
@@ -433,18 +435,18 @@ class ASeleniumLogin_1(unittest.TestCase):
     def test_045_FillingNPAForm(self):
         # сокращение списка, выбираем правовые акты ДЭПР
         wait.until(EC.element_to_be_clickable((By.ID, 'npa_type_selectSelectBoxItArrowContainer')))
-        driver.find_element_by_id('npa_type_selectSelectBoxItArrowContainer').click()
-        time.sleep(1)
-        driver.find_element_by_link_text('Правовые акты ДЭПР').click()
+        #driver.find_element_by_id('npa_type_selectSelectBoxItArrowContainer').click()
+        #time.sleep(1)
+        #driver.find_element_by_link_text('Правовые акты ДЭПР').click()
         time.sleep(1)
         driver.find_element_by_id('Checkpoint_TITLE').send_keys('Selenium +7')
         driver.find_element_by_css_selector('span.select2-selection__arrow').click()
         #
-        driver.find_element_by_css_selector('input.select2-search__field').send_keys('ipad' + Keys.ENTER)
+        driver.find_element_by_css_selector('input.select2-search__field').send_keys('Иванов И' + Keys.ENTER)
         #
-        driver.find_element_by_id('date_106_74').send_keys('1234' + Keys.ENTER)
-        driver.find_element_by_id('date_106_76').send_keys('1234' + Keys.ENTER)
-        driver.find_element_by_id('date_106_83').send_keys('1234' + Keys.ENTER)
+        driver.find_element_by_id('date_1_1').send_keys('1234' + Keys.ENTER)
+        driver.find_element_by_id('date_1_2').send_keys('1234' + Keys.ENTER)
+        driver.find_element_by_id('date_1_3').send_keys('1234' + Keys.ENTER)
         driver.find_element_by_css_selector('span.input-group-addon').click()
         time.sleep(1)
         driver.find_element_by_xpath('//div/div/div[2]/div/div/div[2]/div/div/input').send_keys('Selenium')
@@ -455,7 +457,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         print(' 45. заполняем форму НПА\n')
 
     def test_046_OpenNewTab(self):
-        driver.execute_script("window.open('https://dev.eor.gosapi.ru/new/','_blank');")
+        driver.execute_script("window.open('https://task.eor.gosapi.ru/pgs/site/','_blank');")
         driver.switch_to.window(driver.window_handles[-1])
         wait.until(EC.element_to_be_clickable((By.CLASS_NAME, 'hidden-xs')))
         driver.find_element_by_link_text("Нормативно-правовые акты").click()
@@ -485,8 +487,10 @@ class ASeleniumLogin_1(unittest.TestCase):
     def test_049_CatchWindow(self):
         time.sleep(1)
         try:
-            _ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[3]/div/button')))
-            driver.find_element_by_xpath('//div[3]/div/button').click()
+            #_ = wait.until(EC.element_to_be_clickable((By.XPATH, '//div[3]/div/button')))
+            wait.until(EC.presence_of_element_located((By.XPATH, "//*[contains(text(), 'Selenium +7')]")))
+            driver.find_element_by_xpath("//*[contains(text(), 'Selenium +7')]").click()
+            #driver.find_element_by_xpath('//div[3]/div/button').click()
             print(' 49. Модальное окно "НПА Selenium +7 был удален.", появилось и было закрыто \n')
         except:
             self.fail(print(' 49. Модальное окно "НПА Selenium +7 был удален.", не появилось \n'))
