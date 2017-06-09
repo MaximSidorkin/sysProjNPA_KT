@@ -11,7 +11,7 @@ pgs = 'https://task.eor.gosapi.ru/pgs/site/login'
 dev = 'https://dev.eor.gosapi.ru/new/'
 
 driver = webdriver.Chrome()
-driver.get(oracle)
+driver.get(pgs)
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
 driver.implicitly_wait(40)
@@ -63,11 +63,13 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test_006_AddInit(self):
         driver.find_element_by_xpath('//div/span/span/span/span').click()
-        driver.find_element_by_xpath('//span/input').send_keys('яIpad'+Keys.ENTER)
+        driver.find_element_by_xpath('//span/input').send_keys('Иванов И.И.'+Keys.ENTER)
         print('Добавляем инициатора')
 
     def test_007_Create(self):
-        driver.find_element_by_name('yt0').click()
+        #driver.find_element_by_name('yt0').click()
+        #driver.find_element_by_class_name("btn btn-default btn-question-save").click()
+        driver.find_element_by_xpath('//div[11]/span').click()
         print("Подтверждаем создание приоритета")
         time.sleep(5)
 
