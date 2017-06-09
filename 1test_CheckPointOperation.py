@@ -16,7 +16,7 @@ pgs = 'https://task.eor.gosapi.ru/pgs/site/login'
 dev = 'https://dev.eor.gosapi.ru/new/site/login'
 
 driver = webdriver.Chrome()
-driver.get(oracle)
+driver.get(pgs)
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
 
@@ -163,29 +163,33 @@ class ASeleniumLogin_1(unittest.TestCase):
         time.sleep(1)
         assert "ЭОР" in driver.title
         # сокращение списка, выбираем правовые акты ДЭПР
-        depr = driver.find_element_by_xpath('//div/div[2]/div[1]/div[2]/div[1]/div/span/span/span[2]')
-        depr.click()
-        time.sleep(3)
-        deprText = driver.find_element_by_xpath('//div[1]/div/span/ul/li[3]/a')
-        deprText.click()
-        time.sleep(3)
+        #depr = driver.find_element_by_xpath('//div/div[2]/div[1]/div[2]/div[1]/div/span/span/span[2]')
+        #depr.click()
+        #time.sleep(3)
+        #deprText = driver.find_element_by_xpath('//div[1]/div/span/ul/li[3]/a')
+        #deprText.click()
+        #time.sleep(3)
         # приверим все обязательные поля
-        createButton = driver.find_element_by_id('create-cp')
-        createButton.send_keys(Keys.PAGE_DOWN)
-        time.sleep(2)
+        #createButton = driver.find_element_by_id('create-cp')
+        #createButton.send_keys(Keys.PAGE_DOWN)
+        #time.sleep(2)
         finishButton = driver.find_element_by_xpath('//form/div/div[2]/div[2]/div/input[2]')
         finishButton.click()
         time.sleep(4)
 
         # ответственный Согласование отраслевого управления
-        responsibleName1 = driver.find_element_by_xpath('//div[4]/div/div/div/span/span/span/span[2]')  # ответственный Согласование у руководителя департамента
-        responsibleName1.click()
+        #down for oracle
+        #responsibleName1 = driver.find_element_by_xpath('//div[4]/div/div/div/span/span/span/span[2]')  # ответственный Согласование у руководителя департамента
+        #responsibleName1.click()
+
+        _ = wait.until(EC.element_to_be_clickable((By.XPATH, "//div[@id='type_1']/div/div/div/span/span/span/span[2]")))
+        responsibleName1 = driver.find_element_by_xpath("//div[@id='type_1']/div/div/div/span/span/span/span[2]").click()
         responsibleName1 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
         responsibleName1.send_keys('Selenium')
         responsibleName1.send_keys(Keys.ARROW_DOWN)
         responsibleName1.send_keys(Keys.ENTER)
         # проверим все обязательные элементы ещё раз
-        createButton.send_keys(Keys.PAGE_DOWN)
+        #createButton.send_keys(Keys.PAGE_DOWN)
         time.sleep(2)
         driver.implicitly_wait(30)
         finishButton2 = driver.find_element_by_name('yt0')
@@ -199,34 +203,47 @@ class ASeleniumLogin_1(unittest.TestCase):
             print('\n Модальное окно "Внимание!", относящееся к НПА, появилось и было закрыто \n')
         except:
             print('\n Модальное окно "Внимание!", относящееся к НПА, не появилось \n')
+        # down for oracle (or dev)
+        #planDate1 = driver.find_element_by_id('date_106_74')# срок исполнения Согласование отраслевого управления
+        #planDate1.click()
 
-        planDate1 = driver.find_element_by_id('date_106_74')# срок исполнения Согласование отраслевого управления
+        planDate1 = driver.find_element_by_id('date_1_1')# срок исполнения Согласование отраслевого управления
         planDate1.click()
         planDate1.send_keys('12345')
         planDate1.send_keys(Keys.ENTER)
 
         # Получение согласований, определенных регламентами
         time.sleep(3)
-        responsibleName2 = driver.find_element_by_xpath('//div[4]/div[2]/div[1]/div/span/span[1]/span/span[2]') # ответственный Получение согласований, определенных регламентами
-        responsibleName2.click()
+        # down for oracle (or dev)
+        #responsibleName2 = driver.find_element_by_xpath('//div[4]/div[2]/div[1]/div/span/span[1]/span/span[2]') # ответственный Получение согласований, определенных регламентами
+        #responsibleName2.click()
+
+        responsibleName2 = driver.find_element_by_xpath('//div[2]/div/div/span/span/span/span[2]').click()
         responsibleName2 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
         responsibleName2.click()
         responsibleName2.send_keys('Selenium')
         responsibleName2.send_keys(Keys.ENTER)
-        planDate2 = driver.find_element_by_id('date_106_76')# срок исполнения Получение согласований, определенных регламентами
+
+        #planDate2 = driver.find_element_by_id('date_106_76')# срок исполнения Получение согласований, определенных регламентами
+        planDate2 = driver.find_element_by_id('date_1_2')# срок исполнения Получение согласований, определенных регламентами
         planDate2.click()
         planDate2.send_keys('12345')
         planDate2.send_keys(Keys.ENTER)
 
         # Утверждение руководителя департамента
         time.sleep(3)
-        responsibleName3 = driver.find_element_by_xpath('//div[4]/div[3]/div[1]/div/span/span[1]/span/span[2]')# ответственный Утверждение руководителя департамента
-        responsibleName3.click()
+        # down for oracle (or dev)
+        #responsibleName3 = driver.find_element_by_xpath('//div[4]/div[3]/div[1]/div/span/span[1]/span/span[2]')# ответственный Утверждение руководителя департамента
+        #responsibleName3.click()
+
+        responsibleName3 = driver.find_element_by_xpath('//div[3]/div/div/span/span/span/span[2]').click()
         responsibleName3 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
         responsibleName3.click()
         responsibleName3.send_keys('Selenium')
         responsibleName3.send_keys(Keys.ENTER)
-        planDate3 = driver.find_element_by_id('date_106_83')# срок исполнения Передача в правовое управление
+        # down for oracle (or dev)
+        #planDate3 = driver.find_element_by_id('date_106_83')# срок исполнения Передача в правовое управление
+        planDate3 = driver.find_element_by_id('date_1_3')  # срок исполнения Передача в правовое управление
         planDate3.click()
         planDate3.send_keys('12345')
         planDate3.send_keys(Keys.ENTER)
@@ -247,32 +264,39 @@ class ASeleniumLogin_1(unittest.TestCase):
         editBtn = driver.find_element_by_name('yt0')
         editBtn.click()
         # отчищаем обязательные поля в форме НПА
-        responsibleName1 = driver.find_element_by_xpath('//div[4]/div[1]/div[1]/div/span/span[1]/span/span[2]')
-        responsibleName1.click()
+        #responsibleName1 = driver.find_element_by_xpath('//div[4]/div[1]/div[1]/div/span/span[1]/span/span[2]')
+        responsibleName1 = driver.find_element_by_xpath(
+            "//div[@id='type_1']/div/div/div/span/span/span/span[2]").click()
+        #responsibleName1.click()
+
         responsibleName1 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
         responsibleName1.send_keys('Не выбрано')
         responsibleName1.send_keys(Keys.ENTER)
-        planDate1 = driver.find_element_by_id('date_106_74')
+        planDate1 = driver.find_element_by_id('date_1_1')
         planDate1.clear()
         planDate1.send_keys(Keys.ENTER)
 
-        responsibleName2 = driver.find_element_by_xpath('//div[4]/div[2]/div[1]/div/span/span[1]/span/span[2]')
-        responsibleName2.click()
+        #responsibleName2 = driver.find_element_by_xpath('//div[4]/div[2]/div[1]/div/span/span[1]/span/span[2]')
+        responsibleName2 = driver.find_element_by_xpath('//div[2]/div/div/span/span/span/span[2]').click()
+        #responsibleName2.click()
+
         responsibleName2 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
         responsibleName2.click()
         responsibleName2.send_keys('Не выбрано')
         responsibleName2.send_keys(Keys.ENTER)
-        planDate2 = driver.find_element_by_id('date_106_76')
+        planDate2 = driver.find_element_by_id('date_1_2')
         planDate2.clear()
         planDate2.send_keys(Keys.ENTER)
 
-        responsibleName3 = driver.find_element_by_xpath('//div[4]/div[3]/div[1]/div/span/span[1]/span/span[2]')# ответственный Утверждение руководителя департамента
-        responsibleName3.click()
+        #responsibleName3 = driver.find_element_by_xpath('//div[4]/div[3]/div[1]/div/span/span[1]/span/span[2]')# ответственный Утверждение руководителя департамента
+        responsibleName3 = driver.find_element_by_xpath('//div[3]/div/div/span/span/span/span[2]').click()
+        #responsibleName3.click()
+
         responsibleName3 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
         responsibleName3.click()
         responsibleName3.send_keys('Не выбрано')
         responsibleName3.send_keys(Keys.ENTER)
-        planDate3 = driver.find_element_by_id('date_106_83')
+        planDate3 = driver.find_element_by_id('date_1_3')
         planDate3.clear()
         planDate3.send_keys(Keys.ENTER)
         CheckPiontID = driver.find_element_by_id('Checkpoint_TITLE')
@@ -294,12 +318,12 @@ class ASeleniumLogin_1(unittest.TestCase):
         time.sleep(2)
         assert "ЭОР" in driver.title
         # сокращение списка, выбираем правовые акты ДЭПР
-        depr = driver.find_element_by_xpath('//div/div[2]/div[1]/div[2]/div[1]/div/span/span/span[2]')
-        depr.click()
-        time.sleep(1)
-        deprText = driver.find_element_by_xpath('//div[1]/div/span/ul/li[3]/a')
-        deprText.click()
-        time.sleep(1)
+        #depr = driver.find_element_by_xpath('//div/div[2]/div[1]/div[2]/div[1]/div/span/span/span[2]')
+        #depr.click()
+        #time.sleep(1)
+        #deprText = driver.find_element_by_xpath('//div[1]/div/span/ul/li[3]/a')
+        #deprText.click()
+        #time.sleep(1)
         # приверим все обязательные поля
         createButton = driver.find_element_by_id('create-cp')
         createButton.send_keys(Keys.PAGE_DOWN)
@@ -308,8 +332,11 @@ class ASeleniumLogin_1(unittest.TestCase):
         finishButton.click()
         time.sleep(2)
         # ответственный Согласование отраслевого управления
-        responsibleName1 = driver.find_element_by_xpath('//div[4]/div[1]/div[1]/div/span/span[1]/span/span[2]')  # ответственный Согласование у руководителя департамента
-        responsibleName1.click()
+        #responsibleName1 = driver.find_element_by_xpath('//div[4]/div[1]/div[1]/div/span/span[1]/span/span[2]')  # ответственный Согласование у руководителя департамента
+        #responsibleName1.click()
+        responsibleName1 = driver.find_element_by_xpath(
+            "//div[@id='type_1']/div/div/div/span/span/span/span[2]").click()
+
         responsibleName1 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
         responsibleName1.send_keys('Selenium')
         responsibleName1.send_keys(Keys.ARROW_DOWN)
@@ -322,37 +349,41 @@ class ASeleniumLogin_1(unittest.TestCase):
         # finishButton2 = driver.implicitly_wait(10)
         finishButton2.click()
         time.sleep(2)
-        planDate1 = driver.find_element_by_id('date_106_74')  # срок исполнения Согласование отраслевого управления
+        planDate1 = driver.find_element_by_id('date_1_1')  # срок исполнения Согласование отраслевого управления
         planDate1.click()
         planDate1.send_keys('12345')
         planDate1.send_keys(Keys.ENTER)
 
         # Получение согласований, определенных регламентами
         time.sleep(2)
-        responsibleName2 = driver.find_element_by_xpath('//div[4]/div[2]/div[1]/div/span/span[1]/span/span[2]')  # ответственный Получение согласований, определенных регламентами
-        responsibleName2.click()
+        #responsibleName2 = driver.find_element_by_xpath('//div[4]/div[2]/div[1]/div/span/span[1]/span/span[2]')  # ответственный Получение согласований, определенных регламентами
+        #responsibleName2.click()
+        responsibleName2 = driver.find_element_by_xpath('//div[2]/div/div/span/span/span/span[2]').click()
+
         responsibleName2 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
         responsibleName2.click()
         responsibleName2.send_keys('Selenium')
         responsibleName2.send_keys(Keys.ENTER)
-        planDate2 = driver.find_element_by_id('date_106_76')  # срок исполнения Получение согласований, определенных регламентами
+        planDate2 = driver.find_element_by_id('date_1_2')  # срок исполнения Получение согласований, определенных регламентами
         planDate2.click()
         planDate2.send_keys('12345')
         planDate2.send_keys(Keys.ENTER)
 
         # Утверждение руководителя департамента
         time.sleep(1)
-        responsibleName3 = driver.find_element_by_xpath('//div[4]/div[3]/div[1]/div/span/span[1]/span/span[2]')  # ответственный Утверждение руководителя департамента
-        responsibleName3.click()
+        #responsibleName3 = driver.find_element_by_xpath('//div[4]/div[3]/div[1]/div/span/span[1]/span/span[2]')  # ответственный Утверждение руководителя департамента
+        #responsibleName3.click()
+        responsibleName3 = driver.find_element_by_xpath('//div[3]/div/div/span/span/span/span[2]').click()
+
         responsibleName3 = driver.find_element_by_xpath('html/body/span/span/span[1]/input')
         responsibleName3.click()
         responsibleName3.send_keys('Selenium')
         responsibleName3.send_keys(Keys.ENTER)
-        planDate3 = driver.find_element_by_id('date_106_83')  # срок исполнения Передача в правовое управление
+        planDate3 = driver.find_element_by_id('date_1_3')  # срок исполнения Передача в правовое управление
         planDate3.click()
         planDate3.send_keys('12345')
         planDate3.send_keys(Keys.ENTER)
-        planDate3.send_keys(Keys.PAGE_UP)
+        #planDate3.send_keys(Keys.PAGE_UP)
 
         CheckPiontID = driver.find_element_by_id('Checkpoint_TITLE')
         CheckPiontID.click()
@@ -362,10 +393,11 @@ class ASeleniumLogin_1(unittest.TestCase):
 
     def test_018_StatusCheck(self):
         # 1 - исполнено
-        status1 = driver.find_element_by_xpath('//div[1]/div[2]/div[4]/div[1]/div[3]/div/div/div/label')
+        #status1 = driver.find_element_by_xpath('//div[1]/div[2]/div[4]/div[1]/div[3]/div/div/div/label')
+        status1 = driver.find_element_by_xpath('//div[2]/div[3]/div/div/div/span[2]')
         status1.click()
         # 2 - просрочено
-        status2 = driver.find_element_by_id('date_106_76')
+        status2 = driver.find_element_by_id('date_1_1')
         status2.clear()
         status2.send_keys('15.05.2016')
         # 3 - в процессе
