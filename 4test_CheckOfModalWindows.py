@@ -440,13 +440,24 @@ class ASeleniumLogin_1(unittest.TestCase):
         #driver.find_element_by_link_text('Правовые акты ДЭПР').click()
         time.sleep(1)
         driver.find_element_by_id('Checkpoint_TITLE').send_keys('Selenium +7')
-        driver.find_element_by_css_selector('span.select2-selection__arrow').click()
+        #driver.find_element_by_css_selector('span.select2-selection__arrow').click()
         #
-        driver.find_element_by_css_selector('input.select2-search__field').send_keys('Иванов И' + Keys.ENTER)
+        #driver.find_element_by_xpath('//div[2]/div/div/div/span/span/span/span[2]').click()
+        #driver.find_element_by_css_selector('input.select2-search__field').send_keys('Иванов И' + Keys.ENTER)
+        #
+        #driver.find_element_by_xpath('//div[2]/div/div/span/span/span/span[2]').click()
+        #driver.find_element_by_css_selector('input.select2-search__field').send_keys('Иванов И' + Keys.ENTER)
+        #
+        #driver.find_element_by_xpath('//div[3]/div/div/span/span/span/span[2]').click()
+        #driver.find_element_by_css_selector('input.select2-search__field').send_keys('Иванов И' + Keys.ENTER)
         #
         driver.find_element_by_id('date_1_1').send_keys('1234' + Keys.ENTER)
         driver.find_element_by_id('date_1_2').send_keys('1234' + Keys.ENTER)
         driver.find_element_by_id('date_1_3').send_keys('1234' + Keys.ENTER)
+        #
+        driver.find_element_by_xpath('//div[7]/div/span/span/span/span[2]').click()
+        driver.find_element_by_css_selector('input.select2-search__field').send_keys('Иванов И' + Keys.ENTER)
+        #
         driver.find_element_by_css_selector('span.input-group-addon').click()
         time.sleep(1)
         driver.find_element_by_xpath('//div/div/div[2]/div/div/div[2]/div/div/input').send_keys('Selenium')
