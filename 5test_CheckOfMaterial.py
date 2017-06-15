@@ -13,9 +13,10 @@ import sys
 oracle = 'https://task.eor.gosapi.ru/oracle/site/login'
 pgs = 'https://task.eor.gosapi.ru/pgs/site/login'
 dev = 'https://dev.eor.gosapi.ru/new/'
+perm = 'http://dev.perm.gosapi.ru/top/'
 
 driver = webdriver.Chrome()
-driver.get(pgs)
+driver.get(perm)
 driver.maximize_window()
 wait = WebDriverWait(driver, 20)
 driver.implicitly_wait(10)
