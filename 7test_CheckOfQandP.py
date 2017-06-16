@@ -12,7 +12,7 @@ dev = 'https://dev.eor.gosapi.ru/new/'
 perm = 'http://dev.perm.gosapi.ru/top/'
 
 driver = webdriver.Chrome()
-driver.get(perm)
+driver.get(pgs)
 driver.maximize_window()
 wait = WebDriverWait(driver, 40)
 driver.implicitly_wait(40)
