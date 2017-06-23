@@ -14,7 +14,7 @@ dev = 'https://dev.eor.gosapi.ru/new/site/login'
 perm = 'http://dev.perm.gosapi.ru/top/'
 
 driver = webdriver.Chrome()
-driver.get(dev)
+driver.get(pgs)
 driver.maximize_window()
 wait = WebDriverWait(driver, 120)
 
@@ -38,7 +38,7 @@ class ASeleniumLogin_1(unittest.TestCase):
         print(' 2. Логин пользователя отображается\n')
 
     def test_003_GotoSyncURL(self):
-        driver.get("https://dev.eor.gosapi.ru/new/ewsup/")
+        driver.get("https://task.eor.gosapi.ru/pgs/ewsup/")
         _ = wait.until(EC.element_to_be_clickable((By.ID, 'btn-ewsup')))
         print(' 3. Переход на страницу синхронизатора и нажатие кнопки "Синхронизировать" \n')
 
